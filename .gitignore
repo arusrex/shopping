@@ -5,11 +5,7 @@
 __pycache__
 db.sqlite3
 media
-static
-media/
-static/
-/media/
-/static/
+/static
 local_settings.py
 /local_settings.py
 
