@@ -1,7 +1,12 @@
 :root {
-    --clr-white: hsl(213 100% 98%)
-    --clr-primary: hsl(213 100% 50%)
-    --clr-black: hsl(213 100% 5%)
+    --clr-white: hsl(213 100% 95%);
+    --clr-black: hsl(213 100% 5%);
+
+    --clr-primary: hsl(213 100% 50%);
+    --clr-light-primary: hsl(213 100% 75%);
+    
+    --clr-grey: hsl(0, 0%, 50%);
+    --clr-light-grey: hsl(0, 0%, 75%);
 
 }
 
@@ -14,4 +19,14 @@ body {
     color: var(--clr-black);
     font-size: 1.6rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}   
+}
+
+/* BACKGROUNDS */
+
+.bg-footer {
+    background-image: linear-gradient(to right, var(--clr-light-grey), var(--clr-white));
+}
+
+.bg-header {
+    background-image: linear-gradient(to left, var(--clr-light-grey), var(--clr-white));
+}
