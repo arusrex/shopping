@@ -1,50 +1,41 @@
 {% load static %}
-<div class="container-fluid">
-    <div id="myCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+<div class="container">
+    <div id="carouselFade" class="mb-4 mx-auto w-75 carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="mt-5 rounded-bottom shadow-sm d-none d-md-block text-center carousel-indicators bg-secondary p-3">
+            <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{% static 'blog/img/shop.png' %}" class="d-block w-100 h-25" alt="Carousel Image">
-                <div class="container">
-                    <div class="carousel-caption text-start">
-                        <h1>Registre-se Hoje.</h1>
-                        <p class="opacity-75">Junte-se à nossa comunidade e aproveite todos os benefícios. Cadastre-se agora de forma rápida e segura.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Cadastre-se agora</a></p>
-                    </div>
+            <div class="carousel-item active carousel-height">
+                <img src="{% static "blog/img/shop.png" %}" class="d-block w-100" alt="...">
+                <div class="mb-5 rounded shadow-sm carousel-caption d-none d-md-block bg-secondary bg-gradient p-3">
+                    <h1>First slide label</h1>
+                    <p>Some representative placeholder content for the first slide.</p>
                 </div>
             </div>
-            <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p>Some representative placeholder content for the second slide of the carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-                    </div>
+            <div class="carousel-item carousel-height">
+                <img src="{% static "blog/img/shop2.png" %}" class="d-block w-100" alt="...">
+                <div class="mb-5 rounded shadow-sm carousel-caption d-none d-md-block bg-secondary bg-gradient p-3">
+                    <h1>Second slide label</h1>
+                    <p>Some representative placeholder content for the first slide.</p>
                 </div>
             </div>
-            <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
-                <div class="container">
-                    <div class="carousel-caption text-end">
-                        <h1>One more for good measure.</h1>
-                        <p>Some representative placeholder content for the third slide of this carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-                    </div>
+            <div class="carousel-item carousel-height">
+                <img src="{% static "blog/img/shop3.png" %}" class="d-block w-100" alt="...">
+                <div class="mb-5 rounded shadow-sm carousel-caption d-none d-md-block bg-secondary bg-gradient p-3">
+                    <h1>Third slide label</h1>
+                    <p>Some representative placeholder content for the first slide.</p>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <button class="btn-carousel m-3 my-auto carousel-control-prev rounded shadow-sm bg-secondary bg-gradient bg-opacity-75" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span class="visually-hidden">Anterior</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <button class="btn-carousel m-3 my-auto carousel-control-next rounded shadow-sm bg-secondary bg-gradient bg-opacity-75" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span class="visually-hidden">Próximo</span>
         </button>
     </div>
 </div>
