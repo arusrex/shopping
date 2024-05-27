@@ -1,29 +1,29 @@
 {% load static %}
 <div class="container px-4 py-5" id="custom-cards">
     <h2 class="pb-2 border-bottom bg-dark-blue text-white p-2">EVENTOS</h2>
-    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
         <div class="col">
-            <div class="card card-cover h-100 overflow-hidden text-bg-dark  rounded-4 shadow-lg">
-                <div class="d-flex flex-column h-100 text-white text-shadow-1">
-                    <div class="card bg-dark text-white">
-                        <img src="{{ site_setup.slide1.url }}" class="card-img opacity-25" alt="...">
-                        <div class="card-img-overlay d-flex flex-column justify-content-end">
-                            <h5 class="card-title">Título do Evento</h5>
-                            <p class="card-text">Breve descrição</p>
-                            <ul class="d-flex list-unstyled mt-auto">
-                                <li class="me-auto card-text">
-                                    <i class="fa-solid fa-calendar-days fs-1"></i>
-                                </li>
-                                <li class="d-flex align-items-center me-3 card-text">
-                                    <small class="card-text">Comentários</small>
-                                </li>
-                                <li class="d-flex align-items-center card-text">
-                                    <small class="card-text">Data do evento</small>
-                                </li>
-                            </ul>
-                            <a href="#" class="text-decoration-none text-center fs-4 card-text"><em>Saber mais ...</em></a>
-                        </div>
+            <div class="card h-100">
+                <img src="{{ site_setup.slide1.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Título do Eventos</h5>
+                    <p class="card-text">Breve descrição</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="text-decoration-none fs-4"><em>Saiba mais ...</em></a>
                     </div>
+                </div>
+                <div class="card-footer">
+                    <ul class="d-flex list-unstyled mb-0 mt-auto">
+                        <li class="me-auto">
+                            <i class="fa-solid fa-calendar-days fs-2"></i>
+                        </li>
+                        <li class="d-flex align-items-center me-3">
+                            <small>Comentários</small>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <small>Data do Evento</small>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
