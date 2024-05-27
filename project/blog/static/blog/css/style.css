@@ -37,6 +37,10 @@ body {
     background-color: var(--clr-dark-blue);
 }
 
+.bg-dark-blue {
+    background-color: var(--clr-dark-blue);
+}
+
 /* BOTÕES */
 
 
