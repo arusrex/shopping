@@ -38,7 +38,7 @@ body {
 }
 
 .bg-dark-blue {
-    background-color: var(--clr-dark-blue);
+    background-color: var(--clr-dark-blue) !important;
 }
 
 /* BOTÕES */
@@ -110,3 +110,4 @@ body {
     text-decoration: none;
 }
 
+/* CARDS */
