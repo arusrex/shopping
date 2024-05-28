@@ -45,13 +45,20 @@ body {
 
 
 /* CAROUSEL */
+
+.custom-size {
+    width: 100% !important;
+    height: 300px !important;
+    object-fit: cover;
+}
+
 .carousel-height {
     max-height: 500px !important; /* Definindo a altura do item do carrossel */
 }
 
 .carousel-item img {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 
@@ -119,3 +126,6 @@ body {
     background-image: linear-gradient(120deg, #833ab4, #fd1d1d, #fcb045) !important;
     color: aliceblue !important;
 }
+
+
+/* POST */
