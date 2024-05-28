@@ -13,12 +13,13 @@
     <hr>
 </div>
 
-
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
-        <h2 class="pb-2 border-bottom bg-dark-blue text-white p-2">LOJAS</h2>
-        
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-4">
+        <h2 class="pb-2 border-bottom bg-dark-blue text-white p-2 mb-5">LOJAS</h2>
+        <div class="d-flex justify-content-center">
+            {% include "blog/partials/_pagination.html" %}
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 my-2">
             <div class="col">
                 <div class="card shadow-sm">
                     <div class="card-img-top bg-dark-subtle text-light w-100 d-flex justify-content-center align-items-center">
@@ -34,8 +35,17 @@
                                 <button type="button" class="btn btn-sm btn-outline-secondary">
                                 Ver mais
                                 </button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                Contato
+                                <button type="button" class="btn btn-sm btn-outline-secondary text-bg-success">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary text-bg-primary">
+                                    <i class="fa-brands fa-facebook"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary text-bg-dark">
+                                    <i class="fa-brands fa-x-twitter"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary bg-gradient-instagram-icon">
+                                    <i class="fa-brands fa-instagram"></i>
                                 </button>
                             </div>
                             <small class="text-body-secondary">{{data_atual}} - {{hora_atual}}</small>
@@ -44,5 +54,10 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex justify-content-center">
+            {% include "blog/partials/_pagination.html" %}
+        </div>
     </div>
 </div>
+
+
