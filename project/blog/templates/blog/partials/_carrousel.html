@@ -7,19 +7,16 @@
         </p>
     </div>
 </div>
-<div class="container">
-    <div class="text-primary m-5">
-        <hr>
-    </div>
-    <div id="carouselFade" class="mb-4 mx-auto w-75 carousel slide carousel-fade" data-bs-ride="carousel">
+
+<div class="container-fluid bg-secondary-subtle bg-gradient my-4">
+    <div id="carouselFade" class="mx-auto w-75 carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="mt-5 d-none d-md-block text-center carousel-indicators p-3">
             <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
-
-            <div class="carousel-item active carousel-height">
+            <div class="carousel-item carousel-index active">
                 {% comment %} SLIDE 1 {% endcomment %}
                 {% if site_setup.slide1 %}
                     <img src="{{site_setup.slide1.url}}" class="d-block w-100" alt="...">
@@ -33,7 +30,7 @@
             </div>
 
             {% comment %} SLIDE 2 {% endcomment %}
-            <div class="carousel-item carousel-height">
+            <div class="carousel-item carousel-index">
                 {% if site_setup.slide2 %}
                     <img src="{{site_setup.slide2.url}}" class="d-block w-100" alt="...">
                     <div class="mb-5 rounded shadow-sm carousel-caption p-3">
@@ -46,7 +43,7 @@
             </div>
 
             {% comment %} SLIDE 3 {% endcomment %}
-            <div class="carousel-item carousel-height">
+            <div class="carousel-item carousel-index">
                 {% if site_setup.slide3 %}
                     <img src="{{site_setup.slide3.url}}" class="d-block w-100" alt="...">
                     <div class="mb-5 rounded shadow-sm carousel-caption p-3">
@@ -58,16 +55,13 @@
                 {% endif %}
             </div>
         </div>
-        <button class="btn-carousel m-3 my-auto carousel-control-prev rounded shadow-sm bg-secondary bg-gradient bg-opacity-75 rounded-circle" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
+        <button class="btn-carousel m-3 my-auto carousel-control-prev rounded shadow-sm bg-secondary bg-gradient bg-opacity-75 rounded" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Anterior</span>
         </button>
-        <button class="btn-carousel m-3 my-auto carousel-control-next rounded shadow-sm bg-secondary bg-gradient bg-opacity-75 rounded-circle" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
+        <button class="btn-carousel m-3 my-auto carousel-control-next rounded shadow-sm bg-secondary bg-gradient bg-opacity-75 rounded" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Próximo</span>
         </button>
-    </div>
-    <div class="text-primary m-5">
-        <hr>
     </div>
 </div>

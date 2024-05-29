@@ -46,21 +46,15 @@ body {
 
 /* CAROUSEL */
 
-.custom-size {
+.carousel-index {
     width: 100% !important;
-    height: 300px !important;
-    object-fit: cover;
+    height: 500px !important;
 }
 
-.carousel-height {
-    max-height: 500px !important; /* Definindo a altura do item do carrossel */
-}
-
-.carousel-item img {
+.carousel-index img {
     width: 100% !important;
     height: 100% !important;
 }
-
 
 .btn-carousel {
     width: 5% !important;
@@ -102,7 +96,6 @@ body {
         color: aliceblue !important;
     }
 }
-
 
 
 /* LINKS */
