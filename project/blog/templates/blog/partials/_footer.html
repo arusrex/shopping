@@ -14,26 +14,28 @@
             <div class="col-md-2 mb-3 text-white">
                 <h5>Localização</h5>
                 <ul class="nav flex-column mt-4">
-                    <li class="nav-item"><p href="#" class="p-0 text-light">Rua Quintino Bocaiúva, nº 851</p></li>
-                    <li class="nav-item"><p href="#" class="p-0 text-light">Centro - Jaú/SP</p></li>
-                    <li class="nav-item"><p href="#" class="p-0 text-light">CEP 17202-120</p></li>
+                    <li class="nav-item"><p href="#" class="text-light">{{site_setup.endereco|default_if_none:"Não informado"}}, Nº {{site_setup.numero|default_if_none:"S/N"}}</p></li>
+                    <li class="nav-item"><p href="#" class="text-light">{{site_setup.bairro|default_if_none:"Não informado"}} - {{site_setup.cidade_estado|default_if_none:"Não informado"}}</p></li>
+                    <li class="nav-item"><p href="#" class="text-light">CEP {{site_setup.cep|default_if_none:"Não informado"}}</p></li>
                 </ul>
             </div>
 
             <div class="col-md-4 mb-3 text-white">
                 <h5>Horário de Funcionamento</h5>
                 <p class="fw-bold mt-4">Lojas</p>
-                <ul name="funcionamento-lojas" id="funcionamento-lojas" class="nav flex-column mt-4">
+                <pre>{{site_setup.operate_time_shop}}</pre>
+                {% comment %} <ul name="funcionamento-lojas" id="funcionamento-lojas" class="nav flex-column mt-4">
                     <li class="nav-item"><p href="#" class="p-0 text-light">Segunda a sábado das 09h às 18h</p></li>
                     <li class="nav-item"><p href="#" class="p-0 text-light">Domingos e Feriados das 09h às 12h</p></li>
                     <li class="nav-item"><p href="#" class="p-0 text-light">Entre em contato para informações para datas especiais</p></li>
-                </ul>
-                <p class="fw-bold">Alimentação</p>
-                <ul name="funcionamento-alimentacao" id="funcionamento-alimentacao" class="nav flex-column mt-4">
+                </ul> {% endcomment %}
+                <p class="fw-bold mt-2">Alimentação</p>
+                <pre>{{site_setup.operate_time_food}}</pre>
+                {% comment %} <ul name="funcionamento-alimentacao" id="funcionamento-alimentacao" class="nav flex-column mt-4">
                     <li class="nav-item"><p href="#" class="p-0 text-light">Segunda a sábado das 09h às 22h</p></li>
                     <li class="nav-item"><p href="#" class="p-0 text-light">Domingos e Feriados das 09h às 12h</p></li>
                     <li class="nav-item"><p href="#" class="p-0 text-light">Entre em contato para informações para datas especiais</p></li>
-                </ul>
+                </ul> {% endcomment %}
             </div>
   
             <div class="col-md-4 mb-3 text-light">

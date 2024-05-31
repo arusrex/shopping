@@ -49,7 +49,9 @@ class SiteSetup(models.Model):
     show_footer = models.BooleanField(default=True)
     show_carousel = models.BooleanField(default=True)
     show_location = models.BooleanField(default=True)
-    show_operate_time = models.BooleanField(default=True)
+    show_operate_shop = models.BooleanField(default=True)
+    show_operate_food = models.BooleanField(default=True)
+
 
 
     slide1 = models.ImageField(upload_to='assets/slides/%Y/%m/%d/', blank=True, default='', validators=[validate_png])
