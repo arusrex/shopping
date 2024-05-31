@@ -1,4 +1,6 @@
 {% extends "blog/base.html" %}
+{% load static %}
+
 {% block content %}
 
 <h1 class="text-center bg-secondary-subtle rounded mx-auto p-2">NOME DA LOJA</h1>
@@ -75,8 +77,20 @@
         </div>
     </div>
 
-    <div class="container mx-auto m-4 w-75 border border-black border-1 shadow rounded p-4">
+    <div class="container mx-auto m-4 w-75 shadow rounded p-4 bg-white">
         <p class="fw-bold fs-5">Comentários</p>
+        <div class="m-5 bg-white shadow p-4">
+            <div class="d-flex flex-row flex-wrap justify-content-between my-2">
+                <div class="d-flex flex-row align-items-center">
+                    <img src="{% static "blog/img/ops.png" %}" class="me-2 h-100 rounded-circle shadow" width="25">
+                    <span><b>Nome</b></span>
+                </div>
+                <p>Data/Hora</p>
+            </div>
+            <div>
+                <p>Post</p>
+            </div>
+        </div>
         <form>
             <div class="input-group m-2 mx-auto">
                 <input class="form-control" type="text">
