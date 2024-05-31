@@ -22,14 +22,35 @@ class SiteSetup(models.Model):
         verbose_name_plural = 'Setup'
     
     title = models.CharField(max_length=65)
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, blank=True, null=True)
+    title_welcome_banner = models.CharField(max_length=65, blank=True, null=True)
+    welcome_banner = models.TextField(blank=True, null=True)
+    title_best_banner = models.CharField(max_length=255, blank=True, null=True)
+    best_banner = models.TextField(blank=True, null=True)
+    link_best_banner = models.CharField(max_length=255, blank=True, null=True)
+    operate_time_shop = models.TextField(blank=True, null=True)
+    operate_time_food = models.TextField(blank=True, null=True)
+
+    endereco = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    bairro = models.CharField(max_length=255, blank=True, null=True)
+    cidade_estado = models.CharField(max_length=255, blank=True, null=True)
+    cep = models.CharField(max_length=255, blank=True, null=True)
+
+
+
     show_header = models.BooleanField(default=True)
     show_search = models.BooleanField(default=True)
+    show_welcome_banner = models.BooleanField(default=True)
+    show_best_banner = models.BooleanField(default=True)
     show_menu = models.BooleanField(default=True)
     show_description = models.BooleanField(default=True)
     show_pagination = models.BooleanField(default=True)
     show_footer = models.BooleanField(default=True)
     show_carousel = models.BooleanField(default=True)
+    show_location = models.BooleanField(default=True)
+    show_operate_time = models.BooleanField(default=True)
+
 
     slide1 = models.ImageField(upload_to='assets/slides/%Y/%m/%d/', blank=True, default='', validators=[validate_png])
     slide2 = models.ImageField(upload_to='assets/slides/%Y/%m/%d/', blank=True, default='', validators=[validate_png])

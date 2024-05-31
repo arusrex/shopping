@@ -6,20 +6,20 @@
       {% if page_obj.has_previous %}
           <li class="page-item">
               <a class="page-link" href="?page=1" aria-label="Primeira página">
-                  <span aria-hidden="true">&laquo;&laquo; Primeira</span>
+                  <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i> Primeira</span>
               </a>
           </li>
           <li class="page-item">
               <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
-                  <span aria-hidden="true">&laquo; Anterior</span>
+                  <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i> Anterior</span>
               </a>
           </li>
       {% else %}
           <li class="page-item disabled">
-              <span class="page-link" aria-hidden="true">&laquo;&laquo; Primeira</span>
+              <span class="page-link" aria-hidden="true"><i class="fa-solid fa-angles-left"></i> Primeira</span>
           </li>
           <li class="page-item disabled">
-              <span class="page-link" aria-hidden="true">&laquo; Anterior</span>
+              <span class="page-link" aria-hidden="true"><i class="fa-solid fa-chevron-left"></i> Anterior</span>
           </li>
       {% endif %}
 
@@ -38,20 +38,20 @@
       {% if page_obj.has_next %}
           <li class="page-item">
               <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Próxima">
-                  <span aria-hidden="true">Próxima &raquo;</span>
+                  <span aria-hidden="true">Próxima <i class="fa-solid fa-chevron-right"></i></span>
               </a>
           </li>
           <li class="page-item">
               <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Última">
-                  <span aria-hidden="true">Última &raquo;&raquo;</span>
+                  <span aria-hidden="true">Última <i class="fa-solid fa-angles-right"></i></span>
               </a>
           </li>
       {% else %}
           <li class="page-item disabled">
-              <span class="page-link" aria-hidden="true">Próxima &raquo;</span>
+              <span class="page-link" aria-hidden="true">Próxima <i class="fa-solid fa-chevron-right"></i></span>
           </li>
           <li class="page-item disabled">
-              <span class="page-link" aria-hidden="true">Última &raquo;&raquo;</span>
+              <span class="page-link" aria-hidden="true">Última <i class="fa-solid fa-angles-right"></i></span>
           </li>
       {% endif %}
   </ul>
