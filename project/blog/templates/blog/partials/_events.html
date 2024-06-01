@@ -1,31 +1,33 @@
 {% load static %}
-<div class="container px-4 py-5" id="custom-cards">
-    <h2 class="pb-2 border-bottom bg-dark-blue text-white p-2">EVENTOS</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-        <div class="col">
-            <div class="card h-100">
-                <img src="{{ site_setup.slide1.url }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Título do Eventos</h5>
-                    <p class="card-text">Breve descrição</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="text-decoration-none fs-4"><em>Saiba mais ...</em></a>
+{% if site_setup.show_events %}
+    <div class="container px-4 py-5" id="custom-cards">
+        <h2 class="pb-2 border-bottom bg-dark-blue text-white p-2">EVENTOS RECENTES</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ site_setup.slide1.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Título do Eventos</h5>
+                        <p class="card-text">Breve descrição</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="text-decoration-none fs-4"><em>Saiba mais ...</em></a>
+                        </div>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <ul class="d-flex list-unstyled mb-0 mt-auto">
-                        <li class="me-auto">
-                            <i class="fa-solid fa-calendar-days fs-2"></i>
-                        </li>
-                        <li class="d-flex align-items-center me-3">
-                            <small>Comentários</small>
-                        </li>
-                        <li class="d-flex align-items-center">
-                            <small>Data do Evento</small>
-                        </li>
-                    </ul>
+                    <div class="card-footer">
+                        <ul class="d-flex list-unstyled mb-0 mt-auto">
+                            <li class="me-auto">
+                                <i class="fa-solid fa-calendar-days fs-2"></i>
+                            </li>
+                            <li class="d-flex align-items-center me-3">
+                                <small>Comentários</small>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <small>Data do Evento</small>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+{% endif %}

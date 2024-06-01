@@ -1,67 +1,71 @@
 {% load static %}
-<div class="container my-5">
-    <div class="p-5 text-center bg-body-secondary rounded-3 shadow">
-        <h1 class="text-body-emphasis">Bem-vindo !</h1>
-        <p class="lead">
-            Venha conhecer o Shopping Popular de Jaú e descubra como é fácil encontrar tudo o que você precisa em um só lugar. Aqui, você é sempre bem-vindo!
-        </p>
-    </div>
-</div>
-
-<div class="container-fluid bg-secondary-subtle bg-gradient my-4">
-    <div id="carouselFade" class="mx-auto w-75 carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="mt-5 d-none d-md-block text-center carousel-indicators p-3">
-            <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
+{% if site_setup.show_welcome_banner %}
+    <div class="container my-5">
+        <div class="p-5 text-center bg-body-secondary rounded-3 shadow">
+            <h1 class="text-body-emphasis">{{site_setup.title_welcome_banner}}</h1>
+            <p class="lead preserve-whitespace">
+                {{site_setup.welcome_banner}}
+            </p>
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item carousel-index active">
-                {% comment %} SLIDE 1 {% endcomment %}
-                {% if site_setup.slide1 %}
-                    <img src="{{site_setup.slide1.url}}" class="d-block w-100" alt="...">
-                    <div class="mb-5 rounded shadow-sm carousel-caption p-3">
-                        <h1>First slide label</h1>
-                        <p>Some representative placeholder content for the first slide.</p>
-                    </div>
-                {% else %}
-                    <img src="{% static "blog/img/ops.png" %}" class="d-block w-100" alt="...">
-                {% endif %}
-            </div>
-
-            {% comment %} SLIDE 2 {% endcomment %}
-            <div class="carousel-item carousel-index">
-                {% if site_setup.slide2 %}
-                    <img src="{{site_setup.slide2.url}}" class="d-block w-100" alt="...">
-                    <div class="mb-5 rounded shadow-sm carousel-caption p-3">
-                        <h1>Second slide label</h1>
-                        <p>Some representative placeholder content for the first slide.</p>
-                    </div>
-                {% else %}
-                    <img src="{% static "blog/img/ops.png" %}" class="d-block w-100" alt="...">
-                {% endif %}
-            </div>
-
-            {% comment %} SLIDE 3 {% endcomment %}
-            <div class="carousel-item carousel-index">
-                {% if site_setup.slide3 %}
-                    <img src="{{site_setup.slide3.url}}" class="d-block w-100" alt="...">
-                    <div class="mb-5 rounded shadow-sm carousel-caption p-3">
-                        <h1>Third slide label</h1>
-                        <p>Some representative placeholder content for the first slide.</p>
-                    </div>
-                {% else %}
-                    <img src="{% static "blog/img/ops.png" %}" class="d-block w-100" alt="...">
-                {% endif %}
-            </div>
-        </div>
-        <button class="btn-carousel m-3 my-auto carousel-control-prev rounded shadow-sm bg-secondary bg-gradient bg-opacity-75 rounded" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="btn-carousel m-3 my-auto carousel-control-next rounded shadow-sm bg-secondary bg-gradient bg-opacity-75 rounded" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próximo</span>
-        </button>
     </div>
-</div>
+{% endif %}
+
+{% if site_setup.show_carousel %}
+    <div class="container-fluid bg-secondary-subtle bg-gradient my-4">
+        <div id="carouselFade" class="mx-auto w-75 carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="mt-5 d-none d-md-block text-center carousel-indicators p-3">
+                <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item carousel-index active">
+                    {% comment %} SLIDE 1 {% endcomment %}
+                    {% if site_setup.slide1 %}
+                        <img src="{{site_setup.slide1.url}}" class="d-block w-100" alt="...">
+                        <div class="mb-5 rounded shadow-sm carousel-caption p-3">
+                            <h1>First slide label</h1>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                    {% else %}
+                        <img src="{% static "blog/img/ops.png" %}" class="d-block w-100" alt="...">
+                    {% endif %}
+                </div>
+
+                {% comment %} SLIDE 2 {% endcomment %}
+                <div class="carousel-item carousel-index">
+                    {% if site_setup.slide2 %}
+                        <img src="{{site_setup.slide2.url}}" class="d-block w-100" alt="...">
+                        <div class="mb-5 rounded shadow-sm carousel-caption p-3">
+                            <h1>Second slide label</h1>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                    {% else %}
+                        <img src="{% static "blog/img/ops.png" %}" class="d-block w-100" alt="...">
+                    {% endif %}
+                </div>
+
+                {% comment %} SLIDE 3 {% endcomment %}
+                <div class="carousel-item carousel-index">
+                    {% if site_setup.slide3 %}
+                        <img src="{{site_setup.slide3.url}}" class="d-block w-100" alt="...">
+                        <div class="mb-5 rounded shadow-sm carousel-caption p-3">
+                            <h1>Third slide label</h1>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                    {% else %}
+                        <img src="{% static "blog/img/ops.png" %}" class="d-block w-100" alt="...">
+                    {% endif %}
+                </div>
+            </div>
+            <button class="btn-carousel m-3 my-auto carousel-control-prev rounded shadow-sm bg-secondary bg-gradient bg-opacity-75 rounded" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="btn-carousel m-3 my-auto carousel-control-next rounded shadow-sm bg-secondary bg-gradient bg-opacity-75 rounded" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+        </div>
+    </div>
+{% endif %}

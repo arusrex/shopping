@@ -58,9 +58,18 @@
                 <p>© {{ano_atual}} Instituição, Todos os direitos reservados. <em>- by OnyxTI</em></p>
                 {% if site_setup.show_social %}
                     <ul class="list-unstyled d-flex text-light">
-                        <li class="ms-3"><a class="link" href="#"><i class="fa-brands fa-x-twitter fs-2"></i></a></li>
-                        <li class="ms-3"><a class="link" href="#"><i class="fa-brands fa-instagram fs-2"></i></a></li>
-                        <li class="ms-3"><a class="link" href="#"><i class="fa-brands fa-facebook fs-2"></i></a></li>
+                        {% if site_setup.x_twitter %}
+                            <li class="ms-3"><a class="link" href="{{site_setup.x_twitter}}"><i class="fa-brands fa-x-twitter fs-2"></i></a></li>
+                        {% endif %}
+                        {% if site_setup.instagram %}
+                            <li class="ms-3"><a class="link" href="{{site_setup.instagram}}"><i class="fa-brands fa-instagram fs-2"></i></a></li>
+                        {% endif %}
+                        {% if site_setup.facebook %}
+                            <li class="ms-3"><a class="link" href="{{site_setup.facebook}}"><i class="fa-brands fa-facebook fs-2"></i></a></li>
+                        {% endif %}
+                        {% if site_setup.youtube %}
+                            <li class="ms-3"><a class="link" href="{{site_setup.youtube}}"><i class="fa-brands fa-youtube fs-2"></i></a></li>
+                        {% endif %}
                     </ul>
                 {% endif %}
             </div>

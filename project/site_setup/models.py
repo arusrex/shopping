@@ -83,6 +83,8 @@ class SiteSetup(models.Model):
     show_pagination = models.BooleanField(default=True)
     show_subscribe = models.BooleanField(default=True)
     show_comments = models.BooleanField(default=True)
+    show_news = models.BooleanField(default=True)
+    show_events = models.BooleanField(default=True)
 
     # CAROUSEL SLIDES
     show_carousel = models.BooleanField(default=True)
