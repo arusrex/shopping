@@ -1,16 +1,18 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
+from blog.models import Post
 
 def index(request):
 
-    # item_list = Item.objects.all()
+    lojas = Post.objects.all()
 
-    # paginator = Paginator(iteem_list, 9)
-    # page_number = request.GET.get('page')
-    # page_obj = paginator.get_page(page_number)
+    paginator = Paginator(lojas, 9)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
-    # context = {
-    #     'page_obj': page_obj,
-    # }
+    context = {
+        'page_obj': page_obj,
+        'lojas': lojas,
+    }
 
     return render(request, 'blog/pages/index.html')
