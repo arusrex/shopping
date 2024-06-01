@@ -77,26 +77,28 @@
         </div>
     </div>
 
-    <div class="container mx-auto m-4 w-75 shadow rounded p-4 bg-white">
-        <p class="fw-bold fs-5">Comentários</p>
-        <div class="m-5 bg-white shadow p-4">
-            <div class="d-flex flex-row flex-wrap justify-content-between my-2">
-                <div class="d-flex flex-row align-items-center">
-                    <img src="{% static "blog/img/ops.png" %}" class="me-2 h-100 rounded-circle shadow" width="25">
-                    <span><b>Nome</b></span>
+    {% if site_setup.show_comments %}
+        <div class="container mx-auto m-4 w-75 shadow rounded p-4 bg-white">
+            <p class="fw-bold fs-5">Comentários</p>
+            <div class="m-5 bg-white shadow p-4">
+                <div class="d-flex flex-row flex-wrap justify-content-between my-2">
+                    <div class="d-flex flex-row align-items-center">
+                        <img src="{% static "blog/img/ops.png" %}" class="me-2 h-100 rounded-circle shadow" width="25">
+                        <span><b>Nome</b></span>
+                    </div>
+                    <p>Data/Hora</p>
                 </div>
-                <p>Data/Hora</p>
+                <div>
+                    <p>Post</p>
+                </div>
             </div>
-            <div>
-                <p>Post</p>
-            </div>
+            <form>
+                <div class="input-group m-2 mx-auto">
+                    <input class="form-control" type="text">
+                    <button class="btn btn-secondary">Enviar</button>
+                </div>
+            </form>
         </div>
-        <form>
-            <div class="input-group m-2 mx-auto">
-                <input class="form-control" type="text">
-                <button class="btn btn-secondary">Enviar</button>
-            </div>
-        </form>
-    </div>
+    {% endif %}
 </div>
 {% endblock content %}

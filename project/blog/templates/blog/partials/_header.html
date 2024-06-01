@@ -1,29 +1,45 @@
-<header class="py-4 mb-5 border-bottom bg-header">
-    <div class="container">
-        <div class="container d-flex flex-wrap justify-content-center mb-sm-4">
-            <a href="/" class="d-flex flex-column align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
-                <span class="fs-1 fw-bold text-shadow-sm text-white">{{site_setup.title}}</span>
-                <span class="fs-4 fst-italic text-white">{{site_setup.description}}</span>
-            </a>
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-                <input id="search-all" name="search-all" type="search" class="form-control" placeholder="Pesquisar..." aria-label="Search">
-            </form>
+{% if site_setup.show_header %}
+{% load static %}
+    <header class="py-4 mb-5 border-bottom bg-header">
+        <div class="container">
+            <div class="container d-flex flex-wrap justify-content-center mb-sm-4">
+                <a href="/" class="d-flex flex-column align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+                    {% if site_setup.show_logo %}
+                        <div>
+                            {% if site_setup.logo %}
+                                <img src="{{site_setup.logo.url}}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
+                            {% else %}
+                                <img src="{% static "blog/img/ops.png" %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    <span class="fs-1 fw-bold text-shadow-sm text-white">{{site_setup.title}}</span>
+                    <span class="fs-4 fst-italic text-white">{{site_setup.description}}</span>
+                </a>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+                    <input id="search-all" name="search-all" type="search" class="form-control" placeholder="Pesquisar..." aria-label="Search">
+                </form>
+            </div>
         </div>
-    </div>
-    <nav class="py-3 border-top border-bottom bg-nav shadow">
-        <div class="container d-flex flex-wrap">
-            <ul class="nav me-auto">
-                <li class="nav-item"><a href="#" class="link fs-4 px-2 active" aria-current="page">Início</a></li>
-                <li class="nav-item"><a href="#" class="link fs-4 px-2">Informações</a></li>
-                <li class="nav-item"><a href="#" class="link fs-4 px-2">Contato</a></li>
-                <li class="nav-item"><a href="#" class="link fs-4 px-2">Sobre</a></li>
-            </ul>
-            <ul class="nav">
-                <li class="nav-item my-auto"><i class="text-white fa-regular fa-user fs-5 px-2"></i></li>
-                <li class="nav-item"><a href="#" class="link fs-4 px-2">Entrar</a></li>
-                <div class="vr text-light mx-2"></div>
-                <li class="nav-item"><a href="#" class="link fs-4 px-2">Registrar</a></li>
-            </ul>
-        </div>
-    </nav>
-</header>
+        <nav class="py-3 border-top border-bottom bg-nav shadow">
+            <div class="container d-flex flex-wrap">
+                {% if site_setup.show_menu %}
+                    <ul class="nav me-auto">
+                        <li class="nav-item"><a href="#" class="link fs-4 px-2 active" aria-current="page">Início</a></li>
+                        <li class="nav-item"><a href="#" class="link fs-4 px-2">Informações</a></li>
+                        <li class="nav-item"><a href="#" class="link fs-4 px-2">Contato</a></li>
+                        <li class="nav-item"><a href="#" class="link fs-4 px-2">Sobre</a></li>
+                    </ul>
+                {% endif %}
+                {% if site_setup.show_login %}
+                    <ul class="nav">
+                        <li class="nav-item my-auto"><i class="text-white fa-regular fa-user fs-5 px-2"></i></li>
+                        <li class="nav-item"><a href="#" class="link fs-4 px-2">Entrar</a></li>
+                        <div class="vr text-light mx-2"></div>
+                        <li class="nav-item"><a href="#" class="link fs-4 px-2">Registrar</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+{% endif %}

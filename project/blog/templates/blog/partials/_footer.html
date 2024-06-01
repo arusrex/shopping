@@ -1,63 +1,69 @@
-<div class="container-fluid bg-footer p-5">
-    <footer class="p-5 m-5">
-        <div class="row">
-            <div class="col-md-2 mb-3 text-white">
-                <h5>Menu</h5>
-                <ul class="nav flex-column mt-4">
-                    <li class="nav-item mb-2 "><a href="#" class="link p-0 text-light">Início</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="link p-0 text-light">Informações</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="link p-0 text-light">Contato</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="link p-0 text-light">Sobre</a></li>
-                </ul>
-            </div>
-
-            <div class="col-md-2 mb-3 text-white">
-                <h5>Localização</h5>
-                <ul class="nav flex-column mt-4">
-                    <li class="nav-item"><p href="#" class="text-light">{{site_setup.endereco|default_if_none:"Não informado"}}, Nº {{site_setup.numero|default_if_none:"S/N"}}</p></li>
-                    <li class="nav-item"><p href="#" class="text-light">{{site_setup.bairro|default_if_none:"Não informado"}} - {{site_setup.cidade_estado|default_if_none:"Não informado"}}</p></li>
-                    <li class="nav-item"><p href="#" class="text-light">CEP {{site_setup.cep|default_if_none:"Não informado"}}</p></li>
-                </ul>
-            </div>
-
-            <div class="col-md-4 mb-3 text-white">
-                <h5>Horário de Funcionamento</h5>
-                <p class="fw-bold mt-4">Lojas</p>
-                <pre>{{site_setup.operate_time_shop}}</pre>
-                {% comment %} <ul name="funcionamento-lojas" id="funcionamento-lojas" class="nav flex-column mt-4">
-                    <li class="nav-item"><p href="#" class="p-0 text-light">Segunda a sábado das 09h às 18h</p></li>
-                    <li class="nav-item"><p href="#" class="p-0 text-light">Domingos e Feriados das 09h às 12h</p></li>
-                    <li class="nav-item"><p href="#" class="p-0 text-light">Entre em contato para informações para datas especiais</p></li>
-                </ul> {% endcomment %}
-                <p class="fw-bold mt-2">Alimentação</p>
-                <pre>{{site_setup.operate_time_food}}</pre>
-                {% comment %} <ul name="funcionamento-alimentacao" id="funcionamento-alimentacao" class="nav flex-column mt-4">
-                    <li class="nav-item"><p href="#" class="p-0 text-light">Segunda a sábado das 09h às 22h</p></li>
-                    <li class="nav-item"><p href="#" class="p-0 text-light">Domingos e Feriados das 09h às 12h</p></li>
-                    <li class="nav-item"><p href="#" class="p-0 text-light">Entre em contato para informações para datas especiais</p></li>
-                </ul> {% endcomment %}
-            </div>
-  
-            <div class="col-md-4 mb-3 text-light">
-                <form>
-                    <h5>Inscreva-se para receber novidades</h5>
-                    <p>Obtenha um resumo sobre tudo que há de interessante.</p>
-                    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                        <label for="newsletter1" class="visually-hidden">Endereço de Email</label>
-                        <input id="newsletter1" type="text" class="form-control" placeholder="Endereço de email">
-                        <button class="btn btn-sm btn-secondary text-nowrap" type="button">Inscrever-se</button>
+{% if site_setup.show_footer %}
+    <div class="container-fluid bg-footer p-5">
+        <footer class="p-5 m-5">
+            <div class="row">
+                {% if site_setup.show_menu %}
+                    <div class="col-md-2 mb-3 text-white">
+                        <h5>Menu</h5>
+                        <ul class="nav flex-column mt-4">
+                            <li class="nav-item mb-2 "><a href="#" class="link p-0 text-light">Início</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="link p-0 text-light">Informações</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="link p-0 text-light">Contato</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="link p-0 text-light">Sobre</a></li>
+                        </ul>
                     </div>
-                </form>
+                {% endif %}
+
+                {% if site_setup.show_location %}
+                    <div class="col-md-2 mb-3 text-white">
+                        <h5>Localização</h5>
+                        <ul class="nav flex-column mt-4">
+                            <li class="nav-item"><p href="#" class="text-light">{{site_setup.endereco|default_if_none:"Não informado"}}, Nº {{site_setup.numero|default_if_none:"S/N"}}</p></li>
+                            <li class="nav-item"><p href="#" class="text-light">{{site_setup.bairro|default_if_none:"Não informado"}} - {{site_setup.cidade_estado|default_if_none:"Não informado"}}</p></li>
+                            <li class="nav-item"><p href="#" class="text-light">CEP {{site_setup.cep|default_if_none:"Não informado"}}</p></li>
+                        </ul>
+                    </div>
+                {% endif %}
+
+                {% if site_setup.show_operate_shop or site_setup.operate_food %}
+                    <div class="col-md-4 mb-3 text-white">
+                        <h5>Horário de Funcionamento</h5>
+                        {% if site_setup.show_operate_shop %}
+                            <p class="fw-bold mt-4">Lojas</p>
+                            <div class="preserve-whitespace">{{site_setup.operate_time_shop}}</div>
+                        {% endif %}
+                        {% if site_setup.show_operate_food %}
+                            <p class="fw-bold mt-2">Alimentação</p>
+                            <div class="preserve-whitespace">{{site_setup.operate_time_food}}</div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+    
+                {% if site_setup.show_subscribe %}
+                    <div class="col-md-4 mb-3 text-light">
+                        <form>
+                            <h5>Inscreva-se para receber novidades</h5>
+                            <p>Obtenha um resumo sobre tudo que há de interessante.</p>
+                            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                                <label for="newsletter1" class="visually-hidden">Endereço de Email</label>
+                                <input id="newsletter1" type="text" class="form-control" placeholder="Endereço de email">
+                                <button class="btn btn-sm btn-secondary text-nowrap" type="button">Inscrever-se</button>
+                            </div>
+                        </form>
+                    </div>
+                {% endif %}
             </div>
-        </div>
-  
-        <div class="d-flex flex-column flex-sm-row justify-content-between pt-4 mt-4 border-top text-light">
-            <p>© {{ano_atual}} Instituição, Todos os direitos reservados. <em>- by OnyxTI</em></p>
-            <ul class="list-unstyled d-flex text-light">
-                <li class="ms-3"><a class="link" href="#"><i class="fa-brands fa-x-twitter fs-2"></i></a></li>
-                <li class="ms-3"><a class="link" href="#"><i class="fa-brands fa-instagram fs-2"></i></a></li>
-                <li class="ms-3"><a class="link" href="#"><i class="fa-brands fa-facebook fs-2"></i></a></li>
-            </ul>
-        </div>
-    </footer>
-</div>
+            
+            <div class="d-flex flex-column flex-sm-row justify-content-between pt-4 mt-4 border-top text-light">
+                <p>© {{ano_atual}} Instituição, Todos os direitos reservados. <em>- by OnyxTI</em></p>
+                {% if site_setup.show_social %}
+                    <ul class="list-unstyled d-flex text-light">
+                        <li class="ms-3"><a class="link" href="#"><i class="fa-brands fa-x-twitter fs-2"></i></a></li>
+                        <li class="ms-3"><a class="link" href="#"><i class="fa-brands fa-instagram fs-2"></i></a></li>
+                        <li class="ms-3"><a class="link" href="#"><i class="fa-brands fa-facebook fs-2"></i></a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </footer>
+    </div>
+{% endif %}

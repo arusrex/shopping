@@ -122,3 +122,9 @@ body {
 
 
 /* POST */
+
+
+/* FOOTER */
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
