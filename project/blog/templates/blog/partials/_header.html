@@ -16,19 +16,26 @@
                     <span class="fs-1 fw-bold text-shadow-sm text-white">{{site_setup.title}}</span>
                     <span class="fs-4 fst-italic text-white">{{site_setup.description}}</span>
                 </a>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-                    <input id="search-all" name="search-all" type="search" class="form-control" placeholder="Pesquisar..." aria-label="Search">
-                </form>
+                {% if site_setup.show_search %}
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+                        <input id="search-all" name="search-all" type="search" class="form-control" placeholder="Pesquisar..." aria-label="Search">
+                    </form>
+                {% endif %}
             </div>
         </div>
         <nav class="py-3 border-top border-bottom bg-nav shadow">
             <div class="container d-flex flex-wrap">
                 {% if site_setup.show_menu %}
                     <ul class="nav me-auto">
-                        <li class="nav-item"><a href="#" class="link fs-4 px-2 active" aria-current="page">Início</a></li>
-                        <li class="nav-item"><a href="#" class="link fs-4 px-2">Informações</a></li>
-                        <li class="nav-item"><a href="#" class="link fs-4 px-2">Contato</a></li>
-                        <li class="nav-item"><a href="#" class="link fs-4 px-2">Sobre</a></li>
+                        {% for link in site_setup.menulink_set.all %}
+                            <li class="nav-item">
+                                {% if link.new_tab %}
+                                    <a target="_blank" href="{{link.url_or_path}}" class="link fs-4 px-2">{{link.text}}</a>
+                                {% else %}
+                                    <a href="{{link.url_or_path}}" class="link fs-4 px-2">{{link.text}}</a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
                     </ul>
                 {% endif %}
                 {% if site_setup.show_login %}
