@@ -25,33 +25,54 @@
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 my-2">
                     <div class="col">
                         <div class="card shadow-sm">
+                            <a href="#" class="text-decoration-none">
                             <div class="card-img-top bg-dark-subtle text-light w-100 d-flex justify-content-center align-items-center">
                                 <img src="{{loja.cover.url}}" class="d-block mx-lg-auto img-fluid rounded-top" alt="{{loja.title}}" loading="lazy">
                             </div>
+                            </a>
 
                             <div class="card-body">
+                                <h5>{{loja.title}}</h5>
                                 <p class="card-text">{{loja.short_description}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">
-                                        Ver mais
-                                        </button>
-                                        {% if loja.whatsapp %}
-                                            <button type="button" class="btn btn-sm btn-outline-secondary text-bg-success">
-                                                <i class="fa-brands fa-whatsapp"></i>
-                                            </button>
-                                        {% endif %}
-                                        <button type="button" class="btn btn-sm btn-outline-secondary text-bg-primary">
-                                            <i class="fa-brands fa-facebook"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary text-bg-dark">
-                                            <i class="fa-brands fa-x-twitter"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary bg-gradient-instagram-icon">
-                                            <i class="fa-brands fa-instagram"></i>
-                                        </button>
+                                    <div class="d-flex flex-row flex-wrap align-items-center">
+                                        <a href="#" type="button" class="text-decoration-none btn btn-sm btn-outline-secondary me-2">Ver mais</a>
+                                        <div>
+                                            {% if loja.whatsapp %}
+                                                <a class="fs-4 text-decoration-none"
+                                                    href="https://wa.me/55{{loja.whatsapp}}?text=Olá,%20gostaria%20de%20mais%20informações%20sobre%20os%20seus%20serviços"
+                                                    target="_blank">
+                                                    <i class="fa-brands fa-whatsapp whatsapp rounded p-1"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if loja.facebook %}
+                                                <a class="fs-4 text-decoration-none" href="{{loja.facebook}}" target="_blank">
+                                                    <i class="fa-brands fa-facebook facebook rounded p-1"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if loja.x_twitter %} 
+                                                <a class="fs-4 text-decoration-none" href="{{loja.x_twitter}}" target="_blank">
+                                                    <i class="fa-brands fa-x-twitter x-twitter rounded p-1"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if loja.instagram %}
+                                                <a class="fs-4 text-decoration-none" href="{{loja.instagram}}" target="_blank">
+                                                    <i class="fa-brands fa-instagram instagram rounded p-1"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if loja.youtube %}
+                                                <a class="fs-4 text-decoration-none" href="{{loja.youtube}}" target="_blank">
+                                                    <i class="fa-brands fa-youtube youtube rounded p-1"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if loja.site %}
+                                                <a class="fs-4 text-decoration-none" href="{{loja.site}}" target="_blank">
+                                                    <i class="fa-solid fa-globe globe rounded p-1"></i>
+                                                </a>
+                                            {% endif %}
+                                        </div>
                                     </div>
-                                    <small class="text-body-secondary">{{data_atual}} - {{hora_atual}}</small>
+                                    <small class="text-body-secondary">Atualizada em: {{loja.update_at}}</small>
                                 </div>
                             </div>
                         </div>
