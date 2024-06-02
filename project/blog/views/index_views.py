@@ -4,7 +4,7 @@ from blog.models import Post
 
 def index(request):
 
-    lojas = Post.objects.all()
+    lojas = Post.objects.all().order_by('-id')
 
     paginator = Paginator(lojas, 9)
     page_number = request.GET.get('page')
@@ -15,4 +15,4 @@ def index(request):
         'lojas': lojas,
     }
 
-    return render(request, 'blog/pages/index.html')
+    return render(request, 'blog/pages/index.html', context)

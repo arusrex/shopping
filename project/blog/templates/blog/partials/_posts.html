@@ -21,13 +21,12 @@
         <div class="d-flex justify-content-center">
             {% include "blog/partials/_pagination.html" %}
         </div>
-        {% if lojas %}
             {% for loja in lojas %}
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 my-2">
                     <div class="col">
                         <div class="card shadow-sm">
                             <div class="card-img-top bg-dark-subtle text-light w-100 d-flex justify-content-center align-items-center">
-                                <img src="{{loja.cover}}" class="d-block mx-lg-auto img-fluid rounded-top" alt="{{loja.title}}" loading="lazy">
+                                <img src="{{loja.cover.url}}" class="d-block mx-lg-auto img-fluid rounded-top" alt="{{loja.title}}" loading="lazy">
                             </div>
 
                             <div class="card-body">
@@ -59,7 +58,6 @@
                     </div>
                 </div>
             {% endfor %}
-        {% endif %}
         <div class="d-flex justify-content-center">
             {% include "blog/partials/_pagination.html" %}
         </div>
