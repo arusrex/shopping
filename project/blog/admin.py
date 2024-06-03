@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tag, Catergory, Page, Post, ImagesPost
+from .models import Tag, Catergory, Page, Post, ImagesPost, News, ImageNew, Events, ImageEvent
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
@@ -47,3 +47,35 @@ class PostAdmin(admin.ModelAdmin):
     list_per_page = 10
     ordering = ('id'),
     inlines = [PostImageInline,]
+
+class NewsImageInline(admin.TabularInline):
+    model = ImageNew
+    extra = 1
+
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'is_published', 'title', 'short_description', 'create_at', 'update_at',)
+    list_display_links = ('title',)
+    list_editable = ('is_published',)
+    list_filter = ('id', 'create_at', 'update_at',)
+    list_per_page = 10
+    prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('id', 'title', 'short_description', 'description', 'create_at', 'update_at',)
+    ordering = ('-id',)
+    inlines = [NewsImageInline,]
+
+class EventsImageInline(admin.TabularInline):
+    model = ImageEvent
+    extra = 1
+
+@admin.register(Events)
+class EventsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'is_published', 'title', 'short_description', 'create_at', 'update_at',)
+    list_display_links = ('title',)
+    list_editable = ('is_published',)
+    list_filter = ('id', 'create_at', 'update_at',)
+    list_per_page = 10
+    prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('id', 'title', 'short_description', 'description', 'create_at', 'update_at',)
+    ordering = ('-id',)
+    inlines = [EventsImageInline,]

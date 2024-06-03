@@ -2,32 +2,40 @@
 {% if site_setup.show_news %}
     <div class="container px-4 py-5" id="custom-cards">
         <h2 class="pb-2 border-bottom bg-dark-blue text-white p-2">ÚLTIMAS NOVIDADES</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{ site_setup.slide2.url }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Título do Novidades</h5>
-                        <p class="card-text">Breve descrição</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="text-decoration-none fs-4"><em>Saiba mais ...</em></a>
+        {% if news %}
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+                {% for new in news %}
+                    {% if new.is_published %}
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="{{ new.cover.url }}" class="card-img-top" alt="new.cover_caption">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{new.title}}</h5>
+                                    <p class="card-text">{{new.short_description}}</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="#" class="text-decoration-none fs-4"><em>Saiba mais ...</em></a>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <ul class="d-flex list-unstyled mb-0 mt-auto">
+                                        <li class="me-auto">
+                                            <i class="fa-regular fa-newspaper fs-2"></i>
+                                        </li>
+                                        <li class="d-flex align-items-center me-3">
+                                            <small>Comentários</small>
+                                        </li>
+                                        <li class="d-flex align-items-center">
+                                            <small>Atualizada em: {{new.update_at}}</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <ul class="d-flex list-unstyled mb-0 mt-auto">
-                            <li class="me-auto">
-                                <i class="fa-regular fa-newspaper fs-2"></i>
-                            </li>
-                            <li class="d-flex align-items-center me-3">
-                                <small>Comentários</small>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <small>Data</small>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                    {% endif %}
+                {% endfor %}
             </div>
-        </div>
+        {% endif %}
     </div>
+{% else %}
+    <h1 class="bg-danger text-white text-center">Sem Novidades !</h1>
 {% endif %}

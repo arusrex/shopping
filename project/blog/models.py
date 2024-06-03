@@ -64,7 +64,7 @@ class Post(models.Model):
     description = models.TextField()
     number = models.IntegerField()
     fone = models.CharField(max_length=20, blank=True, null=True, default='N/D')
-    whatsapp = models.BigIntegerField(max_length=11, blank=True, null=True)
+    whatsapp = models.BigIntegerField(blank=True, null=True)
     email = models.EmailField(max_length=255, blank=True, null=True)
     site = models.URLField(blank=True, null=True)
     facebook = models.URLField(blank=True, null=True)
@@ -94,3 +94,61 @@ class ImagesPost(models.Model):
 
     def __str__(self):
         return f"Imagem de {self.post}"
+    
+class News(models.Model):
+    class Meta:
+        verbose_name = 'New'
+        verbose_name_plural = "News"
+
+    is_published = models.BooleanField(default=True)
+    title = models.CharField(max_length=255)
+    short_description = models.CharField(max_length=255)
+    description = models.TextField()
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+    cover = models.ImageField(upload_to='news/%Y/%m/%d')
+    cover_caption = models.CharField(max_length=255, blank=True, null=True)
+    slug = models.SlugField(unique=True, default='', null=False, blank=True, max_length=255)
+
+    def __str__(self):
+        return self.title
+    
+class ImageNew(models.Model):
+    class Meta:
+        verbose_name = 'Imagem da New'
+        verbose_name_plural = 'Imagens da New'
+
+    new = models.ForeignKey(News, related_name='images', on_delete=models.CASCADE, blank=True, null=True)
+    image = models.ImageField(upload_to='news/%Y/%m/%d')
+
+    def __str__(self):
+        return f'Imagens da New {self.new}'
+
+class Events(models.Model):
+    class Meta:
+        verbose_name = 'Event'
+        verbose_name_plural = "Events"
+
+    is_published = models.BooleanField(default=True)
+    title = models.CharField(max_length=255)
+    short_description = models.CharField(max_length=255)
+    description = models.TextField()
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+    cover = models.ImageField(upload_to='events/%Y/%m/%d')
+    cover_caption = models.CharField(max_length=255, blank=True, null=True)
+    slug = models.SlugField(unique=True, default='', null=False, blank=True, max_length=255)
+
+    def __str__(self):
+        return self.title
+    
+class ImageEvent(models.Model):
+    class Meta:
+        verbose_name = 'Imagem do Event'
+        verbose_name_plural = 'Imagens do Event'
+
+    event = models.ForeignKey(Events, related_name='images', on_delete=models.CASCADE, blank=True, null=True)
+    image = models.ImageField(upload_to='events/%Y/%m/%d')
+
+    def __str__(self):
+        return f'Imagens do Event {self.event}'

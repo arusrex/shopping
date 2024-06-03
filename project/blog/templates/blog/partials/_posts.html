@@ -27,7 +27,11 @@
                         <div class="card shadow-sm">
                             <a href="#" class="text-decoration-none">
                             <div class="card-img-top bg-dark-subtle text-light w-100 d-flex justify-content-center align-items-center">
-                                <img src="{{loja.cover.url}}" class="d-block mx-lg-auto img-fluid rounded-top" alt="{{loja.title}}" loading="lazy">
+                                {% if loja.cover %}
+                                    <img src="{{loja.cover.url}}" class="d-block mx-lg-auto img-fluid rounded-top" alt="{{loja.title}}" loading="lazy">
+                                {% else %}
+                                    <img src="{% static "blog/img/ops.png" %}" class="d-block mx-lg-auto img-fluid rounded-top" alt="{{loja.title}}" loading="lazy">
+                                {% endif %}
                             </div>
                             </a>
 

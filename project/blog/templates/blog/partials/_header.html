@@ -7,9 +7,9 @@
                     {% if site_setup.show_logo %}
                         <div>
                             {% if site_setup.logo %}
-                                <img src="{{site_setup.logo.url}}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
+                                <img src="{{site_setup.logo.url}}" class="d-block mx-lg-auto img-fluid" alt="{{site_setup.title}}" loading="lazy">
                             {% else %}
-                                <img src="{% static "blog/img/ops.png" %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
+                                <img src="{% static "blog/img/ops.png" %}" class="d-block mx-lg-auto img-fluid" width="100" height="50" alt="OPS !" loading="lazy">
                             {% endif %}
                         </div>
                     {% endif %}
