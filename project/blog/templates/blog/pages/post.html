@@ -27,18 +27,26 @@
 
 
 <div class="container container-width mb-4 p-5 mx-auto shadow rounded">
+    {% if post.category %}
+        <div class="my-5">
+            <p class="card-text">
+                <i class="fa-solid fa-layer-group"> Categoria: </i>
+                <a href="{% url "blog:category" post.category.slug %}">{{post.category|default_if_none:"Sem categoria"}}</a>
+            </p>
+        </div>
+    {% endif %}
     <div class="d-flex flex-row flex-wrap justify-content-between my-5">
-        <small class="text-body-secondary">Criado em: {{post.created_at}} por {{post.created_by}}</small>
-        <small class="text-body-secondary">Atualizada em: {{post.updated_at}} por {{post.update_by}}</small>
+        <small class="text-body-secondary"><i class="fa-solid fa-calendar-plus"></i> Criado em: {{post.created_at}} por {{post.created_by|default:"Não informado"}}</small>
+        <small class="text-body-secondary"><i class="fa-solid fa-pen-to-square"></i> Atualizada em: {{post.updated_at}} por {{post.update_by|default:"Não informado"}}</small>
     </div>
     <div class="card-body border-black">
         <div class="my-5">
-        <h5>Descrição</h5>
+            <i class="fa-solid fa-file-lines mb-4"> Detalhes</i>
             <p class="card-text">{{post.short_description|default_if_none:"Resumo não definido"}}</p>
             <div class="preserve-whitespace">{{post.description|default_if_none:"Descrição não definida"}}</div>
         </div>
         <div class="my-5">
-            <h6>Dados da loja</h6>
+            <i class="fa-solid fa-circle-info"> Dados</i>
             <div class="fw-bold my-3 d-flex flex-row flex-wrap justify-content-start">
                 <div class="btn-group mx-1">
                     <span class="fw-bold btn btn-sm btn-outline-secondary">Nº da loja:</span>
@@ -57,7 +65,8 @@
                     <span type="button" class="btn btn-sm btn-outline-secondary">{{post.site|default_if_none:"Sem site registrado"}}</span>
                 </div>
             </div>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="my-5">
+                <i class="fa-solid fa-hashtag"> Redes Sociais</i>
                 <div class="py-2">
                     {% if post.whatsapp %}
                         <a class="text-decoration-none"

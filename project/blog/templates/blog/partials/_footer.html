@@ -60,7 +60,7 @@
             </div>
             
             <div class="d-flex flex-column flex-sm-row justify-content-between pt-4 mt-4 border-top text-light">
-                <p>© {{ano_atual}} Instituição - {{site_setup.title}}, Todos os direitos reservados. <em>- by OnyxTI</em></p>
+                <p>© {% now "Y" %} - {{site_setup.title}}, Todos os direitos reservados. <em>- by OnyxTI</em></p>
                 {% if site_setup.show_social %}
                     <ul class="list-unstyled d-flex text-light">
                         {% if site_setup.x_twitter %}

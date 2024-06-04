@@ -18,6 +18,15 @@
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
         <h2 class="pb-2 border-bottom bg-dark-blue text-white p-2 mb-5">LOJAS</h2>
+        {% if category %}
+            <form>
+                <select type="select" class="form-select">
+                    {% for option in category %}
+                        <option>{{option}}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        {% endif %}
         <div class="d-flex justify-content-center">
             {% include "blog/partials/_pagination.html" %}
         </div>
@@ -25,7 +34,7 @@
                 {% for loja in page_obj %}
                     <div class="col">
                         <div class="card h-100 shadow-sm">
-                            <a href="{% url "blog:post" loja.slug %}" class="text-decoration-none h-100">
+                            <a href="{{loja.get_absolute_url}}" class="text-decoration-none h-100">
                                 {% if loja.cover %}
                                     <img src="{{loja.cover.url}}" class="h-100 img-fluid rounded-top" alt="Cover de {{loja.title}}">
                                 {% else %}
@@ -38,7 +47,7 @@
                                 <p class="card-text">{{loja.short_description}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex flex-row flex-wrap align-items-center">
-                                        <a href="{% url "blog:post" loja.slug %}" type="button" class="text-decoration-none btn btn-sm btn-outline-secondary me-2">Ver mais</a>
+                                        <a href="{{loja.get_absolute_url}}" type="button" class="text-decoration-none btn btn-sm btn-outline-secondary me-2">Ver mais</a>
                                         <div class="py-2">
                                             {% if loja.whatsapp %}
                                                 <a class="text-decoration-none"
@@ -74,7 +83,7 @@
                                             {% endif %}
                                         </div>
                                     </div>
-                                    <small class="text-body-secondary">Atualizada em: {{loja.updated_at}}</small>
+                                    <small class="text-body-secondary">Última atualização: {{loja.updated_at}}</small>
                                 </div>
                             </div>
                         </div>

@@ -3,38 +3,39 @@
 
 {% block content %}
 
-<h1 class="w-50 text-center bg-secondary-subtle rounded mx-auto p-2">NOVIDADE</h1>
-
-<div class="container container-width mt-4 bg-secondary-subtle bg-gradient">
-    <div id="myCarousel" class="carousel slide mb-4 w-75 h-50 mx-auto" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            {% for image in new.images.all %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                    <img src="{{image.image.url}}" class="d-block w-100" alt="image.caption">
-                </div>
-            {% endfor %}
+<h1 class="w-50 text-center bg-secondary-subtle rounded mx-auto p-2">{{new.title}}</h1>
+{% if new.images.all %}
+    <div class="container container-width mt-4 bg-secondary-subtle bg-gradient">
+        <div id="myCarousel" class="carousel slide mb-4 w-75 h-50 mx-auto" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for image in new.images.all %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img src="{{image.image.url}}" class="d-block w-100" alt="image.caption">
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev bg-secondary btn-carousel rounded mx-4 my-auto" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next bg-secondary btn-carousel rounded mx-4 my-auto" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próxima</span>
+            </button>
         </div>
-        <button class="carousel-control-prev bg-secondary btn-carousel rounded mx-4 my-auto" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next bg-secondary btn-carousel rounded mx-4 my-auto" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próxima</span>
-        </button>
     </div>
-</div>
+{% endif %}
 
 
 <div class="container container-width mb-4 p-5 mx-auto shadow rounded">
-    <div class="card-body border-black">
+    <div class="d-flex justify-content-between align-items-center">
+        <small class="text-body-secondary">Criado em: {{new.created_at}} por {{new.created_by|default:"Não informado"}}</small>
+        <small class="text-body-secondary">Atualizada em: {{new.updated_at}} por {{new.updated_by|default:"Não informado"}}</small>
+    </div>
+    <div class="card-body border-black my-5">
         <h5>Descrição</h5>
-        <p class="card-text mx-1">DESCRIÇÃO DA NOVIDADE</p>
-        
-        <div class="d-flex justify-content-between align-items-center">
-            
-            <small class="text-body-secondary">Atualizada em: {{data_atual}} - {{hora_atual}}</small>
-        </div>
+        <div class="card-text">{{new.short_description}}</div>
+        <div class="card-text">{{new.description}}</div>
     </div>
 
     {% if site_setup.show_comments %}

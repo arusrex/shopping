@@ -1,7 +1,8 @@
-from typing import Any
 from django.contrib import admin
-from .models import Tag, Catergory, Page, Post, ImagesPost, News, ImageNew, Events, ImageEvent
+from .models import Tag, Category, Page, Post, ImagesPost, News, ImageNew, Events, ImageEvent
 from django_summernote.admin import SummernoteModelAdmin
+from django.urls import reverse
+from django.utils.safestring import mark_safe
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
@@ -11,7 +12,7 @@ class TagAdmin(admin.ModelAdmin):
     search_fields = "id", "name", "slug"
     list_per_page = 10
 
-@admin.register(Catergory)
+@admin.register(Category)
 class CatergoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'slug')
     prepopulated_fields = {'slug': ('name',)}
@@ -49,9 +50,18 @@ class PostAdmin(SummernoteModelAdmin):
     search_fields = "id", "title", "slug", 'is_published', 'number',
     list_per_page = 30
     ordering = ('id'),
-    readonly_fields = 'created_at', 'updated_at', 'created_by', 'updated_by'
+    readonly_fields = 'created_at', 'updated_at', 'created_by', 'updated_by', 'link'
     filter_horizontal = ('tags',)
     inlines = [PostImageInline,]
+
+    def link(self, obj):
+        if not obj.pk:
+            return '-'
+        
+        url = obj.get_absolute_url()
+        safe_url = mark_safe(f'<a target="_blank" href="{url}">Clique para ver</a>')
+
+        return safe_url
 
     def save_model(self, request, obj, form, change):
         if change:

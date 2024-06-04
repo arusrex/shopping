@@ -17,7 +17,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="d-flex justify-content-center">
-                                    <a href="#" class="text-decoration-none fs-4"><em>Saiba mais ...</em></a>
+                                    <a href="{% url "blog:event" event.slug %}" class="text-decoration-none fs-4"><em>Saiba mais ...</em></a>
                                 </div>
                                 <hr>
                                 <ul class="d-flex list-unstyled mb-0 mt-auto">
@@ -28,7 +28,7 @@
                                         <small>Comentários</small>
                                     </li>
                                     <li class="d-flex align-items-center">
-                                        <small>Atualizado em: {{event.updated_at}}</small>
+                                        <small>Criado em: {{event.created_at}}</small>
                                     </li>
                                 </ul>
                             </div>

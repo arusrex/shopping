@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from utils.rands import slug_rand
 from utils.images import resize_image, resize_image_slide
 from django_summernote.models import AbstractAttachment
+from django.urls import reverse
+
+# MODEL ATTACHMENTS SUMMERNOTE
 
 class PostAttachment(AbstractAttachment):
     def save(self, *args, **kwargs):
@@ -20,6 +23,9 @@ class PostAttachment(AbstractAttachment):
             resize_image(self.file, 939, True, 70)
         
         return super_save
+    
+
+# MODELS TAGS
 
 class Tag(models.Model):
     class Meta:
@@ -36,8 +42,11 @@ class Tag(models.Model):
     
     def __str__(self):
         return self.name
+    
 
-class Catergory(models.Model):
+# MODELS CATEGORY
+
+class Category(models.Model):
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
@@ -48,11 +57,13 @@ class Catergory(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slug_rand(self.name)
-        return super(Catergory, self).save(*args, **kwargs)
+        return super(Category, self).save(*args, **kwargs)
     
     def __str__(self):
         return self.name
 
+
+# MODELS PAGE
 
 class Page(models.Model):
     class Meta:
@@ -72,10 +83,19 @@ class Page(models.Model):
     def __str__(self):
         return self.title
     
+
+# MODELS POST
+    
+class PostManager(models.Manager):
+    def get_published(self):
+        return self.filter(is_published=True)
+    
 class Post(models.Model):
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
+
+    objects = PostManager()
 
     title = models.CharField(max_length=255)
     short_description = models.CharField(max_length=255)
@@ -97,9 +117,15 @@ class Post(models.Model):
 
     slug = models.SlugField(unique=True, default='', null=False, blank=True, max_length=255)
     is_published = models.BooleanField(default=False, help_text='Esta opção é necessária para publicar a loja',)
-    category = models.ForeignKey(Catergory, on_delete=models.SET_NULL, blank=True, null=True, default=None)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True, default=None)
     tags = models.ManyToManyField(Tag, blank=True)
 
+    def get_absolute_url(self):
+        if not self.is_published:
+            return reverse('blog:index')
+
+        return reverse("blog:post", args=(self.slug,))
+    
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -144,11 +170,20 @@ class ImagesPost(models.Model):
 
     def __str__(self):
         return f"Imagem de {self.post}"
-    
+
+
+# MODELS NEWS
+
+class NewsManager(models.Manager):
+    def get_published(self):
+        return self.filter(is_published=True)
+
 class News(models.Model):
     class Meta:
         verbose_name = 'New'
         verbose_name_plural = "News"
+
+    objects = NewsManager()
 
     is_published = models.BooleanField(default=True)
     title = models.CharField(max_length=255)
@@ -159,6 +194,12 @@ class News(models.Model):
     cover = models.ImageField(upload_to='news/%Y/%m/%d')
     cover_caption = models.CharField(max_length=255, blank=True, null=True)
     slug = models.SlugField(unique=True, default='', null=False, blank=True, max_length=255)
+
+    def get_absolute_url(self):
+        if not self.is_published:
+            return reverse('blog:index')
+
+        return reverse("blog:new", args=(self.slug,))
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -203,10 +244,19 @@ class ImageNew(models.Model):
     def __str__(self):
         return f'Imagens da New {self.new}'
 
+
+# MODELS EVENTS
+
+class EventsManager(models.Manager):
+    def get_published(self):
+        return self.filter(is_published=True)
+
 class Events(models.Model):
     class Meta:
         verbose_name = 'Event'
         verbose_name_plural = "Events"
+
+    objects = EventsManager()
 
     is_published = models.BooleanField(default=True)
     title = models.CharField(max_length=255)
@@ -217,6 +267,12 @@ class Events(models.Model):
     cover = models.ImageField(upload_to='events/%Y/%m/%d')
     cover_caption = models.CharField(max_length=255, blank=True, null=True)
     slug = models.SlugField(unique=True, default='', null=False, blank=True, max_length=255)
+
+    def get_absolute_url(self):
+        if not self.is_published:
+            return reverse('blog:index')
+
+        return reverse("blog:event", args=(self.slug,))
 
     def save(self, *args, **kwargs):
         if not self.slug:

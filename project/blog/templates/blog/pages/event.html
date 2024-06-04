@@ -3,61 +3,39 @@
 
 {% block content %}
 
-<h1 class="w-50 text-center bg-secondary-subtle rounded mx-auto p-2">EVENTO</h1>
-
-<div class="container container-width mt-4 bg-secondary-subtle bg-gradient">
-    <div id="myCarousel" class="carousel slide mb-4 w-75 h-50 mx-auto" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{{site_setup.slide1.url}}" class="d-block w-100" alt="Slide 1">
+<h1 class="w-50 text-center bg-secondary-subtle rounded mx-auto p-2">{{event.title}}</h1>
+{% if event.images.all %}
+    <div class="container container-width mt-4 bg-secondary-subtle bg-gradient">
+        <div id="myCarousel" class="carousel slide mb-4 w-75 h-50 mx-auto" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for image in event.images.all %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img src="{{image.image.url}}" class="d-block w-100" alt="{{image.caption}}">
+                    </div>
+                {% endfor %}
             </div>
-            <div class="carousel-item">
-                <img src="{{site_setup.slide2.url}}" class="d-block w-100" alt="Slide 2">
-            </div>
-            <div class="carousel-item">
-                <img src="{{site_setup.slide3.url}}" class="d-block w-100" alt="Slide 3">
-            </div>
+            <button class="carousel-control-prev bg-secondary btn-carousel rounded mx-4 my-auto" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next bg-secondary btn-carousel rounded mx-4 my-auto" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próxima</span>
+            </button>
         </div>
-        <button class="carousel-control-prev bg-secondary btn-carousel rounded mx-4 my-auto" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next bg-secondary btn-carousel rounded mx-4 my-auto" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próxima</span>
-        </button>
     </div>
-</div>
+{% endif %}
 
 
 <div class="container container-width mb-4 p-5 mx-auto shadow rounded">
-    <div class="card-body border-black">
+    <div class="d-flex justify-content-between align-items-center">
+        <small class="text-body-secondary">Criado em: {{event.created_at}} por {{event.created_by|default:"Não informado"}}</small>
+        <small class="text-body-secondary">Atualizada em: {{event.updated_at}} por {{event.updated_by|default:"Não informado"}}</small>
+    </div>
+    <div class="card-body border-black my-5">
         <h5>Descrição</h5>
-        <p class="card-text mx-1">
-        DESCRIÇÃO DO EVENTO
-        </p>
-        <h6>Detalhes do Evento</h6>
-        
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group mx-1">
-                <button type="button" class="fw-bold btn btn-sm btn-outline-secondary">
-                    Redes Sociais: 
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary text-bg-success">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary text-bg-primary">
-                    <i class="fa-brands fa-facebook"></i>
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary text-bg-dark">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary bg-gradient-instagram-icon">
-                    <i class="fa-brands fa-instagram"></i>
-                </button>
-            </div>
-            <small class="text-body-secondary">{{data_atual}} - {{hora_atual}}</small>
-        </div>
+        <div class="card-text">{{event.short_description}}</div>
+        <div class="card-text">{{event.description}}</div>
     </div>
 
     {% if site_setup.show_comments %}
