@@ -7,7 +7,7 @@
                 {% for new in news %}
                     <div class="col">
                         <div class="card h-100 shadow-sm">
-                            <a href="#"  class="text-decoration-none h-100">
+                            <a href="{% url "blog:new" new.slug %}"  class="text-decoration-none h-100">
                                 <img src="{{ new.cover.url }}" class="h-100 img-fluid rounded-top" alt="{{new.cover_caption}}">
                             </a>
                             <div class="card-body">

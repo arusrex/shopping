@@ -7,7 +7,7 @@
                 {% for event in events %}
                     <div class="col">
                         <div class="card h-100 shadow-sm">
-                            <a href="#"  class="text-decoration-none h-100">
+                            <a href="{% url "blog:event" event.slug %}"  class="text-decoration-none h-100">
                                 <img src="{{ event.cover.url }}" class="h-100 img-fluid rounded-top" alt="{{event.cover_caption}}">
                             </a>
                             <div class="card-body">

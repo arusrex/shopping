@@ -187,6 +187,19 @@ class ImageNew(models.Model):
     new = models.ForeignKey(News, related_name='images', on_delete=models.CASCADE, blank=True, null=True)
     image = models.ImageField(upload_to='news/%Y/%m/%d')
 
+    def save(self, *args, **kwargs):
+        current_image_name = str(self.image.name)
+        super_save = super().save(*args, **kwargs)
+        image_changed = False
+
+        if self.image:
+            image_changed = current_image_name != self.image.name
+        
+        if image_changed:
+            resize_image_slide(self.image, 939, 537, True, 70)
+        
+        return super_save
+
     def __str__(self):
         return f'Imagens da New {self.new}'
 
@@ -231,6 +244,19 @@ class ImageEvent(models.Model):
 
     event = models.ForeignKey(Events, related_name='images', on_delete=models.CASCADE, blank=True, null=True)
     image = models.ImageField(upload_to='events/%Y/%m/%d')
+
+    def save(self, *args, **kwargs):
+        current_image_name = str(self.image.name)
+        super_save = super().save(*args, **kwargs)
+        image_changed = False
+
+        if self.image:
+            image_changed = current_image_name != self.image.name
+        
+        if image_changed:
+            resize_image_slide(self.image, 939, 537, True, 70)
+        
+        return super_save
 
     def __str__(self):
         return f'Imagens do Event {self.event}'
