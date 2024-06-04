@@ -5,37 +5,35 @@
         {% if events %}
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-4">
                 {% for event in events %}
-                    {% if event.is_published %}
-                        <div class="col">
-                            <div class="card h-100 shadow-sm">
-                                <a href="#"  class="text-decoration-none h-100">
-                                    <img src="{{ event.cover.url }}" class="h-100 img-fluid rounded-top" alt="{{event.cover_caption}}">
-                                </a>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{event.title}}</h5>
-                                    <p class="card-text">{{event.short_description}}</p>
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <a href="#"  class="text-decoration-none h-100">
+                                <img src="{{ event.cover.url }}" class="h-100 img-fluid rounded-top" alt="{{event.cover_caption}}">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{event.title}}</h5>
+                                <p class="card-text">{{event.short_description}}</p>
 
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-center">
+                                    <a href="#" class="text-decoration-none fs-4"><em>Saiba mais ...</em></a>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="d-flex justify-content-center">
-                                        <a href="#" class="text-decoration-none fs-4"><em>Saiba mais ...</em></a>
-                                    </div>
-                                    <hr>
-                                    <ul class="d-flex list-unstyled mb-0 mt-auto">
-                                        <li class="me-auto">
-                                            <i class="fa-solid fa-calendar-days fs-2 mx-2"></i>
-                                        </li>
-                                        <li class="d-flex align-items-center me-3">
-                                            <small>Comentários</small>
-                                        </li>
-                                        <li class="d-flex align-items-center">
-                                            <small>Atualizado em: {{event.updated_at}}</small>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <hr>
+                                <ul class="d-flex list-unstyled mb-0 mt-auto">
+                                    <li class="me-auto">
+                                        <i class="fa-solid fa-calendar-days fs-2 mx-2"></i>
+                                    </li>
+                                    <li class="d-flex align-items-center me-3">
+                                        <small>Comentários</small>
+                                    </li>
+                                    <li class="d-flex align-items-center">
+                                        <small>Atualizado em: {{event.updated_at}}</small>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    {% endif %}
+                    </div>
                 {% endfor %}
             </div>
         {% else %}

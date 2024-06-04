@@ -22,65 +22,63 @@
             {% include "blog/partials/_pagination.html" %}
         </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 my-2">
-                {% for loja in lojas %}
-                    {% if loja.is_published %}
-                        <div class="col">
-                            <div class="card h-100 shadow-sm">
-                                <a href="#" class="text-decoration-none h-100">
-                                    {% if loja.cover %}
-                                        <img src="{{loja.cover.url}}" class="h-100 img-fluid rounded-top" alt="{{loja.title}}">
-                                    {% else %}
-                                        <img src="{% static "blog/img/ops.png" %}" class="img-fluid rounded-top" alt="{{loja.title}}">
-                                    {% endif %}
-                                </a>
+                {% for loja in page_obj %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <a href="{% url "blog:post" loja.slug %}" class="text-decoration-none h-100">
+                                {% if loja.cover %}
+                                    <img src="{{loja.cover.url}}" class="h-100 img-fluid rounded-top" alt="Cover de {{loja.title}}">
+                                {% else %}
+                                    <img src="{% static "blog/img/ops.png" %}" class="img-fluid rounded-top" alt="{{loja.title}}">
+                                {% endif %}
+                            </a>
 
-                                <div class="card-body">
-                                    <h5>{{loja.title}}</h5>
-                                    <p class="card-text">{{loja.short_description}}</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex flex-row flex-wrap align-items-center">
-                                            <a href="#" type="button" class="text-decoration-none btn btn-sm btn-outline-secondary me-2">Ver mais</a>
-                                            <div class="py-2">
-                                                {% if loja.whatsapp %}
-                                                    <a class="text-decoration-none"
-                                                        href="https://wa.me/55{{loja.whatsapp}}?text=Olá,%20gostaria%20de%20mais%20informações%20sobre%20os%20seus%20serviços"
-                                                        target="_blank">
-                                                        <i class="fa-brands fa-whatsapp whatsapp rounded fs-4 p-2 my-2"></i>
-                                                    </a>
-                                                {% endif %}
-                                                {% if loja.facebook %}
-                                                    <a class="fs-4 text-decoration-none" href="{{loja.facebook}}" target="_blank">
-                                                        <i class="fa-brands fa-facebook facebook rounded p-2"></i>
-                                                    </a>
-                                                {% endif %}
-                                                {% if loja.x_twitter %} 
-                                                    <a class="fs-4 text-decoration-none" href="{{loja.x_twitter}}" target="_blank">
-                                                        <i class="fa-brands fa-x-twitter x-twitter rounded p-2"></i>
-                                                    </a>
-                                                {% endif %}
-                                                {% if loja.instagram %}
-                                                    <a class="fs-4 text-decoration-none" href="{{loja.instagram}}" target="_blank">
-                                                        <i class="fa-brands fa-instagram instagram rounded p-2"></i>
-                                                    </a>
-                                                {% endif %}
-                                                {% if loja.youtube %}
-                                                    <a class="fs-4 text-decoration-none" href="{{loja.youtube}}" target="_blank">
-                                                        <i class="fa-brands fa-youtube youtube rounded p-2"></i>
-                                                    </a>
-                                                {% endif %}
-                                                {% if loja.site %}
-                                                    <a class="fs-4 text-decoration-none" href="{{loja.site}}" target="_blank">
-                                                        <i class="fa-solid fa-globe globe rounded p-2"></i>
-                                                    </a>
-                                                {% endif %}
-                                            </div>
+                            <div class="card-body">
+                                <h5>{{loja.title}}</h5>
+                                <p class="card-text">{{loja.short_description}}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex flex-row flex-wrap align-items-center">
+                                        <a href="{% url "blog:post" loja.slug %}" type="button" class="text-decoration-none btn btn-sm btn-outline-secondary me-2">Ver mais</a>
+                                        <div class="py-2">
+                                            {% if loja.whatsapp %}
+                                                <a class="text-decoration-none"
+                                                    href="https://wa.me/55{{loja.whatsapp}}?text=Olá,%20gostaria%20de%20mais%20informações%20sobre%20os%20seus%20serviços"
+                                                    target="_blank">
+                                                    <i class="fa-brands fa-whatsapp whatsapp rounded fs-4 p-2 my-2"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if loja.facebook %}
+                                                <a class="fs-4 text-decoration-none" href="{{loja.facebook}}" target="_blank">
+                                                    <i class="fa-brands fa-facebook facebook rounded p-2"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if loja.x_twitter %} 
+                                                <a class="fs-4 text-decoration-none" href="{{loja.x_twitter}}" target="_blank">
+                                                    <i class="fa-brands fa-x-twitter x-twitter rounded p-2"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if loja.instagram %}
+                                                <a class="fs-4 text-decoration-none" href="{{loja.instagram}}" target="_blank">
+                                                    <i class="fa-brands fa-instagram instagram rounded p-2"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if loja.youtube %}
+                                                <a class="fs-4 text-decoration-none" href="{{loja.youtube}}" target="_blank">
+                                                    <i class="fa-brands fa-youtube youtube rounded p-2"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if loja.site %}
+                                                <a class="fs-4 text-decoration-none" href="{{loja.site}}" target="_blank">
+                                                    <i class="fa-solid fa-globe globe rounded p-2"></i>
+                                                </a>
+                                            {% endif %}
                                         </div>
-                                        <small class="text-body-secondary">Atualizada em: {{loja.updated_at}}</small>
                                     </div>
+                                    <small class="text-body-secondary">Atualizada em: {{loja.updated_at}}</small>
                                 </div>
                             </div>
                         </div>
-                    {% endif %}
+                    </div>
                 {% endfor %}
             </div>
         <div class="d-flex justify-content-center">

@@ -1,7 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import User
 from utils.rands import slug_rand
-from utils.images import resize_image
+from utils.images import resize_image, resize_image_slide
+from django_summernote.models import AbstractAttachment
+
+class PostAttachment(AbstractAttachment):
+    def save(self, *args, **kwargs):
+        if not self.name:
+            self.name = self.file.name
+            
+        current_file_name = str(self.file.name)
+        super_save = super().save(*args, **kwargs)
+        file_changed = False
+
+        if self.file:
+            file_changed = current_file_name != self.file.name
+        
+        if file_changed:
+            resize_image(self.file, 939, True, 70)
+        
+        return super_save
 
 class Tag(models.Model):
     class Meta:
@@ -77,7 +95,6 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='post_updated_by')
 
-
     slug = models.SlugField(unique=True, default='', null=False, blank=True, max_length=255)
     is_published = models.BooleanField(default=False, help_text='Esta opção é necessária para publicar a loja',)
     category = models.ForeignKey(Catergory, on_delete=models.SET_NULL, blank=True, null=True, default=None)
@@ -111,6 +128,19 @@ class ImagesPost(models.Model):
     post = models.ForeignKey(Post, related_name='images', on_delete=models.CASCADE, blank=True, null=True,)
     image = models.ImageField(upload_to='posts/%Y/%m/%d')
     caption = models.CharField(max_length=255, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        current_image_name = str(self.image.name)
+        super_save = super().save(*args, **kwargs)
+        image_changed = False
+
+        if self.image:
+            image_changed = current_image_name != self.image.name
+        
+        if image_changed:
+            resize_image_slide(self.image, 939, 537, True, 70)
+        
+        return super_save
 
     def __str__(self):
         return f"Imagem de {self.post}"

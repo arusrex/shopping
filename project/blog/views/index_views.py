@@ -4,9 +4,9 @@ from blog.models import Post, News, Events
 
 def index(request):
 
-    lojas = Post.objects.all().order_by('-id')
-    news = News.objects.all().order_by('-created_at')[:3]
-    events = Events.objects.all().order_by('-created_at')[:3]
+    lojas = Post.objects.filter(is_published=True).order_by('-id')
+    news = News.objects.filter(is_published=True).order_by('-created_at')[:3]
+    events = Events.objects.filter(is_published=True).order_by('-created_at')[:3]
 
     paginator = Paginator(lojas, 9)
     page_number = request.GET.get('page')

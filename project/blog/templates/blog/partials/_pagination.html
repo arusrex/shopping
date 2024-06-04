@@ -2,59 +2,61 @@
 
 <!-- Paginação -->
 {% if site_setup.show_pagination %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page=1" aria-label="Primeira página">
-                        <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i> Primeira</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
-                        <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i> Anterior</span>
-                    </a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <span class="page-link" aria-hidden="true"><i class="fa-solid fa-angles-left"></i> Primeira</span>
-                </li>
-                <li class="page-item disabled">
-                    <span class="page-link" aria-hidden="true"><i class="fa-solid fa-chevron-left"></i> Anterior</span>
-                </li>
-            {% endif %}
-
-            {% for num in page_obj.paginator.page_range %}
-                {% if page_obj.number == num %}
-                    <li class="page-item active">
-                        <span class="page-link">{{ num }}</span>
-                    </li>
-                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+    {% if page_obj and page_obj.has_other_pages %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        <a class="page-link" href="?page=1" aria-label="Primeira página">
+                            <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i> Primeira</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
+                            <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i> Anterior</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link" aria-hidden="true"><i class="fa-solid fa-angles-left"></i> Primeira</span>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link" aria-hidden="true"><i class="fa-solid fa-chevron-left"></i> Anterior</span>
                     </li>
                 {% endif %}
-            {% endfor %}
 
-            {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Próxima">
-                        <span aria-hidden="true">Próxima <i class="fa-solid fa-chevron-right"></i></span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Última">
-                        <span aria-hidden="true">Última <i class="fa-solid fa-angles-right"></i></span>
-                    </a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <span class="page-link" aria-hidden="true">Próxima <i class="fa-solid fa-chevron-right"></i></span>
-                </li>
-                <li class="page-item disabled">
-                    <span class="page-link" aria-hidden="true">Última <i class="fa-solid fa-angles-right"></i></span>
-                </li>
-            {% endif %}
-        </ul>
-    </nav>
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Próxima">
+                            <span aria-hidden="true">Próxima <i class="fa-solid fa-chevron-right"></i></span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Última">
+                            <span aria-hidden="true">Última <i class="fa-solid fa-angles-right"></i></span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link" aria-hidden="true">Próxima <i class="fa-solid fa-chevron-right"></i></span>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link" aria-hidden="true">Última <i class="fa-solid fa-angles-right"></i></span>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
 {% endif %}
