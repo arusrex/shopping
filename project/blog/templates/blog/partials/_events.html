@@ -10,22 +10,24 @@
                             <a href="{% url "blog:event" event.slug %}"  class="text-decoration-none h-100">
                                 <img src="{{ event.cover.url }}" class="h-100 img-fluid rounded-top" alt="{{event.cover_caption}}">
                             </a>
-                            <div class="card-body">
-                                <h5 class="card-title">{{event.title}}</h5>
-                                <p class="card-text">{{event.short_description}}</p>
-
+                            <div class="card-body d-flex flex-row flex-wrap justify-content-between">
+                                <div>
+                                    <h5 class="card-title">{{event.title}}</h5>
+                                    <p class="card-text">{{event.short_description}}</p>
+                                </div>
+                                <div>
+                                    <i class="fa-solid fa-calendar-days fs-2"></i>
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <div class="d-flex justify-content-center">
                                     <a href="{% url "blog:event" event.slug %}" class="text-decoration-none fs-4"><em>Saiba mais ...</em></a>
                                 </div>
                                 <hr>
-                                <ul class="d-flex list-unstyled mb-0 mt-auto">
-                                    <li class="me-auto">
-                                        <i class="fa-solid fa-calendar-days fs-2 mx-2"></i>
-                                    </li>
+                                <ul class="d-flex justify-content-between list-unstyled mb-0 mt-auto">
                                     <li class="d-flex align-items-center me-3">
-                                        <small>Comentários</small>
+                                        <i class="fa-regular fa-comment"></i>
+                                        <small class="mx-2">Comentários</small>
                                     </li>
                                     <li class="d-flex align-items-center">
                                         <small>Criado em: {{event.created_at}}</small>

@@ -17,8 +17,8 @@
                     <span class="fs-4 fst-italic text-white">{{site_setup.description}}</span>
                 </a>
                 {% if site_setup.show_search %}
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-                        <input id="search-all" name="search-all" type="search" class="form-control" placeholder="Pesquisar..." aria-label="Search">
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search" action="{% url "blog:search" %}" method="GET">
+                        <input id="search-all" name="search-all" type="search" class="form-control" placeholder="Pesquisar lojas ..." aria-label="Search">
                     </form>
                 {% endif %}
             </div>
@@ -37,7 +37,7 @@
                             </li>
                         {% endfor %}
                         <li class="nav-item">
-                            <a class="link fs-4 px-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Lojas</a>
+                            <a class="link fs-4 px-2 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Lojas</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{% url "blog:shops" %}">Todas</a></li>
                                 {% for category in category %}

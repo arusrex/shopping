@@ -19,18 +19,13 @@
     <div class="container">
         <h2 class="pb-2 border-bottom bg-dark-blue text-white p-2 mb-5">LOJAS</h2>
         {% if category %}
-            <form class="form-category-filter" id="category">
-                <label class="fw-bold" for="#category">Filtrar por categoria: </label>
-                <div class="input-group">
-                    <select name="category" id="category" type="select" class="form-select">
-                        <option value="">-- Todas --</option>
-                        {% for option in category %}
-                            <option value="{{option.id}}">{{option}}</option>
-                        {% endfor %}
-                    </select>
-                    <button class="btn btn-sm btn-secondary" type="submit">Filtrar</button>
-                </div>
-            </form>
+            <a class="link link-dark fs-4 px-2 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Filtrar por categoria:</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url "blog:shops" %}">Todas</a></li>
+                {% for category in category %}
+                    <li><a class="dropdown-item" href="{% url "blog:category" category.slug %}">{{category.name}}</a></li>
+                {% endfor %}
+            </ul>
         {% endif %}
         <div class="d-flex justify-content-center">
             {% include "blog/partials/_pagination.html" %}

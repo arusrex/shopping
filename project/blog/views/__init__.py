@@ -6,3 +6,4 @@ from .new_view import *
 from .category_view import *
 from .shops_view import *
 from .tag_view import *
+from .search_view import *
