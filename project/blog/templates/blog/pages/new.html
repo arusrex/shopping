@@ -24,6 +24,10 @@
             </button>
         </div>
     </div>
+{% else %}
+    <div class="container container-width mt-4 bg-secondary-subtle bg-gradient">
+        <img src="{{new.cover.url}}" class="d-block w-100" alt="Imagem de {{new.title}}">
+    </div>
 {% endif %}
 
 
@@ -35,7 +39,7 @@
     <div class="card-body border-black my-5">
         <i class="fa-solid fa-file-lines mb-4"> Detalhes</i>
         <div class="card-text">{{new.short_description}}</div>
-        <div class="card-text">{{new.description}}</div>
+        <div class="card-text">{{new.description | safe}}</div>
     </div>
 
     {% if site_setup.show_comments %}

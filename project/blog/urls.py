@@ -12,6 +12,7 @@ urlpatterns = [
     path('event/<slug:slug>/', views.event, name="event"),
     path('new/<slug:slug>/', views.new, name="new"),
     path('category/<slug:slug>/', views.category, name="category"),
+    path('tag/<slug:slug>/', views.tag, name="tag"),
     path('shops/', views.shops, name='shops'),
 ]
 

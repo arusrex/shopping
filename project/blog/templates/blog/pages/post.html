@@ -23,27 +23,32 @@
             </button>
         </div>
     </div>
+{% else %}
+    <div class="container container-width mt-4 bg-secondary-subtle bg-gradient">
+        <img src="{{post.cover.url}}" class="d-block w-100" alt="Imagem de {{post.title}}">
+    </div>
 {% endif %}
 
 
 <div class="container container-width mb-4 p-5 mx-auto shadow rounded">
+    <div class="d-flex flex-row flex-wrap justify-content-between mb-5">
+        <small class="text-body-secondary"><i class="fa-solid fa-calendar-plus"></i> Criado em: {{post.created_at}} por {{post.created_by|default:"Não informado"}}</small>
+        <small class="text-body-secondary"><i class="fa-solid fa-pen-to-square"></i> Atualizada em: {{post.updated_at}} por {{post.update_by|default:"Não informado"}}</small>
+    </div>
     {% if post.category %}
         <div class="my-5">
             <p class="card-text">
                 <i class="fa-solid fa-layer-group"> Categoria: </i>
-                <a href="{% url "blog:category" post.category.slug %}">{{post.category|default_if_none:"Sem categoria"}}</a>
+                <a class="text-decoration-none text-dark border border-sm-black shadow-sm rounded p-1" href="{% url "blog:category" post.category.slug %}">{{post.category|default_if_none:"Sem categoria"}}</a>
             </p>
         </div>
     {% endif %}
-    <div class="d-flex flex-row flex-wrap justify-content-between my-5">
-        <small class="text-body-secondary"><i class="fa-solid fa-calendar-plus"></i> Criado em: {{post.created_at}} por {{post.created_by|default:"Não informado"}}</small>
-        <small class="text-body-secondary"><i class="fa-solid fa-pen-to-square"></i> Atualizada em: {{post.updated_at}} por {{post.update_by|default:"Não informado"}}</small>
-    </div>
+
     <div class="card-body border-black">
         <div class="my-5">
             <i class="fa-solid fa-file-lines mb-4"> Detalhes</i>
             <p class="card-text">{{post.short_description|default_if_none:"Resumo não definido"}}</p>
-            <div class="preserve-whitespace">{{post.description|default_if_none:"Descrição não definida"}}</div>
+            <div class="preserve-whitespace">{{post.description|safe|default_if_none:"Descrição não definida"}}</div>
         </div>
         <div class="my-5">
             <i class="fa-solid fa-circle-info"> Dados</i>
@@ -62,7 +67,9 @@
                 </div>
                 <div class="btn-group mx-1">
                     <span class="fw-bold btn btn-sm btn-outline-secondary">Site:</span>
-                    <span type="button" class="btn btn-sm btn-outline-secondary">{{post.site|default_if_none:"Sem site registrado"}}</span>
+                    <span type="button" class="btn btn-sm btn-outline-secondary">
+                        <a class="text-decoration-none text-secondary" target="_blank" href="{{post.site}}">{{post.site|default_if_none:"Sem site registrado"}}</a>
+                    </span>
                 </div>
             </div>
             <div class="my-5">
@@ -126,6 +133,19 @@
                     <button class="btn btn-secondary">Enviar</button>
                 </div>
             </form>
+        </div>
+    {% endif %}
+
+    {% if post.tags.exists %}
+        <div class="my-5">
+            <div class="card-text d-flex flex-row flex-wrap align-items-center">
+                <i class="fa-solid fa-tags"> Tags: </i>
+                {% for tag in post.tags.all %}
+                    <div class="mx-2">
+                        <a class="text-decoration-none text-dark border border-sm-black shadow-sm rounded p-1" href="{% url "blog:tag" tag.slug %}">{{tag.name|default_if_none:"Sem tags"}}</a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     {% endif %}
 </div>
