@@ -36,6 +36,15 @@
                                 {% endif %}
                             </li>
                         {% endfor %}
+                        <li class="nav-item">
+                            <a class="link fs-4 px-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Lojas</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url "blog:shops" %}">Todas</a></li>
+                                {% for category in category %}
+                                    <li><a class="dropdown-item" href="{% url "blog:category" category.slug %}">{{category.name}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
                     </ul>
                 {% endif %}
                 {% if site_setup.show_login %}

@@ -19,12 +19,17 @@
     <div class="container">
         <h2 class="pb-2 border-bottom bg-dark-blue text-white p-2 mb-5">LOJAS</h2>
         {% if category %}
-            <form>
-                <select type="select" class="form-select">
-                    {% for option in category %}
-                        <option>{{option}}</option>
-                    {% endfor %}
-                </select>
+            <form class="form-category-filter" id="category">
+                <label class="fw-bold" for="#category">Filtrar por categoria: </label>
+                <div class="input-group">
+                    <select name="category" id="category" type="select" class="form-select">
+                        <option value="">-- Todas --</option>
+                        {% for option in category %}
+                            <option value="{{option.id}}">{{option}}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="btn btn-sm btn-secondary" type="submit">Filtrar</button>
+                </div>
             </form>
         {% endif %}
         <div class="d-flex justify-content-center">
