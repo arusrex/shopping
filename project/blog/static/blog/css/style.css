@@ -203,6 +203,29 @@ body {
 }
 
 
+/* PAGES */
+
+.agency_container {
+    background-image: url(../img/agency-img.jpg);
+    background-size: cover;
+    margin: 0 45px;
+    padding: 90px 75px;
+  }
+  
+.agency_container .box {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    width: 60%;
+    padding: 120px 90px;
+  }
+  
+.agency_container .box .detail-box .heading_container {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    text-align: left;
+  }
+
 /* TELAS */
 
 /* @media (max-width: 768px) {

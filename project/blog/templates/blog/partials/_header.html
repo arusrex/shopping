@@ -18,7 +18,7 @@
                 </a>
                 {% if site_setup.show_search %}
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search" action="{% url "blog:search" %}" method="GET">
-                        <input id="search-all" name="search-all" type="search" class="form-control" placeholder="Pesquisar lojas ..." aria-label="Search">
+                        <input id="search-all" name="search-all" type="search" class="form-control" placeholder="Pesquisar lojas ..." aria-label="Search" value="{{search_value}}">
                     </form>
                 {% endif %}
             </div>

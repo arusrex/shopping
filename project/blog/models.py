@@ -70,10 +70,16 @@ class Page(models.Model):
         verbose_name = 'Page'
         verbose_name_plural = 'Pages'
 
+    is_published = models.BooleanField(default=False, help_text='Esta opção é necessária para publicar a página')
     title = models.CharField(max_length=255,)
     slug = models.SlugField(unique=True, default='', null=False, blank=True, max_length=255)
-    is_published = models.BooleanField(default=False, help_text='Esta opção é necessária para publicar a página')
     content = models.TextField()
+
+    def get_absolute_url(self):
+        if not self.is_published:
+            return reverse('blog:index')
+
+        return reverse("blog:page", args=(self.slug,))
 
     def save(self, *args, **kwargs):
         if not self.slug:

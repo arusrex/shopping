@@ -6,7 +6,7 @@ from django.db.models import Q
 PER_PAGE = 9
 
 def search(request):
-    search_value = request.GET.get('search-all')
+    search_value = request.GET.get('search-all', '').strip()
     lojas = Post.objects.get_published().order_by('-id') # type: ignore
 
     if search_value:
@@ -26,6 +26,7 @@ def search(request):
     context = {
         'page_obj': page_obj,
         'lojas': lojas,
+        'search_value': search_value,
     }
 
     return render(request, 'blog/pages/shops.html', context)
