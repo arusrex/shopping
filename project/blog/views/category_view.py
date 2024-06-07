@@ -15,6 +15,7 @@ def category(request, slug):
 
     context = {
         'page_obj': page_obj,
+        'shops': page_obj,
         'page_title': category,
     }
 

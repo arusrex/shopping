@@ -112,7 +112,7 @@
         </div>
     </div>
 
-    {% if site_setup.show_comments %}
+    {% comment %} {% if site_setup.show_comments %}
         <div class="container mx-auto m-4 w-75 shadow rounded p-4 bg-white">
             <p class="fw-bold fs-5">Comentários</p>
             <div class="m-5 bg-white shadow p-4">
@@ -134,7 +134,7 @@
                 </div>
             </form>
         </div>
-    {% endif %}
+    {% endif %} {% endcomment %}
 
     {% if post.tags.exists %}
         <div class="my-5">

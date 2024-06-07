@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tag, Category, Page, Post, ImagesPost, News, ImageNew, Events, ImageEvent
+from .models import Tag, Category, Page, Post, ImagesPost, News, ImageNew, Events, ImageEvent, CommentsNews, CommentsEvents
 from django_summernote.admin import SummernoteModelAdmin
 from django.urls import reverse
 from django.utils.safestring import mark_safe
@@ -76,6 +76,10 @@ class NewsImageInline(admin.TabularInline):
     model = ImageNew
     extra = 1
 
+class NewsCommentsInline(admin.TabularInline):
+    model = CommentsNews
+    extra = 1
+
 @admin.register(News)
 class NewsAdmin(SummernoteModelAdmin):
     summernote_fields = '__all__'
@@ -87,7 +91,7 @@ class NewsAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('id', 'title', 'short_description', 'description', 'created_at', 'updated_at',)
     ordering = ('-id',)
-    inlines = [NewsImageInline,]
+    inlines = [NewsImageInline, NewsCommentsInline]
     
 
 

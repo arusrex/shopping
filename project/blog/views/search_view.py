@@ -25,7 +25,7 @@ def search(request):
 
     context = {
         'page_obj': page_obj,
-        'lojas': lojas,
+        'shops': lojas,
         'search_value': search_value,
     }
 

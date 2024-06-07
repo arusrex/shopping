@@ -5,6 +5,9 @@ from utils.images import resize_image, resize_image_slide
 from django_summernote.models import AbstractAttachment
 from django.urls import reverse
 
+
+
+
 # MODEL ATTACHMENTS SUMMERNOTE
 
 class PostAttachment(AbstractAttachment):
@@ -250,6 +253,17 @@ class ImageNew(models.Model):
     def __str__(self):
         return f'Imagens da New {self.new}'
 
+class CommentsNews(models.Model):
+    is_published = models.BooleanField(default=True)
+    new = models.ForeignKey(News, related_name='comments', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Comment by {self.author} on {self.new}'
+
+
 
 # MODELS EVENTS
 
@@ -322,3 +336,14 @@ class ImageEvent(models.Model):
 
     def __str__(self):
         return f'Imagens do Event {self.event}'
+
+class CommentsEvents(models.Model):
+    is_published = models.BooleanField(default=True)
+    event = models.ForeignKey(Events, related_name='comments', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Comment by {self.author} on {self.event}'
+

@@ -1,3 +1,5 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from blog.models import Post
@@ -11,20 +13,33 @@ class ShopsViews(ListView):
     paginate_by = PER_PAGE
     context_object_name = 'shops'
     ordering = '-id'
+    queryset = Post.objects.get_published().order_by('-id') # type: ignore
 
-    ...
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     queryset = queryset.all()
+    #     return queryset
 
-def shops(request):
-    lojas = Post.objects.get_published().order_by('-id') # type: ignore
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-    paginator = Paginator(lojas, PER_PAGE)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+        context.update({
+            'page_title': 'Lojas - '
+        })
 
-    context = {
-        'page_obj': page_obj,
-        'lojas': lojas,
-        'page_title': 'Lojas - '
-    }
+        return context
 
-    return render(request, 'blog/pages/shops.html', context)
+# def shops(request):
+#     lojas = Post.objects.get_published().order_by('-id') # type: ignore
+
+#     paginator = Paginator(lojas, PER_PAGE)
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
+
+#     context = {
+#         'page_obj': page_obj,
+#         'lojas': lojas,
+#         'page_title': 'Lojas - '
+#     }
+
+#     return render(request, 'blog/pages/shops.html', context)

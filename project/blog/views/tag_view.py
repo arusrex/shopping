@@ -14,6 +14,7 @@ def tag(request, slug):
 
     context = {
         'page_obj': page_obj,
+        'shops': page_obj,
     }
 
     return render(request, 'blog/pages/shops.html', context)
