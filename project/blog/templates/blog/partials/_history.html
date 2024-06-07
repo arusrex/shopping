@@ -7,16 +7,16 @@
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
             <div class="col-10 col-sm-8 col-lg-6">
                 {% if site_setup.img_history %}
-                    <img src="{{site_setup.img_history.url}}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
+                    <img src="{{site_setup.img_history.url}}" class="d-block mx-lg-auto img-fluid" alt="site_setup.img_history.url" loading="lazy">
                 {% else %}
-                    <img src="{% static "blog/img/ops.png" %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
+                    <img src="{% static "blog/img/ops.png" %}" class="d-block mx-lg-auto img-fluid" alt="Ops, sem imagem" loading="lazy">
                 {% endif %}
             </div>
             <div class="col-lg-6">
                 <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{site_setup.title_history_banner}}</h1>
                 <p class="lead">{{site_setup.history_banner}}</p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">{{site_setup.link_history_banner}}</button>
+                    <a href="/page/sobre/" role="button" class="btn btn-outline-secondary btn-lg px-4">{{site_setup.link_history_banner}}</a>
                 </div>
             </div>
         </div>

@@ -13,7 +13,8 @@ urlpatterns = [
     path('new/<slug:slug>/', views.new, name="new"),
     path('category/<slug:slug>/', views.category, name="category"),
     path('tag/<slug:slug>/', views.tag, name="tag"),
-    path('shops/', views.shops, name='shops'),
+    # path('shops/', views.shops, name='shops'),
+    path('shops/', views.ShopsViews.as_view(), name='shops'),
     path('search/', views.search, name='search'),
 ]
 

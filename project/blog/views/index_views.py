@@ -4,6 +4,7 @@ from blog.models import Post, News, Events
 
 PER_PAGE = 9
 
+
 def index(request):
     lojas = Post.objects.get_published().order_by('-id') # type: ignore
     news = News.objects.get_published().order_by('-created_at')[:3] # type: ignore

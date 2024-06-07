@@ -6,6 +6,7 @@ def new(request, slug):
 
     context = {
         'new': news,
+        'page_title': f'{news.title} - '
     }
 
     return render(request, 'blog/pages/new.html', context)

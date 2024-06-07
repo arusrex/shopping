@@ -89,8 +89,16 @@ class SiteSetup(models.Model):
     # CAROUSEL SLIDES
     show_carousel = models.BooleanField(default=True)
     slide1 = models.ImageField(upload_to='assets/slides/%Y/%m/%d/', blank=True, default='', validators=[validate_png])
+    slide1_title = models.CharField(max_length=65, blank=True, null=True)
+    slide1_description = models.CharField(max_length=255, blank=True, null=True)
+
     slide2 = models.ImageField(upload_to='assets/slides/%Y/%m/%d/', blank=True, default='', validators=[validate_png])
+    slide2_title = models.CharField(max_length=65, blank=True, null=True)
+    slide2_description = models.CharField(max_length=255, blank=True, null=True)
+
     slide3 = models.ImageField(upload_to='assets/slides/%Y/%m/%d/', blank=True, default='', validators=[validate_png])
+    slide3_title = models.CharField(max_length=65, blank=True, null=True)
+    slide3_description = models.CharField(max_length=255, blank=True, null=True)
 
     favicon = models.ImageField(upload_to='assets/favicon/%Y/%m/%d/', blank=True, default='', validators=[validate_png])
 

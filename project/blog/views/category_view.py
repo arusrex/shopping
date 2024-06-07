@@ -6,6 +6,8 @@ PER_PAGE = 9
 
 def category(request, slug):
     shops = Post.objects.get_published().filter(category__slug=slug).order_by('id') # type: ignore
+    for i in shops:
+        category = f'{i.category.name} - '
 
     paginator = Paginator(shops, PER_PAGE)
     page_number = request.GET.get('page')
@@ -13,6 +15,7 @@ def category(request, slug):
 
     context = {
         'page_obj': page_obj,
+        'page_title': category,
     }
 
     return render(request, 'blog/pages/shops.html', context)

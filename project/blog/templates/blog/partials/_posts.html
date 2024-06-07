@@ -7,7 +7,7 @@
         <div class="col-lg-6 px-0 text-center mx-auto">
             <h1 class="display-4 fst-italic">{{site_setup.title_best_banner}}</h1>
             <p class="lead my-3">{{site_setup.best_banner}}</p>
-            <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">{{site_setup.link_best_banner}}</a></p>
+            <p class="lead mb-0"><a href="{% url "blog:shops" %}" class="text-body-emphasis fw-bold">{{site_setup.link_best_banner}}</a></p>
         </div>
     </div>
 {% endif %}
@@ -31,7 +31,7 @@
             {% include "blog/partials/_pagination.html" %}
         </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 my-2">
-                {% for loja in page_obj %}
+                {% for loja in shops %}
                     <div class="col">
                         <div class="card h-100 shadow-sm">
                             <a href="{{loja.get_absolute_url}}" class="text-decoration-none h-100">

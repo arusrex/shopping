@@ -12,6 +12,7 @@ def site_setup(request):
     ano_atual = datetime.now().year
     data_atual = date.today()
     hora_atual = datetime.now().time
+    
     context = {
         'site_setup': setup,
         'hoje': hoje,

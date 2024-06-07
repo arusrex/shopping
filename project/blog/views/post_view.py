@@ -6,6 +6,7 @@ def post(request, slug):
 
     context = {
         'post': post,
+        'page_title': f'{post.title} - ',
     }
 
     return render(request, 'blog/pages/post.html', context)
