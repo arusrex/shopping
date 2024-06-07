@@ -7,12 +7,12 @@
             <ul class="pagination mt-4">
                 {% if page_obj.has_previous %}
                     <li class="page-item">
-                        <a class="page-link" href="?page=1" aria-label="Primeira página">
+                        <a class="page-link" href="?page=1#anchor" aria-label="Primeira página">
                             <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i> Primeira</span>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}#anchor" aria-label="Anterior">
                             <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i> Anterior</span>
                         </a>
                     </li>
@@ -32,19 +32,20 @@
                         </li>
                     {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            <a class="page-link" href="?page={{ num }}#anchor">{{ num }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
 
                 {% if page_obj.has_next %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Próxima">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}#anchor" aria-label="Próxima">
                             <span aria-hidden="true">Próxima <i class="fa-solid fa-chevron-right"></i></span>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Última">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}#anchor" aria-label="Última página">
+
                             <span aria-hidden="true">Última <i class="fa-solid fa-angles-right"></i></span>
                         </a>
                     </li>

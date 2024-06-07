@@ -32,6 +32,8 @@
 
 
 <div class="container container-width mb-4 p-5 mx-auto shadow rounded">
+    <a name="anchor" id="anchor"></a>
+
     <div class="d-flex justify-content-between align-items-center">
         <small class="text-body-secondary"><i class="fa-solid fa-calendar-plus"></i> Criado em: {{event.created_at}} por {{event.created_by|default:"Não informado"}}</small>
         <small class="text-body-secondary"><i class="fa-solid fa-pen-to-square"></i> Atualizada em: {{event.updated_at}} por {{event.updated_by|default:"Não informado"}}</small>
@@ -43,27 +45,50 @@
     </div>
 
     {% if site_setup.show_comments %}
-        <div class="container mx-auto m-4 w-75 shadow rounded p-4 bg-white">
+        <div class="container mx-auto m-4 w-75 shadow rounded p-3 bg-white">
             <p class="fw-bold fs-5">Comentários</p>
-            <div class="m-5 bg-white shadow p-4">
-                <div class="d-flex flex-row flex-wrap justify-content-between my-2">
-                    <div class="d-flex flex-row align-items-center">
-                        <img src="{% static "blog/img/ops.png" %}" class="me-2 h-100 rounded-circle shadow" width="25">
-                        <span><b>Nome</b></span>
+            {% if user.is_authenticated %}
+
+                {% for comment in page_obj %}
+                    <div class="border border-sm-black shadow-sm my-1 px-2">
+                        <div class="d-flex flex-row flex-wrap justify-content-between my-2">
+                            <div class="d-flex flex-row align-items-center">
+                                {% comment %} <img src="{% static "blog/img/ops.png" %}" class="me-2 h-100 rounded-circle shadow" width="25"> {% endcomment %}
+                                <span><b>{{comment.author.first_name}} {{comment.author.last_name}}</b></span>
+                            </div>
+                            <p>{{comment.created_at}}</p>
+                        </div>
+                        <div>
+                            <p>{{comment.comment}}</p>
+                        </div>
                     </div>
-                    <p>Data/Hora</p>
+                {% endfor %}
+
+                <div class="d-flex justify-content-center">
+                    {% include "blog/partials/_pagination.html" %}
                 </div>
-                <div>
-                    <p>Post</p>
+
+
+                <!-- Formulário para novos comentários -->
+                <div class="mt-4">
+                    <p class="fw-bold fs-5">Adicionar Comentário</p>
+                    <form method="POST" class="input-group m-2 mx-auto">
+                        {% csrf_token %}
+                        {{ comment_form.comment }}
+                        <button class="btn btn-secondary" type="submit">Comentar</button>
+                    </form>
                 </div>
-            </div>
-            <form>
-                <div class="input-group m-2 mx-auto">
-                    <input class="form-control" type="text">
-                    <button class="btn btn-secondary">Enviar</button>
-                </div>
-            </form>
+            {% else %}
+                <p>Você precisa estar logado para comentar.</p>
+            {% endif %}
         </div>
     {% endif %}
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.location.hash && window.location.hash === '#anchor') {
+            document.getElementById('anchor').scrollIntoView();
+        }
+    });
+</script>
 {% endblock content %}

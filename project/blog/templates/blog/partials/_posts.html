@@ -17,7 +17,9 @@
 
 {% if shops %}
     <div class="album py-5 bg-body-tertiary">
-        <div class="container">
+        <a name="anchor"></a>
+
+        <div class="container shadow p-4">
             <h2 class="pb-2 border-bottom bg-dark-blue text-white p-2 mb-5">LOJAS</h2>
             {% if category %}
                 <a class="link link-dark fs-4 px-2 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Filtrar por categoria:</a>
@@ -33,8 +35,8 @@
             </div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 my-2">
                     {% for loja in shops %}
-                        <div class="col">
-                            <div class="card h-100 shadow-sm">
+                        <div class="col ">
+                            <div class="card h-100 shadow">
                                 <a href="{{loja.get_absolute_url}}" class="text-decoration-none h-100">
                                     {% if loja.cover %}
                                         <img src="{{loja.cover.url}}" class="h-100 img-fluid rounded-top" alt="Cover de {{loja.title}}">
@@ -97,13 +99,13 @@
         </div>
     </div>
 {% else %}
-<main class="flex-shrink-0">
-    <div class="container container-width text-center">
-        <h1 class="mt-5">OPS, algo deu errado!</h1>
-        <p class="lead">Não foram encontrados dados solicitados, ou dados inexistentes.</p>
-        <p>Clique <a href="{% url "blog:index" %}">aqui</a> para retornar ao início, ou tente novamente mais tarde.</p>
-    </div>
-    <hr class="text-primary m-5">
-</main>
+    <main class="flex-shrink-0">
+        <div class="container container-width text-center">
+            <h1 class="mt-5">OPS, algo deu errado!</h1>
+            <p class="lead">Não foram encontrados dados solicitados, ou dados inexistentes.</p>
+            <p>Clique <a href="{% url "blog:index" %}">aqui</a> para retornar ao início, ou tente novamente mais tarde.</p>
+        </div>
+        <hr class="text-primary m-5">
+    </main>
 {% endif %}
 

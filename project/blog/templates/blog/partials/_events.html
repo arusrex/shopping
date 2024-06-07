@@ -1,12 +1,12 @@
 {% load static %}
 {% if site_setup.show_events %}
-    <div class="container px-4 py-5" id="custom-cards">
+    <div class="container px-4 py-5 shadow my-3" id="custom-cards">
         <h2 class="pb-2 border-bottom bg-dark-blue text-white p-2">EVENTOS RECENTES</h2>
         {% if events %}
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-4">
                 {% for event in events %}
                     <div class="col">
-                        <div class="card h-100 shadow-sm">
+                        <div class="card h-100 shadow">
                             <a href="{% url "blog:event" event.slug %}"  class="text-decoration-none h-100">
                                 <img src="{{ event.cover.url }}" class="h-100 img-fluid rounded-top" alt="{{event.cover_caption}}">
                             </a>
@@ -26,8 +26,16 @@
                                 <hr>
                                 <ul class="d-flex justify-content-between list-unstyled mb-0 mt-auto">
                                     <li class="d-flex align-items-center me-3">
-                                        <i class="fa-regular fa-comment"></i>
-                                        <small class="mx-2">Comentários</small>
+                                        <a href="{% url "blog:event" event.slug %}">
+                                            <small class="mx-2 btn btn-sm btn-outline-secondary position-relative">
+                                                <i class="fa-regular fa-comment"></i>
+                                                Comentários
+                                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                                                    {{event.num_comments}}
+                                                    <span class="visually-hidden">{{event.num_comments}}</span>
+                                                </span>
+                                            </small>
+                                        </a>
                                     </li>
                                     <li class="d-flex align-items-center">
                                         <small>Criado em: {{event.created_at}}</small>
