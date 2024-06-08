@@ -48,14 +48,29 @@
                     </ul>
                 {% endif %}
                 {% if site_setup.show_login %}
-                    <ul class="nav">
-                        <li class="nav-item my-auto"><i class="text-white fa-regular fa-user fs-5 px-2"></i></li>
-                        <li class="nav-item"><a href="#" class="link fs-4 px-2">Entrar</a></li>
-                        <div class="vr text-light mx-2"></div>
-                        <li class="nav-item"><a href="#" class="link fs-4 px-2">Registrar</a></li>
-                    </ul>
+                    {% if user.is_authenticated is not True %}
+                        <ul class="nav">
+                            <li class="nav-item my-auto"><i class="text-white fa-regular fa-user fs-5 px-2"></i></li>
+                            <li class="nav-item"><a href="{% url "blog:login" %}" class="link fs-4 px-2">Entrar</a></li>
+                            <div class="vr text-light mx-2"></div>
+                            <li class="nav-item"><a href="{% url "blog:create_user" %}" class="link fs-4 px-2">Registrar</a></li>
+                        </ul>
+                    {% else %}
+                        <ul class="nav">
+                            <li class="nav-item my-auto"><i class="text-white fa-regular fa-user fs-5 px-2"></i></li>
+                            <li class="nav-item">
+                                <a class="link fs-4 px-2 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Minha Conta</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url "blog:edit_user" user.pk %}">Dados Pessoais</a></li>
+                                    <li><a class="dropdown-item" href="{% url "blog:change_password" user.pk %}">Alterar Senha</a></li>
+                                    <li><a class="dropdown-item" href="{% url "blog:logout" %}">Sair</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    {% endif %}
                 {% endif %}
             </div>
         </nav>
     </header>
+    {% include "blog/partials/_messages.html" %}
 {% endif %}

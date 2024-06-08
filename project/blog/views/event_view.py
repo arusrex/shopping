@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from blog.models import Events
 from blog.forms import CommentsEventsForm
 from django.core.paginator import Paginator
+from django.contrib import messages
 
 PER_PAGE = 5
 
