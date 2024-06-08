@@ -14,7 +14,7 @@
 
 html {
     font-size: 67.5%;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth !important;
 }
 
 body {
@@ -237,4 +237,6 @@ body {
 
 /* SPINNER */
 
-
+#anchor {
+    transition: scroll 15s ease-in-out !important;
+}

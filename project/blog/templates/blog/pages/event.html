@@ -79,16 +79,9 @@
                     </form>
                 </div>
             {% else %}
-                <p>Você precisa estar logado para comentar.</p>
+                <p>Você precisa estar logado para ver os comentários ou comentar.</p>
             {% endif %}
         </div>
     {% endif %}
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if (window.location.hash && window.location.hash === '#anchor') {
-            document.getElementById('anchor').scrollIntoView();
-        }
-    });
-</script>
 {% endblock content %}
