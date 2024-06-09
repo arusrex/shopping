@@ -15,7 +15,7 @@ def create_user(request):
             messages.success(request, 'Usuário criado com sucesso!')
             return redirect('blog:index')
         else:
-            messages.success(request, 'Algo deu errado, verifique os campos necessários!')
+            messages.error(request, 'Algo deu errado, verifique os campos necessários!')
 
     else:
         form = CustomUserCreationForm()
