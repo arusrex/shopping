@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.core.exceptions import ValidationError
 import re
+from django.utils.safestring import mark_safe
 
 class CommentsNewsForm(forms.ModelForm):
     class Meta:
@@ -46,24 +47,27 @@ class CustomUserCreationForm(UserCreationForm):
             'password1': forms.PasswordInput(attrs={'class': 'form-control',}),
             'password2': forms.PasswordInput(attrs={'class': 'form-control',}),
         }
-        labels = {
-            'username': 'Usúario',
-            'password1': 'Senha',
-            'password2': 'Confirme a senha'
-        }
+
         help_text = {
-            'username': '150 caracteres ou menos. Letras, números e @/./+/-/_ apenas.',
+            'username': 'Letras, números e @/./+/-/_ apenas.',
+            'username': 'Mínimo 5 caractéres.',
+            'username': 'Máximo 20 caractéres.',
         }
 
     def __init__(self, *args, **kwargs):
+        text_username = mark_safe('<br>'.join([
+            'Letras, números e @/./+/-/_ apenas.',
+            'Mínimo 5 caracteres.',
+            'Máximo 20 caracteres.',
+        ]))
+
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
         self.fields['username'].label = 'Nome de usuário'
+        self.fields['username'].help_text = text_username
         self.fields['password1'].label = 'Senha'
         self.fields['password2'].label = 'Confirme a senha'
         for field in self.fields.values():
             field.widget.attrs.update({'class': 'form-control'})
-            # if field.error_messages:
-            #     field.widget.attrs.update({'class': 'form-control is-invalid'})
     
         
     def clean_username(self):
@@ -81,7 +85,6 @@ class CustomUserCreationForm(UserCreationForm):
                 raise forms.ValidationError("O nome de usuário não pode conter espaços.")
 
         return username
-
 
     
     def clean_email(self):

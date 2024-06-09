@@ -65,7 +65,7 @@
                             {% endif %}
                             {% if form.username.help_text %}
                                 <small class="form-text text-muted">
-                                    {{ form.username.help_text }}
+                                    {{ form.username.help_text|linebreaksbr }}
                                 </small>
                             {% endif %}
                         </div>
