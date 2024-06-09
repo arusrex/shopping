@@ -58,7 +58,6 @@ class CustomUserCreationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
         self.fields['username'].label = 'Nome de usuário'
-        self.fields['username'].max_length = 10
         self.fields['password1'].label = 'Senha'
         self.fields['password2'].label = 'Confirme a senha'
         for field in self.fields.values():
@@ -67,7 +66,23 @@ class CustomUserCreationForm(UserCreationForm):
             #     field.widget.attrs.update({'class': 'form-control is-invalid'})
     
         
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        exist = User.objects.filter(username=username).exists()
+
+        if exist:
+            raise forms.ValidationError("Este nome de usuário já existe.")
+            
+        if len(username) < 5 or len(username) > 20: # type: ignore
+            raise forms.ValidationError("O nome de usuário deve ter no mínimo 5 no máximo 20 caracteres.")
         
+        for i in username: # type: ignore
+            if i == ' ':
+                raise forms.ValidationError("O nome de usuário não pode conter espaços.")
+
+        return username
+
+
     
     def clean_email(self):
         email = self.cleaned_data.get('email')

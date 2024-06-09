@@ -3,11 +3,11 @@
 <div class="container container-width">
     <main>
         <div class="py-5 text-center">
-                {% if site_setup.logo %}
-                    <img class="d-block mx-auto mb-4" src="{{site_setup.logo.url}}" alt="{{site_setup.title}}" width="72" height="57">
-                {% endif %}
-                <h2>Formulário de Registro</h2>
-                <p class="lead">Preencha todos os campos para desfrutar dos benefícios de interação com {{site_setup.title}}.</p>
+            {% if site_setup.logo %}
+                <img class="d-block mx-auto mb-4" src="{{site_setup.logo.url}}" alt="{{site_setup.title}}" width="72" height="57">
+            {% endif %}
+            <h2>Formulário de Registro</h2>
+            <p class="lead">Preencha todos os campos para desfrutar dos benefícios de interação com {{site_setup.title}}.</p>
         </div>
   
         <div class="row g-5">
@@ -27,9 +27,9 @@
                                 </div>
                             {% endif %}
                             {% if form.first_name.help_text %}
-                                <div class="help_text">
+                                <small class="form-text text-muted">
                                     {{form.first_name.help_text}}
-                                </div>
+                                </small>
                             {% endif %}
                         </div>
         
@@ -44,9 +44,9 @@
                                 </div>
                             {% endif %}
                             {% if form.last_name.help_text %}
-                                <div class="help_text">
+                                <small class="form-text text-muted">
                                     {{form.last_name.help_text}}
-                                </div>
+                                </small>
                             {% endif %}
                         </div>
         
@@ -81,9 +81,9 @@
                                 </div>
                             {% endif %}
                             {% if form.email.help_text %}
-                                <div class="help_text">
+                                <small class="form-text text-muted">
                                     {{form.email.help_text}}
-                                </div>
+                                </small>
                             {% endif %}
                         </div>
 
@@ -98,9 +98,9 @@
                                 </div>
                             {% endif %}
                             {% if form.password1.help_text %}
-                                <div class="help_text">
+                                <small class="form-text text-muted">
                                     {{form.password1.help_text}}
-                                </div>
+                                </small>
                             {% endif %}
                         </div>
 
@@ -115,9 +115,9 @@
                                 </div>
                             {% endif %}
                             {% if form.password2.help_text %}
-                                <div class="help_text">
+                                <small class="form-text text-muted">
                                     {{form.password2.help_text}}
-                                </div>
+                                </small>
                             {% endif %}
                         </div>
                     </div>
