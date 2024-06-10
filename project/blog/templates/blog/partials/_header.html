@@ -61,6 +61,9 @@
                             <li class="nav-item">
                                 <a class="link fs-4 px-2 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Minha Conta</a>
                                 <ul class="dropdown-menu">
+                                    {% if user.is_staff and user.is_authenticated %}
+                                        <li><a class="dropdown-item" href="{% url "blog:admin_dashboard" %}">Administração</a></li>
+                                    {% endif %}
                                     <li><a class="dropdown-item" href="{% url "blog:edit_user" user.pk %}">Dados Pessoais</a></li>
                                     <li><a class="dropdown-item" href="{% url "blog:change_password" user.pk %}">Alterar Senha</a></li>
                                     <li><a class="dropdown-item" href="{% url "blog:logout" %}">Sair</a></li>

@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Password
 from django.core.exceptions import ValidationError
 import re
 from django.utils.safestring import mark_safe
+from blog.models import Post, News, Events
 
 class CommentsNewsForm(forms.ModelForm):
     class Meta:
@@ -135,3 +136,45 @@ class CustomPasswordChangeForm(PasswordChangeForm):
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control',  'id': "floatingInput",}))
     password = forms.CharField(max_length=50, widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': "floatingPassword",}))
+
+
+class NewPost(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = (
+            'is_published',
+            'title',
+            'short_description',
+            'description',
+            'number',
+            'fone',
+            'whatsapp',
+            'email',
+            'site',
+            'facebook',
+            'instagram',
+            'x_twitter',
+            'youtube',
+            'cover',
+            'category',
+            'tags',
+        )
+        widgets = {
+            'is_published': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'title': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'short_description': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'description': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'number': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'fone': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'whatsapp': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'email': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'site': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'facebook': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'instagram': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'x_twitter': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'youtube': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'cover': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'category': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'tags': forms.CheckboxInput(attrs={'class': 'form-control',}),
+        }
+

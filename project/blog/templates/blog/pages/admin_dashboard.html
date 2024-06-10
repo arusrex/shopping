@@ -1,0 +1,77 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static "blog/css/admin_dashboard.css" %}">{% endblock style %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row m-5">
+        <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+            <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="sidebarMenuLabel">{{site_setup.title}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{% url "blog:admin_dashboard" %}">
+                                <i class="fa-regular fa-house"></i>
+                                Painel Administrativo
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{% url "blog:users" %}">
+                                <i class="fa-regular fa-users"></i>
+                                Usuários
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{% url "blog:admin_shops" %}">
+                                <i class="fa-regular fa-cart-shopping"></i>
+                                Lojas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{% url "blog:news" %}">
+                                <i class="fa-regular fa-newspaper"></i>
+                                Novidades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{% url "blog:events" %}">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                Eventos
+                            </a>
+                        </li>
+                    </ul>
+        
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                    <span>Configurações do site</span>
+                    </h6>
+                    <ul class="nav flex-column mb-auto">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{% url "blog:users" %}">
+                                <i class="fa-regular fa-sliders"></i>
+                                Configurações
+                            </a>
+                        </li>
+                    </ul>
+        
+                    <hr class="my-3">
+        
+                    <ul class="nav flex-column mb-auto">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="{% url "blog:logout" %}"><i class="fa-regular fa-door-closed"></i>
+                            Sair
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+  
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            {% block admin_content %}{% endblock admin_content %}
+        </main>
+    </div>
+</div>
+{% endblock content %}

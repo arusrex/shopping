@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 
 PER_PAGE = 5
+PER_PAGE_ADMIN = 20
 
 def event(request, slug):
     event = Events.objects.get(slug=slug)
@@ -36,3 +37,16 @@ def event(request, slug):
     }
 
     return render(request, 'blog/pages/event.html', context)
+
+def events(request):
+    events = Events.objects.order_by('-created_at')
+
+    paginator = Paginator(events, PER_PAGE_ADMIN) # type: ignore
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+       
+    context = {
+        'page_obj': page_obj,
+    }
+
+    return render(request, 'blog/pages/events.html', context)

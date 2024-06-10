@@ -1,0 +1,43 @@
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <div class="d-flex flex-row flex-wrap, align-items-center gap-3">
+        <h1 class="h2">NOVIDADES</h1>
+        <a class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1" aria-current="page" href="{% url "blog:users" %}">
+            <i class="fa-regular fa-plus"></i>
+            Novo conteúdo
+        </a>
+    </div>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a role="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-regular fa-calendar"></i>Filtrar por data
+        </a>
+    </div>
+</div>
+
+<h2>Dados</h2>
+<div class="table-responsive small">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col">Detalhes</th>
+                <th scope="col">Criado em</th>
+                <th scope="col">Atualizado em</th>
+                <th scope="col">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for new in page_obj %}
+                <tr>
+                    <td>{{new.id}}</td>
+                    <td>{{new.title}}</td>
+                    <td>{{new.short_description}}</td>
+                    <td>{{new.created_at}}</td>
+                    <td>{{new.updated_at}}</td>
+                    <td>...</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
