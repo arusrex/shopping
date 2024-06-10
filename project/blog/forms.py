@@ -48,12 +48,6 @@ class CustomUserCreationForm(UserCreationForm):
             'password2': forms.PasswordInput(attrs={'class': 'form-control',}),
         }
 
-        help_text = {
-            'username': 'Letras, números e @/./+/-/_ apenas.',
-            'username': 'Mínimo 5 caractéres.',
-            'username': 'Máximo 20 caractéres.',
-        }
-
     def __init__(self, *args, **kwargs):
         text_username = mark_safe('<br>'.join([
             'Letras, números e @/./+/-/_ apenas.',
@@ -97,37 +91,45 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomUserChangeForm(UserChangeForm):
     password = None
-    first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
+    first_name = forms.CharField(
+        min_length = 2,
+        required = True,
+        widget = forms.TextInput(attrs={'class': 'form-control'}),
+        label = "Nome",
+        )
+    
+    last_name = forms.CharField(
+        min_length = 2,
+        required=True,
+        widget = forms.TextInput(attrs={'class': 'form-control',}),
+        label = 'Sobrenome'
+        )
+    
+    email = forms.EmailField(
+        required=True,
+        widget = forms.EmailInput(attrs={'class': 'form-control'})
+        )
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email',)
-        widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome de usuário',}),
-            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome',}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Sobrenome',}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'E-mail',}),
-        }
+        fields = ('first_name', 'last_name', 'email',)
 
     def clean_email(self):
+
         email = self.cleaned_data.get('email')
-        exist = User.objects.filter(email=email).exclude(pk=self.instance.pk).exists()
-        if exist:
-            raise ValidationError('Email já está em uso.')
+
+
+        if email != self.instance.email:
+            exist = User.objects.filter(email=email).exclude(pk=self.instance.pk).exists()
+            if exist:
+                raise ValidationError('Email já está em uso.')
         return email
 
 class CustomPasswordChangeForm(PasswordChangeForm):
-
-    class Meta:
-        model = User
-        fields = ('old_password', 'new_password1', 'new_password2',)
-        widgets = {
-            'old_password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Senha antiga',}),
-            'new_password1': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder':'Nova senha', }),
-            'new_password2': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder':'Confirme a senha'}),
-        }
+    def __init__(self, *args, **kwargs):
+        super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.update({'class': 'form-control'})  
 
 
 class LoginForm(forms.Form):

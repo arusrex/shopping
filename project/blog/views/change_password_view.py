@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from blog.forms import CustomPasswordChangeForm
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 
 def is_admin(user):
     return user.is_superuser
@@ -18,9 +18,12 @@ def change_password(request, user_id):
             user = form.save()
             update_session_auth_hash(request, user)
             messages.success(request, 'Senha atualizada com sucesso!')
-            return redirect('blog:change_passord', user_id=user_id)
-    
-    form = CustomPasswordChangeForm(user)
+            return redirect('blog:change_password', user_id=user_id)
+        else:
+            print(form.errors)
+            messages.error(request, 'Algo deu errado ao alterar sua senha, verifique os campos e tente novamente.')
+    else:
+        form = CustomPasswordChangeForm(user)
 
     context = {
         'form': form,

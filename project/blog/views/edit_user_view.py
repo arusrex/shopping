@@ -17,8 +17,10 @@ def edit_user(request, user_id):
             form.save()
             messages.success(request, 'Usuário atualizado com sucesso!')
             return redirect('blog:edit_user', user_id=user_id)
-    
-    form = CustomUserChangeForm(instance=user)
+        else:
+            messages.error(request, 'Algo deu errado ao atualizar seus dados, verifique os campos novamente.')
+    else:
+        form = CustomUserChangeForm(instance=user)
     
     context = {
         'form': form,
