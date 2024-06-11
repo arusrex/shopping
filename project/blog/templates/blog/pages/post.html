@@ -23,7 +23,7 @@
             </button>
         </div>
     </div>
-{% else %}
+{% elif post.cover %}
     <div class="container container-width mt-4 bg-secondary-subtle bg-gradient">
         <img src="{{post.cover.url}}" class="d-block w-100" alt="Imagem de {{post.title}}">
     </div>

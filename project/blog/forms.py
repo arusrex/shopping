@@ -141,24 +141,26 @@ class LoginForm(forms.Form):
 class NewPost(forms.ModelForm):
     class Meta:
         model = Post
-        fields = (
-            'is_published',
-            'title',
-            'short_description',
-            'description',
-            'number',
-            'fone',
-            'whatsapp',
-            'email',
-            'site',
-            'facebook',
-            'instagram',
-            'x_twitter',
-            'youtube',
-            'cover',
-            'category',
-            'tags',
-        )
+        fields = '__all__'
+        # fields = (
+        #     'is_published',
+        #     'title',
+        #     'short_description',
+        #     'description',
+        #     'number',
+        #     'fone',
+        #     'whatsapp',
+        #     'email',
+        #     'site',
+        #     'facebook',
+        #     'instagram',
+        #     'x_twitter',
+        #     'youtube',
+        #     'cover',
+        #     'category',
+        #     'tags',
+        #     'slug',
+        # )
         widgets = {
             'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input',}),
             'title': forms.TextInput(attrs={'class': 'form-control',}),
@@ -212,14 +214,14 @@ class NewPost(forms.ModelForm):
 class NewImagesPost(forms.ModelForm):
     class Meta:
         model = ImagesPost
-        fields = ('image',)
-
-    def __init__(self, *args, **kwargs):
-        super(NewImagesPost, self).__init__(*args, **kwargs)
-        self.fields["image"].widget.attrs.update(
-            {'class': 'form-control',
-             'accept': 'image/*',
-             'multiple': '',
-             }
-        )
+        fields = ['image',]
+        widgets = {
+            'image': forms.FileInput(
+                attrs={
+                    'class': 'form-control',
+                    'accept': 'image/*',
+                    'multiple': '',
+                }
+            ),
+        }
 

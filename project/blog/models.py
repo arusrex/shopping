@@ -4,7 +4,7 @@ from utils.rands import slug_rand
 from utils.images import resize_image, resize_image_slide
 from django_summernote.models import AbstractAttachment
 from django.urls import reverse
-
+from django.utils.text import slugify
 
 
 

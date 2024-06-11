@@ -33,7 +33,7 @@ urlpatterns = [
     path('login/', views.login_user, name="login"),
     path('logout/', views.logout_user, name="logout"),
 
-    path('new_post', views.new_post, name='new_post'),
+    path('new_post/', views.new_post, name='new_post'),
 
 ]
 
