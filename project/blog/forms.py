@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Password
 from django.core.exceptions import ValidationError
 import re
 from django.utils.safestring import mark_safe
-from blog.models import Post, News, Events
+from blog.models import Post, News, Events, Tag
 
 class CommentsNewsForm(forms.ModelForm):
     class Meta:
@@ -160,21 +160,51 @@ class NewPost(forms.ModelForm):
             'tags',
         )
         widgets = {
-            'is_published': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'title': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'short_description': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'description': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'number': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'fone': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'whatsapp': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'email': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'site': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'facebook': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'instagram': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'x_twitter': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'youtube': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'cover': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'category': forms.CheckboxInput(attrs={'class': 'form-control',}),
-            'tags': forms.CheckboxInput(attrs={'class': 'form-control',}),
+            'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input',}),
+            'title': forms.TextInput(attrs={'class': 'form-control',}),
+            'short_description': forms.TextInput(attrs={'class': 'form-control',}),
+            'description': forms.Textarea(attrs={'class': 'form-control',}),
+            'number': forms.NumberInput(attrs={'class': 'form-control',}),
+            'fone': forms.TextInput(attrs={'class': 'form-control',}),
+            'whatsapp': forms.TextInput(attrs={'class': 'form-control',}),
+            'email': forms.EmailInput(attrs={'class': 'form-control',}),
+            'site': forms.URLInput(attrs={'class': 'form-control',}),
+            'facebook': forms.URLInput(attrs={'class': 'form-control',}),
+            'instagram': forms.URLInput(attrs={'class': 'form-control',}),
+            'x_twitter': forms.URLInput(attrs={'class': 'form-control',}),
+            'youtube': forms.URLInput(attrs={'class': 'form-control',}),
+            'category': forms.Select(attrs={'class': 'form-select',}),
+            'tags': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input',}),
         }
+        labels = {
+            'is_published': 'Publicado',
+            'title': 'Título',
+            'short_description': 'Descrição curta',
+            'description': 'Descrição',
+            'number': 'Número da loja',
+            'fone': 'Telefone',
+            'whatsapp': 'Whatsapp',
+            'email': 'E-mail',
+            'site': 'Site',
+            'facebook': 'Facebook',
+            'instagram': 'Instagram',
+            'x_twitter': 'X (Antigo Twitter)',
+            'youtube': 'Youtube',
+            'cover': 'Imagem da Capa ou Logotipo',
+            'category': 'Categoria',
+            'tags': 'Tags',
+        }
+        help_texts = {
+            'whatsapp': 'Digíte apenas números e o código da área, ex.: 00900000000',
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(NewPost, self).__init__(*args, **kwargs)
+        self.fields["cover"].widget.attrs.update(
+            {'class': 'form-control',
+             'accept': 'image/*',
+             }
+        )
+        self.fields['is_published'].label_suffix = ''
+        # 'multiple': ''
 
