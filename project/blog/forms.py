@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Password
 from django.core.exceptions import ValidationError
 import re
 from django.utils.safestring import mark_safe
-from blog.models import Post, News, Events, Tag
+from blog.models import Post, ImagesPost, News, ImageNew, Events, ImageEvent, Tag
 
 class CommentsNewsForm(forms.ModelForm):
     class Meta:
@@ -174,7 +174,7 @@ class NewPost(forms.ModelForm):
             'x_twitter': forms.URLInput(attrs={'class': 'form-control',}),
             'youtube': forms.URLInput(attrs={'class': 'form-control',}),
             'category': forms.Select(attrs={'class': 'form-select',}),
-            'tags': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input',}),
+            'tags': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input mx-2',}),
         }
         labels = {
             'is_published': 'Publicado',
@@ -205,6 +205,21 @@ class NewPost(forms.ModelForm):
              'accept': 'image/*',
              }
         )
+        
         self.fields['is_published'].label_suffix = ''
-        # 'multiple': ''
+
+
+class NewImagesPost(forms.ModelForm):
+    class Meta:
+        model = ImagesPost
+        fields = ('image',)
+
+    def __init__(self, *args, **kwargs):
+        super(NewImagesPost, self).__init__(*args, **kwargs)
+        self.fields["image"].widget.attrs.update(
+            {'class': 'form-control',
+             'accept': 'image/*',
+             'multiple': '',
+             }
+        )
 

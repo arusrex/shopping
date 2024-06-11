@@ -1,5 +1,5 @@
 <div class="conatiner container-width mx-auto">
-    <form class="row" method="POST">
+    <form class="row" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-check mb-3">
             {{form.is_published.label_tag}}
@@ -100,6 +100,104 @@
             <p>{% if form.site.help_text %}{{form.site.help_text}}{% endif %}</p>
             {% if form.site.errors %}
                 {% for error in form.site.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.facebook.label_tag}}
+            {{form.facebook}}
+            <p>{% if form.facebook.help_text %}{{form.facebook.help_text}}{% endif %}</p>
+            {% if form.facebook.errors %}
+                {% for error in form.facebook.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.instagram.label_tag}}
+            {{form.instagram}}
+            <p>{% if form.instagram.help_text %}{{form.instagram.help_text}}{% endif %}</p>
+            {% if form.instagram.errors %}
+                {% for error in form.instagram.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.x_twitter.label_tag}}
+            {{form.x_twitter}}
+            <p>{% if form.x_twitter.help_text %}{{form.x_twitter.help_text}}{% endif %}</p>
+            {% if form.x_twitter.errors %}
+                {% for error in form.x_twitter.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.youtube.label_tag}}
+            {{form.youtube}}
+            <p>{% if form.youtube.help_text %}{{form.youtube.help_text}}{% endif %}</p>
+            {% if form.youtube.errors %}
+                {% for error in form.youtube.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.cover.label_tag}}
+            {{form.cover}}
+            <p>{% if form.cover.help_text %}{{form.cover.help_text}}{% endif %}</p>
+            {% if form.cover.errors %}
+                {% for error in form.cover.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form_images.image.label_tag}}
+            {{form_images.image}}
+            <p>{% if form_images.image.help_text %}{{form_images.image.help_text}}{% endif %}</p>
+            {% if form_images.image.errors %}
+                {% for error in form_images.image.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.category.label_tag}}
+            {{form.category}}
+            <p>{% if form.category.help_text %}{{form.category.help_text}}{% endif %}</p>
+            {% if form.category.errors %}
+                {% for error in form.category.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3 form-check form-check-inline">
+            {{form.tags.label_tag}}
+            {% for tag in form.tags %}
+                {{tag}}
+            {% endfor %}
+            <p>{% if form.tags.help_text %}{{form.tags.help_text}}{% endif %}</p>
+            {% if form.tags.errors %}
+                {% for error in form.tags.errors %}
                     <div class="alert alert-danger">
                         {{error}}
                     </div>
