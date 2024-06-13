@@ -2,7 +2,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <div class="d-flex flex-row flex-wrap, align-items-center gap-3">
         <h1 class="h2">USUÁRIOS</h1>
-        <a class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1" aria-current="page" href="{% url "blog:users" %}">
+        <a class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1" aria-current="page" href="{% url "blog:create_user" %}">
             <i class="fa-regular fa-plus"></i>
             Novo usuário
         </a>
@@ -24,6 +24,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Sobrenome</th>
                 <th scope="col">Email</th>
+                <th scope="col">Imagem de Perfil</th>
                 <th scope="col">Opções</th>
             </tr>
         </thead>
@@ -35,6 +36,7 @@
                     <td>{{user.first_name}}</td>
                     <td>{{user.last_name}}</td>
                     <td>{{user.email}}</td>
+                    <td>{{user.images}}</td>
                     <td>...</td>
                 </tr>
             {% endfor %}

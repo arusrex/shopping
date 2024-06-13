@@ -1,0 +1,110 @@
+{% extends "blog/pages/admin_dashboard.html" %}
+{% block admin_content %}
+    <div class="conatiner container-width mx-auto">
+        <form class="row" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-check mb-3">
+                {{form.is_published.label_tag}}
+                {{form.is_published}}
+                <p>{% if form.is_published.help_text %}{{form.is_published.help_text}}{% endif %}</p>
+            </div>
+            
+            <div class="col-12 mb-3">
+                {{form.title.label_tag}}
+                {{form.title}}
+                <p>{% if form.title.help_text %}{{form.title.help_text}}{% endif %}</p>
+                {% if form.title.errors %}
+                    {% for error in form.title.errors %}
+                        <div class="alert alert-danger">
+                            {{error}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="col-12 mb-3">
+                {{form.short_description.label_tag}}
+                {{form.short_description}}
+                <p>
+                    {% if form.short_description.help_text %}
+                    {{form.short_description.help_text}}
+                    {% endif %}
+                </p>
+                {% if form.short_description.errors %}
+                    {% for error in form.short_description.errors %}
+                        <div class="alert alert-danger">
+                            {{error}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="col-12 mb-3">
+                {{form.description.label_tag}}
+                {{form.description}}
+                <p>{% if form.description.help_text %}{{form.description.help_text}}{% endif %}</p>
+                {% if form.description.errors %}
+                    {% for error in form.description.errors %}
+                        <div class="alert alert-danger">
+                            {{error}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            
+            <div class="col-6 mb-3">
+                {% if form.cover %}
+                    <a href="{{events.cover.url}}"><img src="{{events.cover.url}}" class='img-fluid' width="100" height="100"></a>
+                {% endif %}
+                {{form.cover.label_tag}}
+                {{form.cover}}
+                <p>{% if form.cover.help_text %}{{form.cover.help_text}}{% endif %}</p>
+                {% if form.cover.errors %}
+                    {% for error in form.cover.errors %}
+                        <div class="alert alert-danger">
+                            {{error}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="col-6 mb-3">
+                {{form.cover_caption.label_tag}}
+                {{form.cover_caption}}
+                <p>{% if form.cover_caption.help_text %}{{form.cover_caption.help_text}}{% endif %}</p>
+                {% if form.cover_caption.errors %}
+                    {% for error in form.cover_caption.errors %}
+                        <div class="alert alert-danger">
+                            {{error}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="col-12 mb-3">
+                {% if events.images %}
+                    <div class="d-flex flex-row flex-wrap justify-content-center gap-1">
+                        {% for image in events.images.all %}
+                            <div class="d-flex flex-column justify-content-center border">
+                                <a href="{{image.image.url}}"><img src="{{image.image.url}}" class='img-fluid shadow-sm' width="100" height="100"></a>
+                                <a role="button" href="{% url "blog:delete_image_event" image.id %}" class="link btn btn-sm btn-outline-secondary text-body-secondary mx-auto">Excluir</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {{form_images.image.label_tag}}
+                {{form_images.image}}
+                <p>{% if form_images.image.help_text %}{{form_images.image.help_text}}{% endif %}</p>
+                {% if form_images.image.errors %}
+                    {% for error in form_images.image.errors %}
+                        <div class="alert alert-danger">
+                            {{error}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-outline-primary">Salvar</button>
+        </form>
+    </div>
+{% endblock admin_content %}

@@ -6,7 +6,29 @@ from django_summernote.models import AbstractAttachment
 from django.urls import reverse
 from django.template.defaultfilters import slugify
 
+class ImageUser(models.Model):
+    class Meta:
+        verbose_name = 'User Image'
+        verbose_name_plural = 'User Images'
 
+    user = models.OneToOneField(User, related_name='image', on_delete=models.CASCADE, blank=True, null=True)
+    image = models.ImageField(upload_to='users/%Y/%m/%d', blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        current_image_name = str(self.image.name)
+        super_save = super().save(*args, **kwargs)
+        image_changed = False
+
+        if self.image:
+            image_changed = current_image_name != self.image.name
+        
+        if image_changed:
+            resize_image(self.image, 100, True, 70)
+        
+        return super_save
+
+    def __str__(self):
+        return f'Imagens do Event {self.user}'
 
 # MODEL ATTACHMENTS SUMMERNOTE
 

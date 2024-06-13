@@ -5,7 +5,21 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Password
 from django.core.exceptions import ValidationError
 import re
 from django.utils.safestring import mark_safe
-from blog.models import Post, ImagesPost, News, ImageNew, Events, ImageEvent, Tag
+from blog.models import Post, ImagesPost, News, ImageNew, Events, ImageEvent, ImageUser
+
+class ImageUserForm(forms.ModelForm):
+    class Meta:
+        model = ImageUser
+        fields = ['image',]
+        widgets = {
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control', 'accept': 'image/*',}),
+        }
+        labels = {
+            'image': 'Imagem de perfil',
+        }
+        help_texts = {
+            'image': 'Apenas imagem serão aceitas, de preferência ".png".'
+        }
 
 class CommentsNewsForm(forms.ModelForm):
     class Meta:
@@ -284,6 +298,70 @@ class AddImagesNewsForm(forms.ModelForm):
 class EditNewsForm(forms.ModelForm):
     class Meta:
         model = News
+        fields = '__all__'
+        widgets = {
+            'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input',}),
+            'title': forms.TextInput(attrs={'class': 'form-control',}),
+            'short_description': forms.TextInput(attrs={'class': 'form-control',}),
+            'description': forms.Textarea(attrs={'class': 'form-control',}),
+            'cover': forms.FileInput(attrs={'class': 'form-control', 'accept': 'image/*', }),
+            'cover_caption': forms.TextInput(attrs={'class': 'form-control',}),
+        }
+        labels = {
+            'is_published': 'Publicação',
+            'title': 'Título',
+            'short_description': 'Curta descrição',
+            'description': 'Descrição completa',
+            'cover': 'Imagem da capa',
+            'cover_caption': 'Texto da imagem da capa',
+        }
+        help_texts = {
+            'is_published': 'Ativa ou Desativa a exibição',
+            'short_description': 'Essa descrição aparece na tela inicial',
+            'cover': 'Imagem que aparece como capa na tela inicial ',
+        }
+
+
+class AddEventsForm(forms.ModelForm):
+    class Meta:
+        model = Events
+        fields = '__all__'
+        widgets = {
+            'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input',}),
+            'title': forms.TextInput(attrs={'class': 'form-control',}),
+            'short_description': forms.TextInput(attrs={'class': 'form-control',}),
+            'description': forms.Textarea(attrs={'class': 'form-control',}),
+            'cover': forms.FileInput(attrs={'class': 'form-control', 'accept': 'image/*', }),
+            'cover_caption': forms.TextInput(attrs={'class': 'form-control',}),
+        }
+        labels = {
+            'is_published': 'Publicação',
+            'title': 'Título',
+            'short_description': 'Curta descrição',
+            'description': 'Descrição completa',
+            'cover': 'Imagem da capa',
+            'cover_caption': 'Texto da imagem da capa',
+        }
+        help_texts = {
+            'is_published': 'Ativa ou Desativa a exibição',
+            'short_description': 'Essa descrição aparece na tela inicial',
+            'cover': 'Imagem que aparece como capa na tela inicial ',
+        }
+
+class AddImagesEventsForm(forms.ModelForm):
+    class Meta:
+        model = ImageEvent
+        fields = ['image',]
+        widgets = {
+            'image': forms.FileInput(attrs={'class': 'form-control', 'accept': 'image/*', 'multiple': '', }),
+        }
+        labels = {
+            'image': 'Imagens',
+        }
+
+class EditEventsForm(forms.ModelForm):
+    class Meta:
+        model = Events
         fields = '__all__'
         widgets = {
             'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input',}),

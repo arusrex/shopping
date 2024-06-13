@@ -19,12 +19,17 @@ urlpatterns = [
     path('new/<slug:slug>/', views.new, name="new"),
     path('add_news/', views.add_news, name="add_news"),
     path('edit_news/<int:id>/', views.edit_news, name="edit_news"),
-    path('delete_news/<int:id>/', views.delete_news, name="delete_news"),
+    path('delete_news/<int:id>/', views.delete_news, name="delete_news"), # type: ignore
     path('delete_image_news/<int:id>/', views.delete_image_news, name="delete_image_news"),
     path('news_published/<int:id>/', views.news_published, name="news_published"),
 
     path('events/', views.events, name='events'),
     path('event/<slug:slug>/', views.event, name="event"),
+    path('add_event/', views.add_event, name="add_event"),
+    path('edit_event/<int:id>/', views.edit_event, name="edit_event"),
+    path('delete_event/<int:id>/', views.delete_event, name="delete_event"),
+    path('delete_image_event/<int:id>/', views.delete_image_event, name="delete_image_event"),
+    path('event_published/<int:id>/', views.event_published, name="event_published"),
 
     path('page/<slug:slug>/', views.page, name="page"),
 

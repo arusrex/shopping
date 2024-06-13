@@ -20,23 +20,58 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Usuário</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Sobrenome</th>
-                <th scope="col">Email</th>
+                <th scope="col">Título</th>
+                <th scope="col">Detalhes</th>
+                <th scope="col">Criado em</th>
+                <th scope="col">Atualizado em</th>
+                <th scope="col">Publicado</th>
                 <th scope="col">Opções</th>
             </tr>
         </thead>
         <tbody>
             {% for event in page_obj %}
                 <tr>
-                    <td>{{user.id}}</td>
-                    <td>{{user.username}}</td>
-                    <td>{{user.first_name}}</td>
-                    <td>{{user.last_name}}</td>
-                    <td>{{user.email}}</td>
-                    <td>...</td>
+                    <td>{{event.id}}</td>
+                    <td>{{event.title}}</td>
+                    <td>{{event.short_description}}</td>
+                    <td>{{event.created_at}}</td>
+                    <td>{{event.updated_at}}</td>
+                    <td>
+                        <form method="POST" action="{% url 'blog:event_published' event.id %}">
+                            {% csrf_token %}
+                            <div> 
+                                {% if event.is_published %}
+                                    <button type="submit" class="btn btn-sm btn-link text-success link"><i class="fa-solid fa-circle-check"></i></button>
+                                    <input class="visually-hidden" type="checkbox" id="flexSwitchCheckChecked{{ event.id }}" name="is_published">
+                                {% else %}
+                                    <button type="submit" class="btn btn-sm btn-link text-danger link"><i class="fa-solid fa-circle-xmark"></i></button>
+                                    <input class="visually-hidden" type="checkbox" id="flexSwitchCheckChecked{{ event.id }}" name="is_published" checked>
+                                {% endif %}
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <a role="button" class="link text-decoration-none text-body-secondary mx-1" href="{% url "blog:edit_event" event.id %}"><i class="fa-solid fa-pen"></i></a>
+                        <a role="button" class="link text-decoration-none text-body-secondary mx-1" data-bs-toggle="modal" data-bs-target="#{{event.id}}"><i class="fa-solid fa-trash"></i></a>
+                    </td>
                 </tr>
+                {% comment %} MODAL DE EXCLUSÃO {% endcomment %}
+                <div class="modal fade p-4 py-md-5" tabindex="-1" role="dialog" id="{{event.id}}">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content rounded-3 shadow">
+                            <div class="modal-body p-4 text-center">
+                                <h5 class="mb-0">Deseja realmente excluir?</h5>
+                                <p class="mb-0">Ao excluir este registro não será mais possível recuperá-lo.</p>
+                            </div>
+                            <div class="modal-footer flex-nowrap p-0">
+                                <form method="POST">
+                                    <a type="submit" role="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end" href="{% url "blog:delete_event" event.id %}"><strong>Sim, continuar</strong></a>
+                                </form>
+                                <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0" data-bs-dismiss="modal">Não, cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
         </tbody>
     </table>
