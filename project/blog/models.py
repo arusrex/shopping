@@ -4,7 +4,7 @@ from utils.rands import slug_rand
 from utils.images import resize_image, resize_image_slide
 from django_summernote.models import AbstractAttachment
 from django.urls import reverse
-from django.utils.text import slugify
+from django.template.defaultfilters import slugify
 
 
 
@@ -161,7 +161,7 @@ class ImagesPost(models.Model):
         verbose_name_plural = 'Imagens do Post'
     
     post = models.ForeignKey(Post, related_name='images', on_delete=models.CASCADE, blank=True, null=True,)
-    image = models.ImageField(upload_to='posts/%Y/%m/%d')
+    image = models.ImageField(upload_to='posts/%Y/%m/%d', blank=True, null=True)
     caption = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):

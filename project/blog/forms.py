@@ -142,25 +142,6 @@ class NewPost(forms.ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
-        # fields = (
-        #     'is_published',
-        #     'title',
-        #     'short_description',
-        #     'description',
-        #     'number',
-        #     'fone',
-        #     'whatsapp',
-        #     'email',
-        #     'site',
-        #     'facebook',
-        #     'instagram',
-        #     'x_twitter',
-        #     'youtube',
-        #     'cover',
-        #     'category',
-        #     'tags',
-        #     'slug',
-        # )
         widgets = {
             'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input',}),
             'title': forms.TextInput(attrs={'class': 'form-control',}),
@@ -225,3 +206,103 @@ class NewImagesPost(forms.ModelForm):
             ),
         }
 
+class EditPost(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = '__all__'
+        widgets = {
+            'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input',}),
+            'title': forms.TextInput(attrs={'class': 'form-control',}),
+            'short_description': forms.TextInput(attrs={'class': 'form-control',}),
+            'description': forms.Textarea(attrs={'class': 'form-control',}),
+            'number': forms.NumberInput(attrs={'class': 'form-control',}),
+            'fone': forms.TextInput(attrs={'class': 'form-control',}),
+            'whatsapp': forms.TextInput(attrs={'class': 'form-control',}),
+            'email': forms.EmailInput(attrs={'class': 'form-control',}),
+            'site': forms.URLInput(attrs={'class': 'form-control',}),
+            'facebook': forms.URLInput(attrs={'class': 'form-control',}),
+            'instagram': forms.URLInput(attrs={'class': 'form-control',}),
+            'x_twitter': forms.URLInput(attrs={'class': 'form-control',}),
+            'youtube': forms.URLInput(attrs={'class': 'form-control',}),
+            'category': forms.Select(attrs={'class': 'form-select',}),
+            'tags': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input mx-2',}),
+            'cover': forms.FileInput(attrs={'class': 'form-control', 'accept': 'image/*', })
+        }
+
+class EditImagesPost(forms.ModelForm):
+    class Meta:
+        model = ImagesPost
+        fields = ['image',]
+        widgets = {
+            'image': forms.FileInput(
+                attrs={
+                    'class': 'form-control',
+                    'accept': 'image/*',
+                    'multiple': '',
+                }
+            ),
+        }
+
+
+class AddNewsForm(forms.ModelForm):
+    class Meta:
+        model = News
+        fields = '__all__'
+        widgets = {
+            'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input',}),
+            'title': forms.TextInput(attrs={'class': 'form-control',}),
+            'short_description': forms.TextInput(attrs={'class': 'form-control',}),
+            'description': forms.Textarea(attrs={'class': 'form-control',}),
+            'cover': forms.FileInput(attrs={'class': 'form-control', 'accept': 'image/*', }),
+            'cover_caption': forms.TextInput(attrs={'class': 'form-control',}),
+        }
+        labels = {
+            'is_published': 'Publicação',
+            'title': 'Título',
+            'short_description': 'Curta descrição',
+            'description': 'Descrição completa',
+            'cover': 'Imagem da capa',
+            'cover_caption': 'Texto da imagem da capa',
+        }
+        help_texts = {
+            'is_published': 'Ativa ou Desativa a exibição',
+            'short_description': 'Essa descrição aparece na tela inicial',
+            'cover': 'Imagem que aparece como capa na tela inicial ',
+        }
+
+class AddImagesNewsForm(forms.ModelForm):
+    class Meta:
+        model = ImageNew
+        fields = ['image',]
+        widgets = {
+            'image': forms.FileInput(attrs={'class': 'form-control', 'accept': 'image/*', 'multiple': '', }),
+        }
+        labels = {
+            'image': 'Imagens',
+        }
+
+class EditNewsForm(forms.ModelForm):
+    class Meta:
+        model = News
+        fields = '__all__'
+        widgets = {
+            'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input',}),
+            'title': forms.TextInput(attrs={'class': 'form-control',}),
+            'short_description': forms.TextInput(attrs={'class': 'form-control',}),
+            'description': forms.Textarea(attrs={'class': 'form-control',}),
+            'cover': forms.FileInput(attrs={'class': 'form-control', 'accept': 'image/*', }),
+            'cover_caption': forms.TextInput(attrs={'class': 'form-control',}),
+        }
+        labels = {
+            'is_published': 'Publicação',
+            'title': 'Título',
+            'short_description': 'Curta descrição',
+            'description': 'Descrição completa',
+            'cover': 'Imagem da capa',
+            'cover_caption': 'Texto da imagem da capa',
+        }
+        help_texts = {
+            'is_published': 'Ativa ou Desativa a exibição',
+            'short_description': 'Essa descrição aparece na tela inicial',
+            'cover': 'Imagem que aparece como capa na tela inicial ',
+        }

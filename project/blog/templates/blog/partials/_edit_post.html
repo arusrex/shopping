@@ -1,0 +1,223 @@
+<div class="conatiner container-width mx-auto">
+    <form class="row" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-check mb-3">
+            {{form.is_published.label_tag}}
+            {{form.is_published}}
+            <p>{% if form.is_published.help_text %}{{form.is_published.help_text}}{% endif %}</p>
+        </div>
+        <div class="col-12 mb-3">
+            {{form.title.label_tag}}
+            {{form.title}}
+            <p>{% if form.title.help_text %}{{form.title.help_text}}{% endif %}</p>
+            {% if form.title.errors %}
+                {% for error in form.title.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-12 mb-3">
+            {{form.short_description.label_tag}}
+            {{form.short_description}}
+            <p>
+                {% if form.short_description.help_text %}
+                {{form.short_description.help_text}}
+                {% endif %}
+            </p>
+            {% if form.short_description.errors %}
+                {% for error in form.short_description.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-12 mb-3">
+            {{form.description.label_tag}}
+            {{form.description}}
+            <p>{% if form.description.help_text %}{{form.description.help_text}}{% endif %}</p>
+            {% if form.description.errors %}
+                {% for error in form.description.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-2 mb-3">
+            {{form.number.label_tag}}
+            {{form.number}}
+            <p>{% if form.number.help_text %}{{form.number.help_text}}{% endif %}</p>
+            {% if form.number.errors %}
+                {% for error in form.number.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-5 mb-3">
+            {{form.fone.label_tag}}
+            {{form.fone}}
+            <p>{% if form.fone.help_text %}{{form.fone.help_text}}{% endif %}</p>
+            {% if form.fone.errors %}
+                {% for error in form.fone.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-5 mb-3">
+            {{form.whatsapp.label_tag}}
+            {{form.whatsapp}}
+            <p>{% if form.whatsapp.help_text %}{{form.whatsapp.help_text}}{% endif %}</p>
+            {% if form.whatsapp.errors %}
+                {% for error in form.whatsapp.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.email.label_tag}}
+            {{form.email}}
+            <p>{% if form.email.help_text %}{{form.email.help_text}}{% endif %}</p>
+            {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.site.label_tag}}
+            {{form.site}}
+            <p>{% if form.site.help_text %}{{form.site.help_text}}{% endif %}</p>
+            {% if form.site.errors %}
+                {% for error in form.site.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.facebook.label_tag}}
+            {{form.facebook}}
+            <p>{% if form.facebook.help_text %}{{form.facebook.help_text}}{% endif %}</p>
+            {% if form.facebook.errors %}
+                {% for error in form.facebook.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.instagram.label_tag}}
+            {{form.instagram}}
+            <p>{% if form.instagram.help_text %}{{form.instagram.help_text}}{% endif %}</p>
+            {% if form.instagram.errors %}
+                {% for error in form.instagram.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.x_twitter.label_tag}}
+            {{form.x_twitter}}
+            <p>{% if form.x_twitter.help_text %}{{form.x_twitter.help_text}}{% endif %}</p>
+            {% if form.x_twitter.errors %}
+                {% for error in form.x_twitter.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.youtube.label_tag}}
+            {{form.youtube}}
+            <p>{% if form.youtube.help_text %}{{form.youtube.help_text}}{% endif %}</p>
+            {% if form.youtube.errors %}
+                {% for error in form.youtube.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="col-6 mb-3">
+            {% if form.cover %}
+                <a href="{{post.cover.url}}"><img src="{{post.cover.url}}" class='img-fluid' width="100" height="100"></a>
+            {% endif %}
+            {{form.cover.label_tag}}
+            {{form.cover}}
+            <p>{% if form.cover.help_text %}{{form.cover.help_text}}{% endif %}</p>
+            {% if form.cover.errors %}
+                {% for error in form.cover.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-3">
+            {{form.category.label_tag}}
+            {{form.category}}
+            <p>{% if form.category.help_text %}{{form.category.help_text}}{% endif %}</p>
+            {% if form.category.errors %}
+                {% for error in form.category.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-12 mb-3">
+            {% if post.images %}
+                <div class="d-flex flex-row flex-wrap justify-content-center gap-1">
+                    {% for image in post.images.all %}
+                        <div class="d-flex flex-column justify-content-center border">
+                            <a href="{{image.image.url}}"><img src="{{image.image.url}}" class='img-fluid shadow-sm' width="100" height="100"></a>
+                            <a role="button" href="{% url "blog:delete_image_post" image.id %}" class="link btn btn-sm btn-outline-secondary text-body-secondary mx-auto">Excluir</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {{form_images.image.label_tag}}
+            {{form_images.image}}
+            <p>{% if form_images.image.help_text %}{{form_images.image.help_text}}{% endif %}</p>
+            {% if form_images.image.errors %}
+                {% for error in form_images.image.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-12 mb-3 form-check form-check-inline">
+            {{form.tags.label_tag}}
+            {% for tag in form.tags %}
+                {{tag}}
+            {% endfor %}
+            <p>{% if form.tags.help_text %}{{form.tags.help_text}}{% endif %}</p>
+            {% if form.tags.errors %}
+                {% for error in form.tags.errors %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Salvar</button>
+    </form>
+</div>
