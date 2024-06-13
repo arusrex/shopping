@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from blog.forms import CustomUserCreationForm, ImageUserForm
-from blog.models import ImageUser
+from blog.forms import CustomUserCreationForm, ProfileUpdateForm
+from blog.models import Profile
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 def is_admin(user):
@@ -11,14 +11,14 @@ def create_user(request):
 
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
-        form_image = ImageUserForm(request.POST, request.FILES)
+        form_image = ProfileUpdateForm(request.POST, request.FILES)
+
         if form.is_valid():
             new_user = form.save()
 
             if form_image.is_valid():
                 image = request.FILES.get('image')
-                new_image = ImageUser.objects.create(user=new_user, image=image)
-                new_image.save()
+                Profile.objects.create(user=new_user, profile_image=image)
                 messages.success(request, 'Imagem de perfil salva com sucesso')
 
             messages.success(request, 'Usuário criado com sucesso!')
@@ -28,7 +28,7 @@ def create_user(request):
 
     else:
         form = CustomUserCreationForm()
-        form_image = ImageUserForm()
+        form_image = ProfileUpdateForm()
 
     context = {
         'form': form,

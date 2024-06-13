@@ -13,7 +13,7 @@
         <div class="row g-5">
             <div class="col-md-12 col-lg-12">
                 <h4 class="mb-3">Digite seus dados</h4>
-                <form method="POST" class="needs-validation" novalidate>
+                <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                     {% csrf_token %}
                     <div class="row g-3">
                         <div class="col-sm-6">
@@ -88,18 +88,18 @@
                         </div>
 
                         <div class="col-12">
-                            {{form_image.image.label_tag}}
-                            {{form_image.image}}
-                            {% if form_image.image.errors %}
+                            {{form_image.profile_image.label_tag}}
+                            {{form_image.profile_image}}
+                            {% if form_image.profile_image.errors %}
                                 <div class="alert alert-danger">
-                                    {% for error in form_image.image.errors %}
+                                    {% for error in form_image.profile_image.errors %}
                                         {{error}}
                                     {% endfor %}
                                 </div>
                             {% endif %}
-                            {% if form_image.image.help_text %}
+                            {% if form_image.profile_image.help_text %}
                                 <small class="form_image-text text-muted">
-                                    {{form_image.image.help_text}}
+                                    {{form_image.profile_image.help_text}}
                                 </small>
                             {% endif %}
                         </div>

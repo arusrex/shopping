@@ -13,29 +13,27 @@
         <div class="row g-5">
             <div class="col-md-12 col-lg-12">
                 <h4 class="mb-3">Digite seus dados</h4>
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row g-3">
                         <div class="col-sm-6">
-                            {% if form_image.instance.image %}  
-                                <a href="{{ form_image.instance.image.url }}">
-                                    <img src="{{ form_image.instance.image.url }}" class='img-fluid' width="100" height="100">
-                                </a>
+                            {% if profile.profile_image %}
+                                <img src="{{ profile.profile_image.profile_image.url }}" alt="{{ user.username }}'s profile picture" class="img-fluid">
                             {% else %}
-                                <p>Imagem de perfil não encontrada</p> 
+                                <p>Sem imagem de perfil</p>
                             {% endif %}
-                            {{form_image.image.label_tag}}
-                            {{form_image.image}}
-                            {% if form_image.image.errors %}
+                            {{form_image.profile_image.label_tag}}
+                            {{form_image.profile_image}}
+                            {% if form_image.profile_image.errors %}
                                 <div class="alert alert-danger">
-                                    {% for error in form_image.image.errors %}
+                                    {% for error in form_image.profile_image.errors %}
                                         {{error}}
                                     {% endfor %}
                                 </div>
                             {% endif %}
-                            {% if form_image.image.help_text %}
+                            {% if form_image.profile_image.help_text %}
                                 <small class="form_image-text text-muted">
-                                    {{form_image.image.help_text}}
+                                    {{form_image.profile_image.help_text}}
                                 </small>
                             {% endif %}
                         </div>

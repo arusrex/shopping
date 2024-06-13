@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User
-from blog.forms import CustomUserChangeForm, ImageUserForm
-from blog.models import ImageUser
+from blog.forms import CustomUserChangeForm, ProfileUpdateForm
+from blog.models import Profile
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 def is_admin(user):
@@ -10,30 +10,36 @@ def is_admin(user):
 
 @login_required
 def edit_user(request, user_id):
-
-    user = get_object_or_404(User, id=user_id)
-    try:
-        image_user = ImageUser.objects.get(user=user)
-    except ImageUser.DoesNotExist:
-        image_user = None
+    profile = get_object_or_404(User, id=user_id)
+    form = CustomUserChangeForm(instance=profile)
+    form_image = ProfileUpdateForm(instance=profile)
 
     if request.method == 'POST':
-        form = CustomUserChangeForm(request.POST, instance=user)
-        form_image = ImageUserForm(request.POST, request.FILES, instance=image_user)
+        form = CustomUserChangeForm(request.POST, instance=profile)
+        form_image = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
 
-        if form.is_valid() and form_image.is_valid():
-            form.save()
-            form_image.save()
+        if form.is_valid():
+            new_user = form.save()
+
+            if form_image.is_valid():
+                print('Entrou aqui no form_image')
+                # image_instance = form_image.save(commit=False)
+                # image_instance.user = new_user
+                # print(image_instance.user)
+                # image_instance.save()
+                image_instance = request.FILES.get('profile_image')
+                Profile.objects.create(user=new_user, profile_image=image_instance)
+
+                if image_instance:
+                    messages.success(request, 'Imagem atualizada com sucesso!')
+
             messages.success(request, 'Usuário atualizado com sucesso!')
             return redirect('blog:edit_user', user_id=user_id)
         else:
-            messages.error(request, 'Algo deu errado ao atualizar seus dados, verifique os campos novamente.')
-    else:
-        form = CustomUserChangeForm(instance=user)
-        form_image = ImageUserForm(instance=image_user) 
+            messages.error(request, 'Algo deu errado ao atualizar seus dados, verifique os campos novamente.')        
 
     context = {
-        'user_image': user,
+        'profile': profile,
         'form': form,
         'form_image': form_image,
     }

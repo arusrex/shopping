@@ -5,21 +5,12 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Password
 from django.core.exceptions import ValidationError
 import re
 from django.utils.safestring import mark_safe
-from blog.models import Post, ImagesPost, News, ImageNew, Events, ImageEvent, ImageUser
+from blog.models import Post, ImagesPost, News, ImageNew, Events, ImageEvent, Profile
 
-class ImageUserForm(forms.ModelForm):
+class ProfileUpdateForm(forms.ModelForm):
     class Meta:
-        model = ImageUser
-        fields = ['image',]
-        widgets = {
-            'image': forms.ClearableFileInput(attrs={'class': 'form-control', 'accept': 'image/*',}),
-        }
-        labels = {
-            'image': 'Imagem de perfil',
-        }
-        help_texts = {
-            'image': 'Apenas imagem serão aceitas, de preferência ".png".'
-        }
+        model = Profile
+        fields = ['profile_image']
 
 class CommentsNewsForm(forms.ModelForm):
     class Meta:
