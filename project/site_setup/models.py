@@ -33,9 +33,6 @@ class SiteSetup(models.Model):
     show_logo = models.BooleanField(default=True)
     logo = models.ImageField(upload_to='assets/logo/%Y/%m/%d/', blank=True, null=True, validators=[validate_png])
 
-    # LOGIN / REGISTER
-    show_login = models.BooleanField(default=True)
-
     # BANNER WELCOME
     show_welcome_banner = models.BooleanField(default=True)
     title_welcome_banner = models.CharField(max_length=65, blank=True, null=True)
@@ -76,6 +73,7 @@ class SiteSetup(models.Model):
     youtube = models.URLField(blank=True, null=True)
 
     # ALL SETUPS
+    show_login = models.BooleanField(default=True)
     show_header = models.BooleanField(default=True)
     show_footer = models.BooleanField(default=True)
     show_search = models.BooleanField(default=True)

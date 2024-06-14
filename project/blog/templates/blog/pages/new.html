@@ -52,7 +52,9 @@
                     <div class="border border-sm-black shadow-sm my-1 px-2">
                         <div class="d-flex flex-row flex-wrap justify-content-between my-2">
                             <div class="d-flex flex-row align-items-center">
-                                {% comment %} <img src="{% static "blog/img/ops.png" %}" class="me-2 h-100 rounded-circle shadow" width="25"> {% endcomment %}
+                                {% if user.profile_image.profile_image %}
+                                    <img class="img-fluid rounded-circle shadow me-2" width="20" height="20" src="{{user.profile_image.profile_image.url}}">
+                                {% endif %}
                                 <span><b>{{comment.author.first_name}} {{comment.author.last_name}}</b></span>
                             </div>
                             <p>{{comment.created_at}}</p>

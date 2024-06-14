@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.urls import path
 from blog import views
+from site_setup.views import site_config
 
 app_name = 'blog'
 
@@ -9,6 +10,8 @@ urlpatterns = [
 
     path('', views.index, name="index"),
     path('admin_dashboard/', views.admin_dashboard, name="admin_dashboard"),
+
+    path('site_config', site_config, name="site_config"),
 
     path('users/', views.users_views, name="users"),
     path('create_user/', views.create_user, name="create_user"),

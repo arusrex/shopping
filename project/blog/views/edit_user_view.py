@@ -93,4 +93,4 @@ def delete_user(request, user_id):
         target.delete()
         messages.success(request, 'Usuário deletado com sucesso.')
         
-        return redirect('blog:users')
+    return redirect('blog:users')

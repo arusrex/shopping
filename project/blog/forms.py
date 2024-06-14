@@ -7,6 +7,9 @@ import re
 from django.utils.safestring import mark_safe
 from blog.models import Post, ImagesPost, News, ImageNew, Events, ImageEvent, Profile
 
+class SiteConfig(forms.ModelForm):
+    ...
+
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
