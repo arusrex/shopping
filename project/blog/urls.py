@@ -14,6 +14,9 @@ urlpatterns = [
     path('create_user/', views.create_user, name="create_user"),
     path('edit_user/<int:user_id>/', views.edit_user, name="edit_user"),
     path('change_password/<int:user_id>/', views.change_password, name="change_password"),
+    path('user_active/<int:user_id>/', views.user_active, name="user_active"),
+    path('user_staff/<int:user_id>/', views.user_staff, name="user_staff"),
+    path('delete_user/<int:user_id>/', views.delete_user, name="delete_user"),
 
     path('news/', views.news, name="news"),
     path('new/<slug:slug>/', views.new, name="new"),

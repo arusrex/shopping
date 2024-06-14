@@ -11,6 +11,13 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_image']
+        widgets = {
+            'profile_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'accept': 'image/*',})
+        }
+        labels = {
+            'profile_image': 'Imagem do perfil',
+        }
+        
 
 class CommentsNewsForm(forms.ModelForm):
     class Meta:

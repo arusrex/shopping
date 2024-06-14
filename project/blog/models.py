@@ -10,6 +10,19 @@ class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile_image', on_delete=models.CASCADE)
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        current_profile_image_name = str(self.profile_image.name)
+        super_save = super().save(*args, **kwargs)
+        profile_image_changed = False
+
+        if self.profile_image:
+            profile_image_changed = current_profile_image_name != self.profile_image.name
+        
+        if profile_image_changed:
+            resize_image(self.profile_image, 100, True, 70)
+        
+        return super_save
+
     def __str__(self):
         return f'{self.user.username} Profile'
 

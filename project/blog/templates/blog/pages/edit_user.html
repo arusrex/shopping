@@ -16,13 +16,12 @@
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row g-3">
-                        <div class="col-sm-6">
-                            {% if profile.profile_image %}
-                                <img src="{{ profile.profile_image.profile_image.url }}" alt="{{ user.username }}'s profile picture" class="img-fluid">
+                        <div class="col-sm-12">
+                            {% if profile.profile_image.profile_image %}
+                                <img src="{{ profile.profile_image.profile_image.url }}" alt="{{ user.username }}'s profile picture" class="img-fluid shadow rounded m-2">
                             {% else %}
                                 <p>Sem imagem de perfil</p>
                             {% endif %}
-                            {{form_image.profile_image.label_tag}}
                             {{form_image.profile_image}}
                             {% if form_image.profile_image.errors %}
                                 <div class="alert alert-danger">

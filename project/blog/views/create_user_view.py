@@ -17,7 +17,7 @@ def create_user(request):
             new_user = form.save()
 
             if form_image.is_valid():
-                image = request.FILES.get('image')
+                image = request.FILES.get('profile_image')
                 Profile.objects.create(user=new_user, profile_image=image)
                 messages.success(request, 'Imagem de perfil salva com sucesso')
 

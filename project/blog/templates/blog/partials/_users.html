@@ -25,20 +25,70 @@
                 <th scope="col">Sobrenome</th>
                 <th scope="col">Email</th>
                 <th scope="col">Imagem de Perfil</th>
+                <th scope="col">Acesso Administrativo</th>
+                <th scope="col">Ativo</th>
                 <th scope="col">Opções</th>
             </tr>
         </thead>
         <tbody>
-            {% for user in users %}
+            {% for item in users %}
                 <tr>
-                    <td>{{user.id}}</td>
-                    <td>{{user.username}}</td>
-                    <td>{{user.first_name}}</td>
-                    <td>{{user.last_name}}</td>
-                    <td>{{user.email}}</td>
-                    <td>{{user.image}}</td>
-                    <td>...</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.username}}</td>
+                    <td>{{item.first_name}}</td>
+                    <td>{{item.last_name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{% if item.profile_image.profile_image %}<a href="{{item.profile_image.profile_image.url}}"><img width="10" height="10" src="{{item.profile_image.profile_image.url}}"></a>{% else %}Sem imagem{% endif %}</td>
+                    <td>
+                        <form method="POST" action="{% url 'blog:user_staff' item.id %}">
+                            {% csrf_token %}
+                            <div> 
+                                {% if item.is_staff %}
+                                    <button type="submit" class="btn btn-sm btn-link text-success link"><i class="fa-solid fa-circle-check"></i></button>
+                                    <input class="visually-hidden" type="checkbox" id="flexSwitchCheckChecked{{ item.id }}" name="is_staff">
+                                {% else %}
+                                    <button type="submit" class="btn btn-sm btn-link text-danger link"><i class="fa-solid fa-circle-xmark"></i></button>
+                                    <input class="visually-hidden" type="checkbox" id="flexSwitchCheckChecked{{ item.id }}" name="is_staff" checked>
+                                {% endif %}
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="POST" action="{% url 'blog:user_active' item.id %}">
+                            {% csrf_token %}
+                            <div> 
+                                {% if item.is_active %}
+                                    <button type="submit" class="btn btn-sm btn-link text-success link"><i class="fa-solid fa-circle-check"></i></button>
+                                    <input class="visually-hidden" type="checkbox" id="activeSwitchCheckChecked{{ item.id }}" name="is_active">
+                                {% else %}
+                                    <button type="submit" class="btn btn-sm btn-link text-danger link"><i class="fa-solid fa-circle-xmark"></i></button>
+                                    <input class="visually-hidden" type="checkbox" id="activeSwitchCheckChecked{{ item.id }}" name="is_active" checked>
+                                {% endif %}
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <a role="button" class="link text-decoration-none text-body-secondary mx-1" href="{% url "blog:edit_user" item.id %}"><i class="fa-solid fa-pen"></i></a>
+                        <a role="button" class="link text-decoration-none text-body-secondary mx-1" data-bs-toggle="modal" data-bs-target="#{{item.id}}"><i class="fa-solid fa-trash"></i></a>
+                    </td>
                 </tr>
+                {% comment %} MODAL DE EXCLUSÃO {% endcomment %}
+                <div class="modal fade p-4 py-md-5" tabindex="-1" role="dialog" id="{{item.id}}">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content rounded-3 shadow">
+                            <div class="modal-body p-4 text-center">
+                                <h5 class="mb-0">Deseja realmente excluir?</h5>
+                                <p class="mb-0">Ao excluir este registro não será mais possível recuperá-lo.</p>
+                            </div>
+                            <div class="modal-footer flex-nowrap p-0">
+                                <form method="POST">
+                                    <a type="submit" role="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end" href="{% url "blog:delete_user" item.id %}"><strong>Sim, continuar</strong></a>
+                                </form>
+                                <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0" data-bs-dismiss="modal">Não, cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
         </tbody>
     </table>

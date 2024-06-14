@@ -57,8 +57,14 @@
                         </ul>
                     {% else %}
                         <ul class="nav">
-                            <li class="nav-item my-auto"><i class="text-white fa-regular fa-user fs-5 px-2"></i></li>
-                            <li class="nav-item">
+                            {% if user.profile_image.profile_image %}
+                                <a href="{{ user.profile_image.profile_image.url }}">
+                                    <img src="{{ user.profile_image.profile_image.url }}" alt="{{ user.username }}'s profile picture" width="20" height="20" class="img-fluid shadow rounded-circle m-2">
+                                </a>
+                            {% else %}
+                                <li class="nav-item my-auto"><i class="text-white fa-regular fa-user fs-5 px-2"></i></li>
+                            {% endif %}
+                            <li class="nav-item d-flex align-items-center">
                                 <a class="link fs-4 px-2 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Minha Conta</a>
                                 <ul class="dropdown-menu">
                                     {% if user.is_staff and user.is_authenticated %}
