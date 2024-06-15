@@ -27,17 +27,17 @@ def site_setup(request):
 
     return context
 
-def newsletter(request):
-    subscribe = NewsLetterForm()
+# def newsletter(request):
+#     subscribe = NewsLetterForm()
 
-    if request.method == 'POST':
-        subscribe = NewsLetterForm(request.POST)
-        if subscribe.is_valid():
-            subscribe.save()
-            messages.success(request, 'Inscrito com sucesso para receber os destaques, eventos  novidades !')
+#     if request.method == 'POST':
+#         subscribe = NewsLetterForm(request.POST)
+#         if subscribe.is_valid():
+#             subscribe.save()
+#             messages.success(request, 'Inscrito com sucesso para receber os destaques, eventos  novidades !')
 
-    context = {
-        'subscribe': subscribe,
-    }
+#     context = {
+#         'subscribe': subscribe,
+#     }
 
-    return context
+#     return context

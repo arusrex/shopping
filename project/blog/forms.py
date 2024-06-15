@@ -415,3 +415,18 @@ class NewsLetterForm(forms.ModelForm):
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Endereço de email', }),
         }
+
+    def clean_email(self):
+
+        email = self.cleaned_data.get('email')
+
+        if email == '':
+            raise ValidationError('Campo vazio !')
+
+
+        if email:
+            exist = NewsLetter.objects.filter(email=email).exists()
+            if exist:
+                raise ValidationError('Email já cadastrado.')
+            
+        return email
