@@ -4,11 +4,16 @@ from django.contrib import messages
 from site_setup.models import SiteSetup
 
 def site_config(request):
-    form = SiteSetupForm(instance=SiteSetup.objects.get())
+    site_setup_instance = SiteSetup.objects.get()
 
-    if form.is_valid():
-        form.save()
-        messages.success(request, "Configurações atualizadas com sucesso")
+    if request.method == 'POST':
+        form = SiteSetupForm(request.POST, request.FILES, instance=site_setup_instance)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Configurações atualizadas com sucesso")
+    else:
+        form = SiteSetupForm(instance=site_setup_instance)
 
     context = {
         'form': form,

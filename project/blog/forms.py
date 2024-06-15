@@ -408,25 +408,24 @@ class TagForm(forms.ModelForm):
             'name': 'Nome da Tag',
         }
 
-class NewsLetterForm(forms.ModelForm):
-    class Meta:
-        model = NewsLetter
-        fields = ['email',]
-        widgets = {
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Endereço de email', }),
-        }
+# class NewsLetterForm(forms.ModelForm):
+#     class Meta:
+#         model = NewsLetter
+#         fields = ['email',]
+#         widgets = {
+#             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Endereço de email', }),
+#         }
 
-    def clean_email(self):
+#     def clean_email(self):
 
-        email = self.cleaned_data.get('email')
+#         email = self.cleaned_data.get('email')
 
-        if email == '':
-            raise ValidationError('Campo vazio !')
+#         if email == '':
+#             raise ValidationError('Campo vazio !')
 
-
-        if email:
-            exist = NewsLetter.objects.filter(email=email).exists()
-            if exist:
-                raise ValidationError('Email já cadastrado.')
+#         if email:
+#             exist = NewsLetter.objects.filter(email=email).exists()
+#             if exist:
+#                 raise ValidationError('Email já cadastrado.')
             
-        return email
+#         return email

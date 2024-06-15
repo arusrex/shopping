@@ -48,7 +48,7 @@
                 {% endif %}
     
                 {% if site_setup.show_subscribe %}
-                    <div class="col-md-4 mb-3 text-light">
+                    {% comment %} <div class="col-md-4 mb-3 text-light">
                         <form method="POST">
                             {% csrf_token %}
                             <h5>Inscreva-se para receber novidades</h5>
@@ -59,7 +59,7 @@
                                 <button class="btn btn-sm btn-secondary text-nowrap" type="submit">Inscrever-se</button>
                             </div>
                         </form>
-                    </div>
+                    </div> {% endcomment %}
                 {% endif %}
             </div>
             

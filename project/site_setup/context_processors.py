@@ -1,7 +1,6 @@
 from site_setup import models
 from blog.models import Category
 from datetime import datetime, date, time
-from blog.forms import NewsLetterForm
 from django.contrib import messages
 
 def site_setup(request):
@@ -26,18 +25,3 @@ def site_setup(request):
         }
 
     return context
-
-# def newsletter(request):
-#     subscribe = NewsLetterForm()
-
-#     if request.method == 'POST':
-#         subscribe = NewsLetterForm(request.POST)
-#         if subscribe.is_valid():
-#             subscribe.save()
-#             messages.success(request, 'Inscrito com sucesso para receber os destaques, eventos  novidades !')
-
-#     context = {
-#         'subscribe': subscribe,
-#     }
-
-#     return context
