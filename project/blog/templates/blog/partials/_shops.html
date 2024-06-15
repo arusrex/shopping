@@ -8,7 +8,16 @@
             <i class="fa-regular fa-plus"></i>
             Nova loja
         </a>
+        <a class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1" aria-current="page" href="{% url "blog:new_category" %}">
+            <i class="fa-regular fa-plus"></i>
+            Nova categoria
+        </a>
+        <a class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1" aria-current="page" href="{% url "blog:new_tag" %}">
+            <i class="fa-regular fa-plus"></i>
+            Novas tags
+        </a>
     </div>
+   
     <div class="btn-toolbar mb-2 mb-md-0">
         <a role="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-regular fa-calendar"></i>Filtrar por data

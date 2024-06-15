@@ -1,5 +1,5 @@
 from django import forms
-from blog.models import CommentsNews, CommentsEvents
+from blog.models import CommentsNews, CommentsEvents, Category, Tag
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.core.exceptions import ValidationError
@@ -384,4 +384,26 @@ class EditEventsForm(forms.ModelForm):
             'is_published': 'Ativa ou Desativa a exibição',
             'short_description': 'Essa descrição aparece na tela inicial',
             'cover': 'Imagem que aparece como capa na tela inicial ',
+        }
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name',]
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control',}),
+        }
+        labels = {
+            'name': 'Nome da Categoria',
+        }
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = ['name',]
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control',}),
+        }
+        labels ={
+            'name': 'Nome da Tag',
         }

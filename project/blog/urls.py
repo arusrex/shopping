@@ -55,5 +55,10 @@ urlpatterns = [
     path('delete_post/<int:id>/', views.delete_post, name="delete_post"),
     path('delete_image_post/<int:id>/', views.delete_image_post, name="delete_image_post"),
     path('shop_published/<int:id>/', views.shop_published, name="shop_published"),
+    path('new_category/', views.new_category, name='new_category'),
+    path('new_tag/', views.new_tag, name='new_tag'),
+    path('delete_category/<int:category_id>/', views.delete_category, name='delete_category'),
+    path('delete_tag/<int:tag_id>/', views.delete_tag, name='delete_tag'),
+
 ]
 
