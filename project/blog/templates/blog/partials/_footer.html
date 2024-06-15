@@ -49,13 +49,14 @@
     
                 {% if site_setup.show_subscribe %}
                     <div class="col-md-4 mb-3 text-light">
-                        <form>
+                        <form method="POST">
+                            {% csrf_token %}
                             <h5>Inscreva-se para receber novidades</h5>
                             <p>Obtenha um resumo sobre tudo que há de interessante.</p>
                             <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                                <label for="newsletter1" class="visually-hidden">Endereço de Email</label>
-                                <input id="newsletter1" type="text" class="form-control" placeholder="Endereço de email">
-                                <button class="btn btn-sm btn-secondary text-nowrap" type="button">Inscrever-se</button>
+                                {{subscribe.label_tag}}
+                                {{subscribe.email}}
+                                <button class="btn btn-sm btn-secondary text-nowrap" type="submit">Inscrever-se</button>
                             </div>
                         </form>
                     </div>

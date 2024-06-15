@@ -2,6 +2,26 @@
 {% load static %}
 {% block style %}<link rel="stylesheet" href="{% static "blog/css/admin_dashboard.css" %}">{% endblock style %}
 {% block content %}
+<header class="navbar sticky-top bg-primary flex-md-nowrap p-0 shadow" data-bs-theme="primary">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">{{site_setup.title}}</a>
+  
+    <ul class="navbar-nav flex-row d-md-none">
+        {% comment %} <li class="nav-item text-nowrap">
+            <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </li> {% endcomment %}
+        <li class="nav-item text-nowrap">
+            <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </li>
+    </ul>
+  
+    <div id="navbarSearch" class="navbar-search w-100 collapse">
+        <input class="form-control w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+    </div>
+</header>
 <div class="container-fluid">
     <div class="row m-5">
         <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
@@ -69,7 +89,7 @@
             </div>
         </div>
   
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <main class="col-md-9 ms-sm-auto col-lg-10 p-4">
             {% block admin_content %}{% endblock admin_content %}
         </main>
     </div>

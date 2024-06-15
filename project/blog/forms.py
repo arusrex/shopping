@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Password
 from django.core.exceptions import ValidationError
 import re
 from django.utils.safestring import mark_safe
-from blog.models import Post, ImagesPost, News, ImageNew, Events, ImageEvent, Profile
+from blog.models import Post, ImagesPost, News, ImageNew, Events, ImageEvent, Profile, NewsLetter
 
 class SiteConfig(forms.ModelForm):
     ...
@@ -406,4 +406,12 @@ class TagForm(forms.ModelForm):
         }
         labels ={
             'name': 'Nome da Tag',
+        }
+
+class NewsLetterForm(forms.ModelForm):
+    class Meta:
+        model = NewsLetter
+        fields = ['email',]
+        widgets = {
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Endereço de email', }),
         }

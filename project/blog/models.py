@@ -365,3 +365,7 @@ class CommentsEvents(models.Model):
     def __str__(self):
         return f'Comment by {self.author} on {self.event}'
 
+class NewsLetter(models.Model):
+    email = models.EmailField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
