@@ -3,14 +3,14 @@
     <div class="conatiner container-width mx-auto">
         <form class="row" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="row align-items-center border border-sm shadow-sm rounded my-2 px-4">
+            <div class="row align-items-center border border-sm shadow-sm rounded my-2 p-4">
                 <p>Título do site</p>
                 <div class="form-check col-md-2">
                     {{form.show_title.label_tag}}
                     {{form.show_title}}
                     <p>{% if form.show_title.help_text %}{{form.show_title.help_text}}{% endif %}</p>
                 </div>
-                <div class="col-md-10">
+                <div class="col-12">
                     {{form.title.label_tag}}
                     {{form.title}}
                     <p>{% if form.title.help_text %}{{form.title.help_text}}{% endif %}</p>
@@ -23,14 +23,14 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="row align-items-center border border-sm shadow-sm rounded my-2 px-4">
+            <div class="row align-items-center border border-sm shadow-sm rounded my-2 p-4">
                 <p>Logo do site</p>
                 <div class="form-check col-md-2">
                     {{form.show_logo.label_tag}}
                     {{form.show_logo}}
                     <p>{% if form.show_logo.help_text %}{{form.show_logo.help_text}}{% endif %}</p>
                 </div>
-                <div class="col-md-10">
+                <div class="col-12">
                     {{form.logo.label_tag}}
                     {{form.logo}}
                     <p>{% if form.logo.help_text %}{{form.logo.help_text}}{% endif %}</p>
@@ -42,10 +42,22 @@
                         {% endfor %}
                     {% endif %}
                 </div>
+                <div class="col-12">
+                    {{form.favicon.label_tag}}
+                    {{form.favicon}}
+                    <p>{% if form.favicon.help_text %}{{form.favicon.help_text}}{% endif %}</p>
+                    {% if form.favicon.errors %}
+                        {% for error in form.favicon.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
                 
             </div>
 
-            <div class="row align-items-center border border-sm shadow-sm rounded my-2 px-4">
+            <div class="row align-items-center border border-sm shadow-sm rounded my-2 p-4">
                 <p>Dados Gerais</p>
 
                 <div class="form-check col-md-2">
@@ -53,7 +65,7 @@
                     {{form.show_description}}
                     <p>{% if form.show_description.help_text %}{{form.show_description.help_text}}{% endif %}</p>
                 </div>
-                <div class="col-md-10">
+                <div class="col-12">
                     {{form.description.label_tag}}
                     {{form.description}}
                     <p>{% if form.description.help_text %}{{form.description.help_text}}{% endif %}</p>
@@ -73,7 +85,7 @@
                     {{form.show_welcome_banner}}
                     <p>{% if form.show_welcome_banner.help_text %}{{form.show_welcome_banner.help_text}}{% endif %}</p>
                 </div>
-                <div class="col-md-10">
+                <div class="col-12">
                     {{form.title_welcome_banner.label_tag}}
                     {{form.title_welcome_banner}}
                     <p>{% if form.title_welcome_banner.help_text %}{{form.title_welcome_banner.help_text}}{% endif %}</p>
@@ -100,17 +112,31 @@
 
                 <hr>
 
-                <div class="form-check col-md-2">
+                <div class="form-check col-md-6">
                     {{form.show_best_banner.label_tag}}
                     {{form.show_best_banner}}
                     <p>{% if form.show_best_banner.help_text %}{{form.show_best_banner.help_text}}{% endif %}</p>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-7">
                     {{form.title_best_banner.label_tag}}
                     {{form.title_best_banner}}
                     <p>{% if form.title_best_banner.help_text %}{{form.title_best_banner.help_text}}{% endif %}</p>
                     {% if form.title_best_banner.errors %}
                         {% for error in form.title_best_banner.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                
+                <div class="col-md-5
+                ">
+                    {{form.link_best_banner.label_tag}}
+                    {{form.link_best_banner}}
+                    <p>{% if form.link_best_banner.help_text %}{{form.link_best_banner.help_text}}{% endif %}</p>
+                    {% if form.link_best_banner.errors %}
+                        {% for error in form.link_best_banner.errors %}
                             <div class="alert alert-danger">
                                 {{error}}
                             </div>
@@ -123,18 +149,6 @@
                     <p>{% if form.best_banner.help_text %}{{form.best_banner.help_text}}{% endif %}</p>
                     {% if form.best_banner.errors %}
                         {% for error in form.best_banner.errors %}
-                            <div class="alert alert-danger">
-                                {{error}}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="col-md-6">
-                    {{form.link_best_banner.label_tag}}
-                    {{form.link_best_banner}}
-                    <p>{% if form.link_best_banner.help_text %}{{form.link_best_banner.help_text}}{% endif %}</p>
-                    {% if form.link_best_banner.errors %}
-                        {% for error in form.link_best_banner.errors %}
                             <div class="alert alert-danger">
                                 {{error}}
                             </div>
@@ -205,7 +219,7 @@
                     {{form.show_operate_shop}}
                     <p>{% if form.show_operate_shop.help_text %}{{form.show_operate_shop.help_text}}{% endif %}</p>
                 </div>
-                <div class="col-md-10">
+                <div class="col-12">
                     {{form.operate_time_shop.label_tag}}
                     {{form.operate_time_shop}}
                     <p>{% if form.operate_time_shop.help_text %}{{form.operate_time_shop.help_text}}{% endif %}</p>
@@ -223,7 +237,7 @@
                     {{form.show_operate_food}}
                     <p>{% if form.show_operate_food.help_text %}{{form.show_operate_food.help_text}}{% endif %}</p>
                 </div>
-                <div class="col-md-10">
+                <div class="col-12">
                     {{form.operate_time_food.label_tag}}
                     {{form.operate_time_food}}
                     <p>{% if form.operate_time_food.help_text %}{{form.operate_time_food.help_text}}{% endif %}</p>
@@ -294,52 +308,52 @@
 
                 <hr>
 
-                <div class="form-check col-12">
+                <div class="form-check col-2">
                     {{form.show_login.label_tag}}
                     {{form.show_login}}
                     <p>{% if form.show_login.help_text %}{{form.show_login.help_text}}{% endif %}</p>
                 </div>
-                <div class="form-check col-12">
+                <div class="form-check col-2">
                     {{form.show_header.label_tag}}
                     {{form.show_header}}
                     <p>{% if form.show_header.help_text %}{{form.show_header.help_text}}{% endif %}</p>
                 </div>
-                <div class="form-check col-12">
+                <div class="form-check col-2">
                     {{form.show_footer.label_tag}}
                     {{form.show_footer}}
                     <p>{% if form.show_footer.help_text %}{{form.show_footer.help_text}}{% endif %}</p>
                 </div>
-                <div class="form-check col-12">
+                <div class="form-check col-2">
                     {{form.show_search.label_tag}}
                     {{form.show_search}}
                     <p>{% if form.show_search.help_text %}{{form.show_search.help_text}}{% endif %}</p>
                 </div>
-                <div class="form-check col-12">
+                <div class="form-check col-2">
                     {{form.show_menu.label_tag}}
                     {{form.show_menu}}
                     <p>{% if form.show_menu.help_text %}{{form.show_menu.help_text}}{% endif %}</p>
                 </div>
-                <div class="form-check col-12">
+                <div class="form-check col-2">
                     {{form.show_pagination.label_tag}}
                     {{form.show_pagination}}
                     <p>{% if form.show_pagination.help_text %}{{form.show_pagination.help_text}}{% endif %}</p>
                 </div>
-                <div class="form-check col-12">
+                <div class="form-check col-2">
                     {{form.show_subscribe.label_tag}}
                     {{form.show_subscribe}}
                     <p>{% if form.show_subscribe.help_text %}{{form.show_subscribe.help_text}}{% endif %}</p>
                 </div>
-                <div class="form-check col-12">
+                <div class="form-check col-2">
                     {{form.show_comments.label_tag}}
                     {{form.show_comments}}
                     <p>{% if form.show_comments.help_text %}{{form.show_comments.help_text}}{% endif %}</p>
                 </div>
-                <div class="form-check col-12">
+                <div class="form-check col-2">
                     {{form.show_news.label_tag}}
                     {{form.show_news}}
                     <p>{% if form.show_news.help_text %}{{form.show_news.help_text}}{% endif %}</p>
                 </div>
-                <div class="form-check col-12">
+                <div class="form-check col-2">
                     {{form.show_events.label_tag}}
                     {{form.show_events}}
                     <p>{% if form.show_events.help_text %}{{form.show_events.help_text}}{% endif %}</p>
@@ -352,7 +366,7 @@
                     {{form.show_carousel}}
                     <p>{% if form.show_carousel.help_text %}{{form.show_carousel.help_text}}{% endif %}</p>
                 </div>
-                <div class="col-md-10">
+                <div class="col-12">
                     {{form.slide1.label_tag}}
                     {{form.slide1}}
                     <p>{% if form.slide1.help_text %}{{form.slide1.help_text}}{% endif %}</p>
@@ -365,11 +379,11 @@
                     {% endif %}
                 </div>
                 <div class="col-md-6">
-                    {{form.instagram.label_tag}}
-                    {{form.instagram}}
-                    <p>{% if form.instagram.help_text %}{{form.instagram.help_text}}{% endif %}</p>
-                    {% if form.instagram.errors %}
-                        {% for error in form.instagram.errors %}
+                    {{form.slide1_title.label_tag}}
+                    {{form.slide1_title}}
+                    <p>{% if form.slide1_title.help_text %}{{form.slide1_title.help_text}}{% endif %}</p>
+                    {% if form.slide1_title.errors %}
+                        {% for error in form.slide1_title.errors %}
                             <div class="alert alert-danger">
                                 {{error}}
                             </div>
@@ -377,36 +391,93 @@
                     {% endif %}
                 </div>
                 <div class="col-md-6">
-                    {{form.x_twitter.label_tag}}
-                    {{form.x_twitter}}
-                    <p>{% if form.x_twitter.help_text %}{{form.x_twitter.help_text}}{% endif %}</p>
-                    {% if form.x_twitter.errors %}
-                        {% for error in form.x_twitter.errors %}
+                    {{form.slide1_description.label_tag}}
+                    {{form.slide1_description}}
+                    <p>{% if form.slide1_description.help_text %}{{form.slide1_description.help_text}}{% endif %}</p>
+                    {% if form.slide1_description.errors %}
+                        {% for error in form.slide1_description.errors %}
                             <div class="alert alert-danger">
                                 {{error}}
                             </div>
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="col-md-6">
-                    {{form.youtube.label_tag}}
-                    {{form.youtube}}
-                    <p>{% if form.youtube.help_text %}{{form.youtube.help_text}}{% endif %}</p>
-                    {% if form.youtube.errors %}
-                        {% for error in form.youtube.errors %}
-                            <div class="alert alert-danger">
-                                {{error}}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-
-            </div>
-            
-
-            <div class="row align-items-center border border-sm shadow-sm rounded my-2 px-4">
-                <p>Título do site</p>
                 
+                
+                <div class="col-12">
+                    {{form.slide2.label_tag}}
+                    {{form.slide2}}
+                    <p>{% if form.slide2.help_text %}{{form.slide2.help_text}}{% endif %}</p>
+                    {% if form.slide2.errors %}
+                        {% for error in form.slide2.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    {{form.slide2_title.label_tag}}
+                    {{form.slide2_title}}
+                    <p>{% if form.slide2_title.help_text %}{{form.slide2_title.help_text}}{% endif %}</p>
+                    {% if form.slide2_title.errors %}
+                        {% for error in form.slide2_title.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    {{form.slide2_description.label_tag}}
+                    {{form.slide2_description}}
+                    <p>{% if form.slide2_description.help_text %}{{form.slide2_description.help_text}}{% endif %}</p>
+                    {% if form.slide2_description.errors %}
+                        {% for error in form.slide2_description.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="col-12">
+                    {{form.slide3.label_tag}}
+                    {{form.slide3}}
+                    <p>{% if form.slide3.help_text %}{{form.slide3.help_text}}{% endif %}</p>
+                    {% if form.slide3.errors %}
+                        {% for error in form.slide3.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    {{form.slide3_title.label_tag}}
+                    {{form.slide3_title}}
+                    <p>{% if form.slide3_title.help_text %}{{form.slide3_title.help_text}}{% endif %}</p>
+                    {% if form.slide3_title.errors %}
+                        {% for error in form.slide3_title.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    {{form.slide3_description.label_tag}}
+                    {{form.slide3_description}}
+                    <p>{% if form.slide3_description.help_text %}{{form.slide3_description.help_text}}{% endif %}</p>
+                    {% if form.slide3_description.errors %}
+                        {% for error in form.slide3_description.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
             </div>
 
             <button type="submit" class="btn btn-outline-primary">Salvar</button>
