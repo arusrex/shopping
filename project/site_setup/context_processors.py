@@ -3,6 +3,7 @@ from blog.models import Category
 from datetime import datetime, date, time
 from blog.forms import NewsLetterForm
 from django.contrib import messages
+from django.shortcuts import redirect
 
 def site_setup(request):
     setup = models.SiteSetup.objects.order_by('-id').first()
@@ -35,6 +36,7 @@ def newsletter(request):
         if subscribe.is_valid():
             subscribe.save()
             messages.success(request, 'Inscrito com sucesso para receber os destaques, eventos  novidades !')
+            return redirect('blog:index')
 
     context = {
         'subscribe': subscribe,

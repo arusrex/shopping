@@ -6,7 +6,7 @@
     <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
         <div class="col-lg-6 px-0 text-center mx-auto">
             <h1 class="display-4 fst-italic">{{site_setup.title_best_banner}}</h1>
-            <p class="lead my-3">{{site_setup.best_banner}}</p>
+            <p class="lead my-3">{{site_setup.best_banner|safe}}</p>
             <p class="lead mb-0"><a href="{% url "blog:shops" %}" class="text-body-emphasis fw-bold">{{site_setup.link_best_banner}}</a></p>
         </div>
     </div>

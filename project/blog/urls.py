@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls import path
 from blog import views
 from site_setup.views import site_config
+from site_setup import context_processors
 
 app_name = 'blog'
 
@@ -59,6 +60,8 @@ urlpatterns = [
     path('new_tag/', views.new_tag, name='new_tag'),
     path('delete_category/<int:category_id>/', views.delete_category, name='delete_category'),
     path('delete_tag/<int:tag_id>/', views.delete_tag, name='delete_tag'),
+
+    path('newsletter/', context_processors.newsletter, name="newsletter"), # type: ignore
 
 ]
 

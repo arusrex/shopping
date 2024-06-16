@@ -14,7 +14,7 @@
                         </div>
                     {% endif %}
                     <span class="fs-1 fw-bold text-shadow-sm text-white">{{site_setup.title}}</span>
-                    <span class="fs-4 fst-italic text-white">{{site_setup.description}}</span>
+                    <span class="fs-4 fst-italic text-white">{{site_setup.description|safe}}</span>
                 </a>
                 {% if site_setup.show_search %}
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search" action="{% url "blog:search" %}" method="GET">

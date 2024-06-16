@@ -4,7 +4,7 @@
         <div class="p-5 text-center bg-body-secondary rounded-3 shadow">
             <h1 class="text-body-emphasis">{{site_setup.title_welcome_banner}}</h1>
             <p class="lead preserve-whitespace">
-                {{site_setup.welcome_banner}}
+                {{site_setup.welcome_banner|safe}}
             </p>
         </div>
     </div>
@@ -25,7 +25,7 @@
                         <img src="{{site_setup.slide1.url}}" class="d-block w-100 img-fluid" alt="{{site_setup.slide1_title}}">
                         <div class="mb-5 rounded shadow-sm carousel-caption p-3">
                             <h1>{{site_setup.slide1_title}}</h1>
-                            <p>{{site_setup.slide1_description}}</p>
+                            <p>{{site_setup.slide1_description|safe}}</p>
                         </div>
                     {% else %}
                         <img src="{% static "blog/img/ops.png" %}" class="d-block w-100 img-fluid" alt="Ops, sem slide para exibir">
@@ -38,7 +38,7 @@
                         <img src="{{site_setup.slide2.url}}" class="d-block w-100 img-fluid" alt="{{site_setup.slide2_title}}">
                         <div class="mb-5 rounded shadow-sm carousel-caption p-3">
                             <h1>{{site_setup.slide2_title}}</h1>
-                            <p>{{site_setup.slide2_description}}</p>
+                            <p>{{site_setup.slide2_description|safe}}</p>
                         </div>
                     {% else %}
                         <img src="{% static "blog/img/ops.png" %}" class="d-block w-100 img-fluid" alt="Ops, sem slide para exibir">
@@ -51,7 +51,7 @@
                         <img src="{{site_setup.slide3.url}}" class="d-block w-100 img-fluid" alt="{{site_setup.slide3_title}}">
                         <div class="mb-5 rounded shadow-sm carousel-caption p-3">
                             <h1>{{site_setup.slide3_title}}</h1>
-                            <p>{{site_setup.slide3_description}}</p>
+                            <p>{{site_setup.slide3_description|safe}}</p>
                         </div>
                     {% else %}
                         <img src="{% static "blog/img/ops.png" %}" class="d-block w-100 img-fluid" alt="Ops, sem slide para exibir">

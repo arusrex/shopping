@@ -61,6 +61,72 @@
                 <p>Dados Gerais</p>
 
                 <div class="form-check col-md-2">
+                    {{form.show_location.label_tag}}
+                    {{form.show_location}}
+                    <p>{% if form.show_location.help_text %}{{form.show_location.help_text}}{% endif %}</p>
+                </div>
+                <div class="col-12">
+                    {{form.endereco.label_tag}}
+                    {{form.endereco}}
+                    <p>{% if form.endereco.help_text %}{{form.endereco.help_text}}{% endif %}</p>
+                    {% if form.endereco.errors %}
+                        {% for error in form.endereco.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-3">
+                    {{form.numero.label_tag}}
+                    {{form.numero}}
+                    <p>{% if form.numero.help_text %}{{form.numero.help_text}}{% endif %}</p>
+                    {% if form.numero.errors %}
+                        {% for error in form.numero.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-3">
+                    {{form.bairro.label_tag}}
+                    {{form.bairro}}
+                    <p>{% if form.bairro.help_text %}{{form.bairro.help_text}}{% endif %}</p>
+                    {% if form.bairro.errors %}
+                        {% for error in form.bairro.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-3">
+                    {{form.cidade_estado.label_tag}}
+                    {{form.cidade_estado}}
+                    <p>{% if form.cidade_estado.help_text %}{{form.cidade_estado.help_text}}{% endif %}</p>
+                    {% if form.cidade_estado.errors %}
+                        {% for error in form.cidade_estado.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-3">
+                    {{form.cep.label_tag}}
+                    {{form.cep}}
+                    <p>{% if form.cep.help_text %}{{form.cep.help_text}}{% endif %}</p>
+                    {% if form.cep.errors %}
+                        {% for error in form.cep.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="form-check col-md-2">
                     {{form.show_description.label_tag}}
                     {{form.show_description}}
                     <p>{% if form.show_description.help_text %}{{form.show_description.help_text}}{% endif %}</p>

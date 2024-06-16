@@ -38,18 +38,18 @@
                         <h5>Horário de Funcionamento</h5>
                         {% if site_setup.show_operate_shop %}
                             <p class="fw-bold mt-4">Lojas</p>
-                            <div class="preserve-whitespace">{{site_setup.operate_time_shop}}</div>
+                            <div class="preserve-whitespace">{{site_setup.operate_time_shop|safe}}</div>
                         {% endif %}
                         {% if site_setup.show_operate_food %}
                             <p class="fw-bold mt-2">Alimentação</p>
-                            <div class="preserve-whitespace">{{site_setup.operate_time_food}}</div>
+                            <div class="preserve-whitespace">{{site_setup.operate_time_food|safe}}</div>
                         {% endif %}
                     </div>
                 {% endif %}
     
                 {% if site_setup.show_subscribe %}
                     <div class="col-md-4 mb-3 text-light">
-                        <form method="POST">
+                        <form method="POST" action="{% url "blog:newsletter" %}">
                             {% csrf_token %}
                             <h5>Inscreva-se para receber novidades</h5>
                             <p>Obtenha um resumo sobre tudo que há de interessante.</p>

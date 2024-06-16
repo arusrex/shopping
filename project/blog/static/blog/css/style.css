@@ -289,3 +289,8 @@ body {
         visibility: hidden;
     }
 }
+
+.custom-dropdown-menu {
+    position: absolute !important;
+    z-index: 1050 !important;
+}
