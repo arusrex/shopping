@@ -1,9 +1,6 @@
 from site_setup import models
 from blog.models import Category
 from datetime import datetime, date, time
-from blog.forms import NewsLetterForm
-from django.contrib import messages
-from django.shortcuts import redirect
 
 def site_setup(request):
     setup = models.SiteSetup.objects.order_by('-id').first()
@@ -25,21 +22,5 @@ def site_setup(request):
         'hora_atual': hora_atual,
         'category': category,
         }
-
-    return context
-
-def newsletter(request):
-    subscribe = NewsLetterForm()
-
-    if request.method == 'POST':
-        subscribe = NewsLetterForm(request.POST)
-        if subscribe.is_valid():
-            subscribe.save()
-            messages.success(request, 'Inscrito com sucesso para receber os destaques, eventos  novidades !')
-            return redirect('blog:index')
-
-    context = {
-        'subscribe': subscribe,
-    }
 
     return context

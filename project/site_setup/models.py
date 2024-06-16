@@ -49,7 +49,7 @@ class SiteSetup(models.Model):
     title_history_banner = models.CharField(max_length=255, blank=True, null=True)
     history_banner = models.TextField(blank=True, null=True)
     link_history_banner = models.CharField(max_length=255, blank=True, null=True)
-    img_history = models.ImageField(upload_to='assets/img_history/%Y/%m/%d', blank=True, null=True, validators=[validate_png])
+    img_history = models.ImageField(upload_to='assets/img_history/%Y/%m/%d', blank=True, null=True)
 
     # FOOTER OPERATING TIME
     show_operate_shop = models.BooleanField(default=True)

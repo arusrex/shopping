@@ -13,3 +13,4 @@ from .change_password_view import *
 from .login_logout_view import *
 from .admin_views import *
 from ._users_views import *
+from .newsletter import *
