@@ -156,7 +156,7 @@
         </div>
         
         <div class="col-6 mb-3">
-            {% if form.cover %}
+            {% if post.cover %}
                 <a href="{{post.cover.url}}"><img src="{{post.cover.url}}" class='img-fluid' width="100" height="100"></a>
             {% endif %}
             {{form.cover.label_tag}}
