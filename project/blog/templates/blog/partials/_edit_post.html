@@ -187,7 +187,7 @@
                 <div class="d-flex flex-row flex-wrap justify-content-center gap-1">
                     {% for image in post.images.all %}
                         <div class="d-flex flex-column justify-content-center border">
-                            <a href="{{image.image.url}}"><img src="{{image.image.url}}" class='img-fluid shadow-sm' width="100" height="100"></a>
+                            <a href="{{ image.image.url }}"><img src="{{ image.image.url }}" class="img-fluid shadow-sm" width="100" height="100"></a>
                             <a role="button" href="{% url "blog:delete_image_post" image.id %}" class="link btn btn-sm btn-outline-secondary text-body-secondary mx-auto">Excluir</a>
                         </div>
                     {% endfor %}
