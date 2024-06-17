@@ -60,7 +60,8 @@ urlpatterns = [
     path('delete_category/<int:category_id>/', views.delete_category, name='delete_category'),
     path('delete_tag/<int:tag_id>/', views.delete_tag, name='delete_tag'),
 
+    path('newsletters/', views.subs, name="newsletters"),
     path('newsletter/', views.newsletter, name="newsletter"), # type: ignore
-
+    path('delete_newsletter/<int:newsletter_id>/', views.delete_newsletter, name="delete_newsletter"),
 ]
 
